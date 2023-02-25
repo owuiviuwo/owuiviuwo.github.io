@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">2022秋学期 高级操作系统课件后习题 | owuiviuwo&#39;s blog!</title>
+  
+    <link rel="shortcut icon" href="/images/hamster.png">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "owuiviuwo";
+  mashiro_option.author_name = "owuiviuwo";
+  mashiro_option.site_url = "https://owuiviuwo.github.io/";
+  mashiro_option.v_appId = "Bca3aRLRAJx2I6PNPDTapKBT-MdYXbMMI";
+  mashiro_option.v_appKey = "o1JOvsCvLL7SkH0kH1SeRXKK";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover0.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover1.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover2.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover3.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover4.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover5.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover6.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover7.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover8.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover9.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover10.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-grid">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <!--<a href="https://owuiviuwo.github.io/">-->
+		<a href="/random.html">
+          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Learn and Live</p>
+        <div class="top-social_v2">
+		<!-- 这里去掉了框架原来的显示前一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		<!--
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+          
+            
+              
+                <li>
+                  <a href="http://github.com/owuiviuwo" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.cnblogs.com/owuiviuwo" target="_blank" class="social-github" title="cnblogs">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/cnblogs.svg">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/owuiviuwo" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/zhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="mailto:owuiviuwo@163.com" target="_blank" class="social-github" title="email">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/email.svg">
+                  </a>
+                </li>
+              
+            
+          
+		  <!-- 这里去掉了框架原来的显示后一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		  <!--
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!-- 这里去掉了框架原来的视频播放部分 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+  <!--
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  -->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono"></span>
+            <span class="shironeko">owuiviuwo</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/random.html">
+                          <i class="fa fa-random" aria-hidden="true"></i>
+                          随机
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    数据
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/statistics/">
+                          <i class="fa fa-line-chart" aria-hidden="true"></i>
+                          统计
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/postcategory/">
+                          <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                          分类
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/">
+                          <i class="fa fa-tags" aria-hidden="true"></i>
+                          标签
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/shuoshuo/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-clock-o" aria-hidden="true"></i>
+                    说说
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    其他
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/atom.xml">
+                          <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                          RSS
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/5e86e3c7e4f7209136b404eaea15d703-20230212190057-a2ed31.png);" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/5e86e3c7e4f7209136b404eaea15d703-20230212190057-a2ed31.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      2022秋学期 高级操作系统课件后习题</h1>
+      <p class="entry-census">
+        <span>
+          <a href="https://owuiviuwo.github.io/">
+            <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="https://owuiviuwo.github.io/">owuiviuwo</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2023-2-12<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+       <div id="outDateInfo">
+	   <!-- 过时信息提示，来源于 https://cndrew.cn/2020/04/04/date/ -->
+	   <style>
+		   .tip.share {
+				border-left-color: rgb(238, 5, 5);
+				background: #fff;
+			}
+			.tip {
+				display:block;
+				background: #fff;
+				padding: 8px 20px;
+				position: relative;
+				margin: 0 0 20px;
+			 
+				font-family: Georgia, serif;
+				font-size: 16px;
+				line-height: 1.2;
+				color: #666;
+				text-align: justify;
+				border-left: 5px solid      #3CB371;
+			 
+				/*盒子阴影 - (选项)*/
+				-moz-box-shadow: 2px 2px 15px #ccc;
+				-webkit-box-shadow: 2px 2px 15px #ccc;
+				box-shadow: 2px 2px 15px #ccc;
+			}
+			.tip.share:before {
+				background: #ddd;
+				content: "🐷";
+			}
+			.tip:before {
+				background: #38a3fd;
+				border-radius: 50%;
+				color: #fff;
+				content: "i";
+				font-family: Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+				font-size: 16px;
+				height: 21px;
+				line-height: 21px;
+				margin-left: -32px;
+				margin-top: 8px;
+				position: absolute;
+				text-align: center;
+				width: 21px;
+			}
+	   </style>
+	   	  <div id="point"></div>
+			 <script>
+			  function intervalTime(startTime,endTime){
+				  var date1 = new Date(startTime);
+				  var date2 = new Date(endTime);  
+				  var date3 = date2.getTime() - date1.getTime(); 
+				  var days = Math.floor(date3 / (24 * 3600 * 1000));
+				  return days;
+			  }
+			  function format(Date){
+				var Y = Date.getFullYear();
+				var M = Date.getMonth() + 1;
+				  M = M < 10 ? '0' + M : M;
+				var D = Date.getDate();
+				  D = D < 10 ? '0' + D : D;
+				var H = Date.getHours();
+				  H = H < 10 ? '0' + H : H;
+				var Mi = Date.getMinutes();
+				  Mi = Mi < 10 ? '0' + Mi : Mi;
+				var S = Date.getSeconds();
+				  S = S < 10 ? '0' + S : S;
+				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
+			  }
+			  // var pdate = new Date("1676194487000");
+			  var pdate = new Date(1676194487000);
+			  console.log("pdate="+pdate);
+			  console.log("1676194487000");
+			  //var update = new Date("1676199990000");
+			  var update = new Date(1676199990000);
+			  console.log("1676199990000");
+			  console.log("update="+update);
+			  var now = new Date();
+			  console.log("now="+now);
+			  now=format(now);
+			  pdate=format(pdate);
+			  update=format(update);
+			  var days=intervalTime(pdate,now),udays=intervalTime(update,now);
+			  var mid=parseInt(days,10);
+			  var mi=parseInt("30",10);
+			  if(mid > mi){
+				document.getElementById("point").innerHTML="<div class=\"tip share\">请注意，本文编写于"+days+"天前，最后修改于"+udays+"天前，其中某些信息可能已经过时。<img src=\"https://cdn.jsdelivr.net/gh/drew233/cdn/kawayi.webp\"><\img> </div>";
+			  }
+			</script>
+	   </div>
+
+	  
+	  <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="2022秋学期-高级操作系统课件后习题"><a href="#2022秋学期-高级操作系统课件后习题" class="headerlink" title="2022秋学期 高级操作系统课件后习题"></a>2022秋学期 高级操作系统课件后习题</h1><h2 id="C0-引言"><a href="#C0-引言" class="headerlink" title="C0 引言"></a>C0 引言</h2><p>本文内容来自于对高级操作系统课程PPT后习题的整理与解答，部分章节课件后没有习题，且答案不一定完全准确，敬请批评指正；</p>
+<p>本文所涉及的课程指东北某沿海高校，计算机学院硕士生必修课“高级操作系统”，课程资料包括课程PPT、教材《分布式系统原理与范型 第二版》<sup><a href="#fn_1" id="reffn_1">1</a></sup>、《Distributed Systems Principles and Paradigms 2nd edition》<sup><a href="#fn_2" id="reffn_2">2</a></sup>，以及网络资料。</p>
+<blockquote id="fn_1">
+<sup>1</sup>. 《分布式系统原理与范型 第二版》 作者: （美）特尼博姆 出版社: 清华大学出版社 原作名: Distributed Systems: Principles and Paradigms 译者: 辛春生 :出版年: 2008-6-1 页数: 490 ISBN: 978730217279<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. 《Distributed Systems Principles and Paradigms 2nd edition》:作者: Tanenbaum, Andrew S. / Steen, Maarten van 出版社: Pearson 出版年: 2001-9-1 页数: 803 ISBN: 9780131217867<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="C2-体系结构"><a href="#C2-体系结构" class="headerlink" title="C2 体系结构"></a>C2 体系结构</h2><ul>
+<li><p>(C2Q4)考虑一个进程链，该进程（链）由进程$P_1,P_2,\dots P_n$构成，实现了一个多层客户-服务器体系结构。进程$P_i$是$P_{i+1}$的客户，只有$P_i$得到$P_{i+1}$的应答之后，才能向$P_{i-1}$发出应答。如果考虑到进程$P_{1}$的请求-应答性能，这种组织结构主要存在什么问题？</p>
+<p>答：当n很大时性能可能会很差。两个连续层的通信可能会在不同的机器上，这样P1和P2的交互性能就取决于其他 n-2 层之间的交互性能。且，若进程链中的某台机器性能较差或者暂时无法联系，进程链的性能将显著下降。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/7ac503620ae3cd73539709f08fb21b8a-20230212175226-dd6939.png" alt="image-20230208165630557"></p>
+</li>
+</ul>
+<h2 id="C3-分布式进程管理"><a href="#C3-分布式进程管理" class="headerlink" title="C3 分布式进程管理"></a>C3 分布式进程管理</h2><ul>
+<li><p>（C3Q1）比较在单处理器系统中，使用单线程文件服务器和使用多线程文件服务器读取文件有什么区别。假定需要的数据存放在内存的缓存中（概率为2/3），将花费30ms来接收请求、调度该请求并且完成其他必须的处理工作。否则需要磁盘操作，就需要额外多花90ms，在磁盘操作的过程中线程处于等待状态。</p>
+<ul>
+<li>如果服务器采用单线程，每秒能处理多少个请求？</li>
+<li>如果服务器采用多线程呢？</li>
+</ul>
+<p>答： </p>
+<ul>
+<li><p>对于单线程：</p>
+<script type="math/tex; mode=display">t=30*2/3+(30+90)*1/3=60ms</script><script type="math/tex; mode=display">n=1s/t=50/3个</script><p>也就是每秒50/3个</p>
+</li>
+<li><p>对于多线程：磁盘操作涉及的等待状态可以交给其他线程，因此每个请求所需的时间就是接收请求与调度的30ms</p>
+<script type="math/tex; mode=display">t=30ms</script><script type="math/tex; mode=display">n=1s/t=100/3个</script><p>也就是每秒100/3个</p>
+</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/c7c8d81325c5b8e9875049e5661857af-20230212175223-bbd735.png" alt="image-20230208165647579"></p>
+</li>
+<li><p>（C3Q2）对服务器进程中的线程数目进行限制是否有意义？</p>
+<p>答：显然有，主要有两个原因：</p>
+<ul>
+<li>线程需要内存空间来设置私有堆栈，过多的线程可能会占据过多的内存使服务器无法正常工作</li>
+<li>对于操作系统来说，独立的线程往往以混乱的方式运行。在虚拟内存系统中构造一个相对稳定的工作集时很困难的，导致了许多页错误以及相应的I/O操作。过多的线程可能因为页错误而使得性能下降。甚至在那些内存正常的情况下，我们可能很容易看到内存的访问是按照混乱的模式进行的，从而导致缓存毫无用处。这可能会导致性能甚至不如单线程。</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/75e247783f97214848f0cfbc22929315-20230212175220-7cb25b.png" alt="image-20230208165540030"></p>
+</li>
+<li><p>（C3Q10）列举通过生成进程来构建并发服务器与使用多线程服务器的优点和缺点。</p>
+<p>答：一个重要的有点是独立的进程时相互保护的，这是很有必要的，例如在超级服务器上处理独立的服务。另一方面，进程的产生是的代价是相对较高的，这些代价在多线程服务器中可以被节省。此外，如果进程间需要通信，使用线程的代价相对低得多，因为在许多情况下我们可以避免使用内核通信。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/7208a91f2f0a3ff866882ed8aa928e7f-20230212175215-4bc16d.png" alt="image-20230208171234167"></p>
+</li>
+</ul>
+<h2 id="C5-命名系统"><a href="#C5-命名系统" class="headerlink" title="C5 命名系统"></a>C5 命名系统</h2><ul>
+<li><p>（C5Q12）假设某个移动实体几乎不会离开域D，即使离开也很快返回。如何利用该信息在分层定位服务中加快查询操作的速度？</p>
+<p>答：只需要在实体的标识符中对域D进行编码，该标识符被用于查询查询实体的操作。这样查询操作就可以立即被转发到目录节点dir（D）中，并从这里开始继续搜索。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/340db42573241fb4be359b9615550a2a-20230212175212-114cd7.png" alt="image-20230208173634947"></p>
+</li>
+<li><p>（C5Q14）假设一个实体从位置A转移到位置B，期间经过了几个中间位置（停留时间都很短），最终到达B。在分层定位服务中更改地址可能花费较长时间，因此在经过中间位置时，应避免更改地址没那么经过中间位置时应该如何查找该实体？</p>
+<p>答：将分层定位于与转发指针相结合。当实体开始移动时，在A出留下一个转发指针指向其下一个（中转）位置。每次移动时，都在移动开始处留下一个转发指针。直到到达B，将实体的新位置插入到分层定位服务中。转发指针链随后被清理，而A的原位置被删除。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/29da117195af19ab72cc28c147bce1ca-20230212175209-3a1287.png" alt="image-20230208173714431"></p>
+</li>
+<li><p>（C5Q13）在深度为k的分层定位服务中，当移动实体改变它的位置时，最少需要更新多少条位置记录？最多需要多少条位置记录？</p>
+<p>答：改变位置可以被描述为一次插入与一次删除操作的结合。一次插入操作最多要求改变k+1条记录。同样的，一次删除操作最多要求修改k+1条记录。而根节点的记录修改可以被两个操作所共享，也就是仅需要修改一次根节点的记录。因此最多需要修改2k+1条记录。</p>
+<p>显然，修改记录最少时，要求k=1，此时，最少需要修改3条记录。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/cf006db7db6929844ab6034f27078e41-20230212175206-8cf087.png" alt="image-20230208173728455"></p>
+</li>
+</ul>
+<h2 id="C6-同步"><a href="#C6-同步" class="headerlink" title="C6 同步"></a>C6 同步</h2><ul>
+<li><p>（C6Q11）分布式互斥算法中，建议所有的请求都被应答（同意或否定），这样可以检测出崩溃的进程，但是否还有其它问题？</p>
+<p>答：假定某进程P拒绝了请求随后崩溃了。这样请求进程认为P仍然运行，但授权永远不会到来。一个解决办法是让请求进程不阻塞，而是在休眠一个固定时间后，轮询所有之前拒绝过的进程，看它们是否仍在运行。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/9847ed7f433b042187de77c4c28f4a60-20230212175203-272e20.png" alt="image-20230208175108658"></p>
+</li>
+<li><p>（C6Q8）许多分布式算法需要协调者，与集中式协调者相比，分布性体现在哪里？</p>
+<p>答：在集中式算法中，通常由一个固定的进程作为协调者。分布式的情况下，不同的进程在不同的机器上运行。在分布式算法中，有不固定的协调者。协调者是由构成算法的一部分进程举（分布式的方式）产生的。这样的协调者并没有让算法的分布程度降低。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/3e1f0f3ec64cb814e5cca7ac12aef153-20230212175200-3c7d62.png" alt="image-20230208175122437"></p>
+</li>
+</ul>
+<h2 id="C7-一致性和复制"><a href="#C7-一致性和复制" class="headerlink" title="C7 一致性和复制"></a>C7 一致性和复制</h2><ul>
+<li><p>（C7Q20）一个文件被复制在10个服务器上，列出基于法定数目的协议允许的所有读团体和写团体。</p>
+<p>答：允许的读团体和写团体有（读团体，写团体）：（1，10），（2，9），（3，8），（4，7），（5，6），（6，5），（7，4），（8，3），（9，2），（10，1）。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/890b06fc51b781844fd3263805819814-20230212175157-628e46.png" alt="image-20230208180043401"></p>
+</li>
+</ul>
+<h2 id="C8-容错性"><a href="#C8-容错性" class="headerlink" title="C8 容错性"></a>C8 容错性</h2><ul>
+<li><p>（C8Q7）下面情况下，最少一次语义合适还是最多一次语义合适？</p>
+<ul>
+<li>从文件服务器读写文件</li>
+<li>编译一个程序</li>
+<li>远程银行</li>
+</ul>
+<p>答：对于从文件读写文件、编译一个程序来说，可以使用最少一次语义，因为多次并没有问题。对于远程银行来说，使用最多一次语义，因为如果失败，用户必须干预并清理上一次的残留。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/d865ae0593b0753a99d85d97e1d4ba51-20230212175153-0a4887.png" alt="image-20230208181619861"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/99ff4304e045ed386d7a7b2cac5bf581-20230212175151-aa3f38.png" alt="image-20230208181628495"></p>
+</li>
+<li><p>（C8Q14）下图中，FIFO和全序结合情况下。可能的消息发送顺序？</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/691e1dcfd2d38186292fc14ebecaeda6-20230212175149-f3b390.png" alt="image-20230208154811269"></p>
+<p>答：可能的发送顺序有：</p>
+<ul>
+<li>m1, m2, m3, m4</li>
+<li>m1, m3, m2, m4</li>
+<li>m1, m3, m4, m2</li>
+<li>m3, m1, m4, m2</li>
+<li>m3, m4, m1, m2</li>
+<li>m3, m1, m2, m4</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/d5ed91a2bf7a8f71db2bd9469e8599f8-20230212175147-27c6ec.png" alt="image-20230208181504870"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/668d8b228dba8d62d052ec9e7eee553f-20230212175143-b7e7fb.png" alt="image-20230208181537586"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/3aed2278feef984c5cfd4acb346465a8-20230212175138-61dc06.png" alt="image-20230208181555028"></p>
+</li>
+</ul>
+<h2 id="C9-分布式安全"><a href="#C9-分布式安全" class="headerlink" title="C9 分布式安全"></a>C9 分布式安全</h2><ul>
+<li><p>(C9Q10) Assume Alice wants to send a message m to Bob. Instead of encrypting m with Bob’s public key $K_B^+$, she generates a session key $K_{a,b}$ and then sends $[K_{A,B}(m),K^+_B(K_{A,B})]$.Why is this scheme generally better? (Hint: consider performance issues.)</p>
+<p>答：因为会话密钥（session key），具有短且固定的长度，而消息m的长度是任意的。这样的特性导致组合使用会话密钥与公钥加密短消息能够得到更好的性能，而只使用公钥对长信息加密的性能相对较差。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/8e2bb1af0fb7c4600a0e1f3667eac3cd-20230212175130-70be19.png" alt="image-20230208184510431"></p>
+</li>
+<li><p>(C9Q19) The Diffie-Hellman key-exchange protocol can also be used to establish a shared secret key between three parties. Explain how.</p>
+<p>答：假定Alice、Bob、Chunk想要基于两个公开的大素数$n$和$g$建立共享密钥。Alice拥有一个不公开的大数$x$，Bob拥有不公开的大数$y$，Chunk拥有不公开的大数$z$。Alice将$g^x \mod n$发送给Bob；Bob将$g^y\mod n$发送给Chunk；Chunk将$g^z\mod n$发送给Alice。接下来，Alice计算$g^{xz}\mod n$，并将计算的结果发送给Bob；这样，Bob可以计算$g^{xyz}\mod n$；同时，在Bob接收到Alice发送的$g^x \mod n$后，可以计算$g^{xy}\mod n$，并将计算的结果发送给Chunk；这样，Chunk可以计算$g^{xyz}\mod n$；同时，在Chunk接收到Bob发送的$g^y \mod n$后，可以计算$g^{yz}\mod n$，并将计算的结果发送给Alice；这样，Alice也可以计算$g^{xyz} \mod n$。通过上述操作就建立了一个三方之间的共享密钥。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/f95a594fce083895a473f11c70bebc93-20230212175126-4f9664.png" alt="image-20230208184330184"></p>
+</li>
+<li><p>(C9Q20) There is no authentication in the Diffie-Hellman key-exchange protocol. By exploiting this property, a malicious third party, Chunk, can easily break into the key exchange taking place between Alice and Bob, and subsequently ruin the security. Explain how this would work.</p>
+<p>答：假定Alice和Bob使用公开的n和g，当Alice发送$g^x\mod n$给Bob时，Chunk只需拦截该信息，返回其自己的信息$g^z\mod n$给Alice，这样可以让Alice相信她正在与Bob交谈。类似的，在Chunk拦截Alice的信息后，他可以发送$g^z\mod n$给Bob，并等待Bob返回$g^y\mod n$作为应答。Chunk现在作为中间人了</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/b29aad63cd8ea0357789fff42c8f90c4-20230212175028-caeee4.png" alt="image-20230208183812568"></p>
+</li>
+</ul>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <!--<li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@mainnull"></li>-->
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/custom/donate/WechanSQ2.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2023/02/25/2022秋学期-高级操作系统期末整理/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                2022秋学期-高级操作系统期末整理</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2023/02/09/基于hexo的github博客搭建/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/09/846ebf4983a598f9fac5fb721a8ba705-20230209153153-19ad0d.webp" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/09/846ebf4983a598f9fac5fb721a8ba705-20230209153153-19ad0d.webp">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                基于hexo的github博客搭建</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+
+
+    <div id="tcomment"></div>
+	<style>
+	.el-textarea__inner{
+		height: 130px;
+	}
+	</style>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js"></script>
+    <script>
+    window.onload = function () {
+      var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+      document.getElementById("page_loading_time").innerHTML = "It took me " + loadTime + "ms to meet you this time";
+      console.log('Page load time is ' + loadTime);
+      // var valine = new Valine();
+      // valine.init({
+      //   el: '#vcomments',
+      //   avatar: 'monsterid',
+      //   appId: "",
+      //   appKey: "",
+      //   path: window.location.pathname,
+      //   serverURL: "",
+      //   placeholder: "你是我一生只会遇见一次的惊喜"
+      // })
+        twikoo.init({
+          envId: 'https://vercel-for-blog.vercel.app/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+          el: '#tcomment', // 容器元素
+          // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+          // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+          // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+        })
+    }
+    </script>
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="https://owuiviuwo.github.io/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg" itemprop="image" alt="owuiviuwo" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://owuiviuwo.github.io/" itemprop="url" rel="author">owuiviuwo</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>Learn and Live</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 owuiviuwo<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;" id="blog_running_year">&copy 2022-2023 owuiviuwo</p>
+	  <p style="color: #999; font-size:10px;" id="page_loading_time"></p>
+      <!--<p style="color: #666666;" id="blog_running_year">&copy <span id="blog_running_year_cal"></span> owuiviuwo</p>-->
+      <p style="color: #aaa; font-size: 13px;" id="blog_running_time" ></p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> 
+		<i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by 
+		<a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&
+		<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a><!--, Powered by Hexo, Hosted by Coding Pages</a>-->
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+//var startDay = new Date("2022-12-15");
+//var nowDay = new Date();
+//var dayDiff = Math.floor((nowDay-startDay)/24/60/60/1000);
+//console.log("网站已运行 " + dayDiff + "天！");
+//document.getElementById("blog_running_time").innerHTML = "&copy 2022-"+ nowDay.getFullYear() +" owuiviuwo";
+
+function siteTime() {
+	var seconds = 1000;
+	var minutes = seconds * 60;
+	var hours = minutes * 60;
+	var days = hours * 24;
+	var years = days * 365;
+	var today = new Date();
+	var startYear = "2022";
+	var startMonth = "12";
+	var startDate = "15";
+	var startHour = "0";
+	var startMinute = "0";
+	var startSecond = "0";
+	var todayYear = today.getFullYear();
+	var todayMonth = today.getMonth() + 1;
+	var todayDate = today.getDate();
+	var todayHour = today.getHours();
+	var todayMinute = today.getMinutes();
+	var todaySecond = today.getSeconds();
+	var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+	var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+	var diff = t2 - t1;
+	var diffYears = Math.floor(diff / years);
+	var diffDays = Math.floor((diff / days) - diffYears * 365);
+	var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+	var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+		minutes);
+	var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+		diffMinutes * minutes) / seconds);
+		
+	diffDays = diffDays < 10 ? '0' + diffDays : diffDays;
+	diffHours = diffHours < 10 ? '0' + diffHours : diffHours;
+	diffMinutes = diffMinutes < 10 ? '0' + diffMinutes : diffMinutes;
+	diffSeconds = diffSeconds < 10 ? '0' + diffSeconds : diffSeconds;
+		
+//	if (startYear == todayYear) {
+//		document.getElementById("blog_running_year_cal").innerHTML = todayYear;
+//	} else {
+//		document.getElementById("blog_running_year_cal").innerHTML = startYear + " - " + todayYear;
+//	}
+	if (diffYears == 0) {
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+			" 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	} else{
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+			" 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	}
+}
+setInterval(siteTime, 1000);
+            
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+      <!-- 实现换肤功能 -->
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+ <div class="theme-controls row-container">
+  <ul class="menu-list">
+   <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+   <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+   <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+   <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+   <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+   <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+   <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+   <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+  </ul>
+ </div>
+</div>
+<canvas id="night-mode-cover"></canvas> 
+  <div class="changeSkin-gear no-select" >
+  <div class="keys" id="setbtn"> 
+   <span id="open-skinMenu"> 切换主题 | SCHEME TOOL  
+     <i class="iconfont icon-gear inline-block rotating"></i> 
+   </span>
+  </div>
+</div>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">owuiviuwo</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.cnblogs.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.zhihu.com/people/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="mailto:owuiviuwo@163.com" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/random.html">
+                  <i class="fa fa-random" aria-hidden="true"></i>
+                  随机
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            数据
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/statistics/">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  统计
+                </a>
+              </li>
+            
+              <li>
+                <a href="/postcategory/">
+                  <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                  分类
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                  标签
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/shuoshuo/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-clock-o" aria-hidden="true"></i>
+            说说
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            其他
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                  RSS
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  
+ 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
