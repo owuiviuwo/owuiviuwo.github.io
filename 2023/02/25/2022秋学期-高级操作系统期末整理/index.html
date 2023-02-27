@@ -478,9 +478,9 @@
 			  var pdate = new Date(1677312453000);
 			  console.log("pdate="+pdate);
 			  console.log("1677312453000");
-			  //var update = new Date("1677379795572");
-			  var update = new Date(1677379795572);
-			  console.log("1677379795572");
+			  //var update = new Date("1677507015849");
+			  var update = new Date(1677507015849);
+			  console.log("1677507015849");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -595,12 +595,12 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/65a8cc7321ffb2ad9c74f9d269c366a7-20230225161132844-d2518a.png" alt="image-20230204223940536"></p>
 <p>服务器可充当客户端角色，应用服务器向数据库服务器发出了请求，这里应用服务器作为客户端，如下图例中所示：</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/cc1a4dcbd658db58c173b1241ef558d2-20230225161138792-cc8f17.png" alt="image-20230204223946064"></p>
-<h4 id="非集中式体系结构"><a href="#非集中式体系结构" class="headerlink" title="非集中式体系结构"></a>非集中式体系结构</h4><ul>
+<h4 id="非集中式体系结构"><a href="#非集中式体系结构" class="headerlink" title="* 非集中式体系结构"></a>* 非集中式体系结构</h4><ul>
 <li>垂直分布式：按照逻辑把不同的组件放在不同的机器上</li>
 <li>水平分布式：客户或服务按照在物理上被分割成逻辑上相同的几部分，如：点对点系统</li>
 </ul>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/457ccc2f1928462cd7159b2ec12a6792-20230225161143605-f88f41.png" alt="image-20230204224046312"></p>
-<h4 id="混合体系结构-协作分布式系统"><a href="#混合体系结构-协作分布式系统" class="headerlink" title="混合体系结构-协作分布式系统"></a>混合体系结构-协作分布式系统</h4><p>协作分布式系统：以C/S方式启动，一旦节点加入，则以完全非集中式协作，如：BitTorrent（BT）</p>
+<h4 id="混合体系结构-协作分布式系统"><a href="#混合体系结构-协作分布式系统" class="headerlink" title="* 混合体系结构-协作分布式系统"></a>* 混合体系结构-协作分布式系统</h4><p>协作分布式系统：以C/S方式启动，一旦节点加入，则以完全非集中式协作，如：BitTorrent（BT）</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/e981cd09ad12e7de05df03019b963469-20230225161151399-f15f22.png" alt="image-20230204224257555"></p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/1a3c4bd201c53ff957bb4bac8ce4f3c5-20230225161158933-0ea14e.png" alt="image-20230204224333276"></p>
 <p>BT 下载网络有三个关键静态组件：</p>
@@ -629,6 +629,7 @@
 <li>地址空间和其他资源（如打开文件）：进程间相互独立，同一进程的各线程间共享该进程地址空间和其他资源；某进程内的线程在其他进程不可见</li>
 <li>通信：进程间通信通过IPC，线程间可以直接读写进程数据段（如全局变量）来进行通信；需要进程同步和互斥手段的辅助，以保证数据的一致性</li>
 <li>调度：线程上下文切换比进程上下文切换要快得多</li>
+<li>线程是CPU调度单位；进程只作为其他资源分配单位</li>
 <li>结论：多线程能提高性能；线程不像进程那样彼此隔离，并受到系统自动提供的保护，因此多线程应用程序开发需要付出更多努力</li>
 </ul>
 <h4 id="相关的资料"><a href="#相关的资料" class="headerlink" title="* 相关的资料"></a>* 相关的资料</h4><ul>
@@ -665,6 +666,9 @@
 <li>缩短IPC通信的时间</li>
 <li>出于软件工程的考虑：例如 字处理程序（用户输入、拼写检查、语法检查、文档布局）</li>
 </ul>
+<blockquote>
+<p>多线程技术不仅能够显著简化服务器代码，还能够使得应用并行技术来开发高性能的服务器变得更加容易，即使在单处理器系统上也是如此。多线程能够保留顺序处理的思路，使用阻塞性系统的系统调用，仍然能到达并行处理的目的。使用阻塞系统调用使编程更容易，并行处理能提高系统的性能。</p>
+</blockquote>
 <h3 id="代码迁移的动机有哪些"><a href="#代码迁移的动机有哪些" class="headerlink" title="代码迁移的动机有哪些"></a>代码迁移的动机有哪些</h3><p>代码迁移的定义：将程序或执行中的程序传递到其他计算机</p>
 <p>动机：</p>
 <ul>
@@ -677,6 +681,23 @@
 <h3 id="进程对资源的绑定类型有哪些"><a href="#进程对资源的绑定类型有哪些" class="headerlink" title="进程对资源的绑定类型有哪些"></a>进程对资源的绑定类型有哪些</h3><p>按标识符（URL）、按值和按类型</p>
 <h3 id="资源对机器的绑定类型有哪些"><a href="#资源对机器的绑定类型有哪些" class="headerlink" title="资源对机器的绑定类型有哪些"></a>资源对机器的绑定类型有哪些</h3><p>未连接（数据文件）、附着连接（数据库）和紧固连接（本地设备）</p>
 <h2 id="C4-分布式系统通信"><a href="#C4-分布式系统通信" class="headerlink" title="C4 分布式系统通信"></a>C4 分布式系统通信</h2><h3 id="什么是远程过程调用？远程过程调用的步骤"><a href="#什么是远程过程调用？远程过程调用的步骤" class="headerlink" title="什么是远程过程调用？远程过程调用的步骤"></a>什么是远程过程调用？远程过程调用的步骤</h3><p>远程过程调用（Remote Procedure Call， RPC）是分布式系统通信处理的事实标准，实现消息传输的透明性</p>
+<blockquote>
+<p>远程过程调用(Remote Procedure Call)RPC 是指本地程序调用位于其他机器上的进程，调用方通过消息的形式把参数传递到被调用方的进程，然后等待被调用方执行完后用消息的方式把结果传回调用方。 </p>
+<p>远程过程调用：当机器A上的进程调用B上的进程时，A上的调用进程被挂起，而B上的被调用进程开始执行。调用方可以通过使用参数将信息传送给被调用方，然后可以通过传回的结果得到信息。编程人员看不到任何消息传递过程。这种方法称为远程过程调用。</p>
+</blockquote>
+<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol>
+<li>客户过程以正常的方式调用客户存根</li>
+<li>客户存根生成一个消息，然后调用本地操作系统</li>
+<li>客户端操作系统将消息发送给远程操作系统</li>
+<li>远程操作系统将消息交给服务器存根</li>
+<li>服务器存根将参数提取出来，然后调用服务器</li>
+<li>服务器执行要求的操作，操作完成后将结果返回给服务器存根</li>
+<li>服务器存根将结果打包成一个消息，然后调用本地操作系统</li>
+<li>服务器操作系统将含有结果的消息发送给客户端操作系统</li>
+<li>客户端操作系统将消息交给客户存根</li>
+<li>客户存根将结果从消息中提取出来，返回给调用它的客户过程</li>
+</ol>
+<h4 id="相关的资料-1"><a href="#相关的资料-1" class="headerlink" title="* 相关的资料"></a>* 相关的资料</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/4ee6376c9c745781bce0fec675cd9509-20230225161507078-8756d4.png" alt="image-20230205154647998"></p>
 <ul>
 <li>常规过程调用</li>
 </ul>
@@ -694,19 +715,6 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/255c95bfa01f354468dbcc778b63377f-20230225161425092-6a2515.png" alt="image-20230205154525854"></p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/d90b47d44969b0b1df0c31d6f0325706-20230225161449088-620a46.png" alt="image-20230205154535259"></p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/2538feb1d6640c420b3149932617f74f-20230225161458609-6c73a5.png" alt="image-20230205154542714"></p>
-<h4 id="步骤："><a href="#步骤：" class="headerlink" title="步骤："></a>步骤：</h4><ol>
-<li>客户过程以正常的方式调用客户存根</li>
-<li>客户存根生成一个消息，然后调用本地操作系统</li>
-<li>客户端操作系统将消息发送给远程操作系统</li>
-<li>远程操作系统将消息交给服务器存根</li>
-<li>服务器存根将参数提取出来，然后调用服务器</li>
-<li>服务器执行要求的操作，操作完成后将结果返回给服务器存根</li>
-<li>服务器存根将结果打包成一个消息，然后调用本地操作系统</li>
-<li>服务器操作系统将含有结果的消息发送给客户端操作系统</li>
-<li>客户端操作系统将消息交给客户存根</li>
-<li>客户存根将结果从消息中提取出来，返回给调用它的客户过程</li>
-</ol>
-<h4 id="相关的资料-1"><a href="#相关的资料-1" class="headerlink" title="* 相关的资料"></a>* 相关的资料</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/4ee6376c9c745781bce0fec675cd9509-20230225161507078-8756d4.png" alt="image-20230205154647998"></p>
 <h3 id="消息持久通信和暂时通信的区别？"><a href="#消息持久通信和暂时通信的区别？" class="headerlink" title="消息持久通信和暂时通信的区别？"></a>消息持久通信和暂时通信的区别？</h3><ul>
 <li>持久通信：通信双方不必保持运行</li>
 <li>暂时通信：通信系统只在发送者和接收者运行时存储消息</li>
