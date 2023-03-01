@@ -478,9 +478,9 @@
 			  var pdate = new Date(1677312453000);
 			  console.log("pdate="+pdate);
 			  console.log("1677312453000");
-			  //var update = new Date("1677507015849");
-			  var update = new Date(1677507015849);
-			  console.log("1677507015849");
+			  //var update = new Date("1677665944230");
+			  var update = new Date(1677665944230);
+			  console.log("1677665944230");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -510,7 +510,7 @@
 <blockquote id="fn_2">
 <sup>2</sup>. 《Distributed Systems Principles and Paradigms 2nd edition》:作者: Tanenbaum, Andrew S. / Steen, Maarten van 出版社: Pearson 出版年: 2001-9-1 页数: 803 ISBN: 9780131217867<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
 </blockquote>
-<h2 id="C1-分布式系统概述"><a href="#C1-分布式系统概述" class="headerlink" title="C1 分布式系统概述"></a>C1 分布式系统概述</h2><h3 id="什么是分布式系统"><a href="#什么是分布式系统" class="headerlink" title="什么是分布式系统"></a>什么是分布式系统</h3><p>定义：分布式系统是若该独立计算机的集合，它们对于用户来说就像一个系统</p>
+<h2 id="C1-分布式系统概述"><a href="#C1-分布式系统概述" class="headerlink" title="C1 分布式系统概述"></a>C1 分布式系统概述</h2><h3 id="什么是分布式系统"><a href="#什么是分布式系统" class="headerlink" title="什么是分布式系统"></a>什么是分布式系统</h3><p>定义：分布式系统是若干独立计算机的集合，它们对于用户来说就像一个系统</p>
 <h3 id="分布式系统中透明性的种类"><a href="#分布式系统中透明性的种类" class="headerlink" title="分布式系统中透明性的种类"></a>分布式系统中透明性的种类</h3><div class="table-container">
 <table>
 <thead>
@@ -669,6 +669,13 @@
 <blockquote>
 <p>多线程技术不仅能够显著简化服务器代码，还能够使得应用并行技术来开发高性能的服务器变得更加容易，即使在单处理器系统上也是如此。多线程能够保留顺序处理的思路，使用阻塞性系统的系统调用，仍然能到达并行处理的目的。使用阻塞系统调用使编程更容易，并行处理能提高系统的性能。</p>
 </blockquote>
+<ul>
+<li>简化服务器代码</li>
+<li>提高并行性</li>
+<li>提高服务器性能</li>
+<li>保留顺序处理思路</li>
+<li>使用阻塞系统调用使得编程更容易</li>
+</ul>
 <h3 id="代码迁移的动机有哪些"><a href="#代码迁移的动机有哪些" class="headerlink" title="代码迁移的动机有哪些"></a>代码迁移的动机有哪些</h3><p>代码迁移的定义：将程序或执行中的程序传递到其他计算机</p>
 <p>动机：</p>
 <ul>
@@ -880,8 +887,8 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/54ce7855073a8e7ba15e74eaef4cc724-20230225162729359-7a6855.png" alt="image-20230206021320865"></p>
 <h3 id="分布式死锁检测Chandy-Misra-Haas算法的思想"><a href="#分布式死锁检测Chandy-Misra-Haas算法的思想" class="headerlink" title="分布式死锁检测Chandy-Misra-Haas算法的思想"></a>分布式死锁检测Chandy-Misra-Haas算法的思想</h3><h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><p>允许进程一次请求多个资源（加锁）而不是一次一个</p>
 <ul>
-<li>通过允许多个请求同时进行使得十五的增长阶段加速</li>
-<li>这使得一个进程可以同时两个或多个进程</li>
+<li>通过允许多个请求同时进行使得事务的增长阶段加速</li>
+<li>这使得一个进程可以同时等待两个或多个进程</li>
 </ul>
 <h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>当某个进程等待资源时，例如P0等待P1，将调用Chandy-Misra-Haas算法。生成一个探测消息发送给占用资源的进程。</p>
 <ul>
@@ -1135,7 +1142,7 @@
 <li>消息要么发送给所有进程，要么一个也不发送</li>
 <li>通常需要所有的消息都按相同的顺序发送给所有的进程</li>
 <li>分布式系统中的复制数据库</li>
-<li>原子多播确保没有故障进程对数据库保持一致；当一个副本从故障恢复并重新加入组时，原子多播强制它与其他组成员保持一致</li>
+<li>原子多播确保没有故障的进程对数据库保持一致；当一个副本从故障恢复并重新加入组时，原子多播强制它与其他组成员保持一致</li>
 </ul>
 </li>
 <li>原子多播=虚拟同步+消息排序</li>
@@ -1314,7 +1321,7 @@
 <li>消息4为B返回使用私钥解密后的结果给服务器，证明B确实是该证书的合法持有者</li>
 </ul>
 <p>显然，B还可以在A不知道的情况下，将权限赋予给其他人。</p>
-<h2 id="C10-分布式文件系统"><a href="#C10-分布式文件系统" class="headerlink" title="C10 分布式文件系统"></a>C10 分布式文件系统</h2><h3 id="NFS的共享预约"><a href="#NFS的共享预约" class="headerlink" title="NFS的共享预约"></a>NFS的共享预约</h3><p>共享预约是一种锁定文件的隐含方法。共享预约完全独立于锁定，可用于在基于Windows的系统上实现NFS。客户打开文件时，需要指定所需的访问类型（即READ、WRITE或BOTH）。如果服务器不能满足客户的需求，那么该客户的open操作会失败。下图中确切地表示了一个新客户试图打开一个已被另一个客户成功打开的文件时的情况。对于一个已经打开的文件，使用两个不同的状态变量加以区分。访问状态表明当前客户目前如何访问该文件。拒绝状态表明新客户不要内需进行哪些访问。</p>
+<h2 id="C10-分布式文件系统"><a href="#C10-分布式文件系统" class="headerlink" title="C10 分布式文件系统"></a>C10 分布式文件系统</h2><h3 id="NFS的共享预约"><a href="#NFS的共享预约" class="headerlink" title="NFS的共享预约"></a>NFS的共享预约</h3><p>共享预约是一种锁定文件的隐含方法。共享预约完全独立于锁定，可用于在基于Windows的系统上实现NFS。客户打开文件时，需要指定所需的访问类型（即READ、WRITE或BOTH），以及服务器应该拒绝其他客户的访问类型。如果服务器不能满足客户的需求，那么该客户的open操作会失败。下图中确切地表示了一个新客户试图打开一个已被另一个客户成功打开的文件时的情况。对于一个已经打开的文件，使用两个不同的状态变量加以区分。访问状态表明当前客户目前如何访问该文件。拒绝状态表明新客户不要内需进行哪些访问。</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/ffdb3c58b9ba20ca062332f1aab657db-20230225165510773-22195c.png" alt="img"></p>
 <p>上图中（a）表示给定一个文件的当前拒绝状态的情况下，客户试图请求以指定的访问类型打开此文件时所发生的事情；同样，（b）表示试图打开一个当前正被另一个客户访问的文件而所请求的访问类型不被该客户允许的情况。</p>
 <h3 id="NFS服务器的重复请求高速缓存"><a href="#NFS服务器的重复请求高速缓存" class="headerlink" title="NFS服务器的重复请求高速缓存"></a>NFS服务器的重复请求高速缓存</h3><ul>
@@ -1343,8 +1350,8 @@
 <p>下图描述了对于同一个复制文件，具有两个不同的AVSG的客户</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/ec470a5194e36ff0a24a9d4136e9d6af-20230225165529264-89f9b5.jpeg" alt="2022第十章分布式文件系统"></p>
 <ul>
-<li>Coda 允许客户在断开连接时（ASVG为空）的继续操作，基于本地备份，再次链接后回传服务器。基于事实：两个进程打开相同文件进行写操作很罕见。使用储藏技术（hoarding）。</li>
-<li>也就是，为了成功地完成断开连接操作，需要解决的问题时确保客户缓存包含连接断开期间将访问的哪些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</li>
+<li>Coda 允许客户在断开连接时（ASVG为空）的继续操作，基于本地备份，再次连接后回传服务器。基于事实：两个进程打开相同文件进行写操作很罕见。使用储藏技术（hoarding）。</li>
+<li>也就是，为了成功地完成断开连接操作，需要解决的问题时确保客户缓存包含连接断开期间将访问的那些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</li>
 </ul>
 <p>下图描述了对于一个卷，Coda客户的状态转换图：</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/08f212c9be2c45808bc0f99dbf012fec-20230225165532637-fe3545.jpeg" alt="2022第十章分布式文件系统"></p>
@@ -1879,21 +1886,5 @@ setInterval(siteTime, 1000);
   
  
 
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
