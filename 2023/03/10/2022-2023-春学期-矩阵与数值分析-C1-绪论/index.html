@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">2022-2023 春学期 矩阵与数值分析 C1 绪论 | owuiviuwo&#39;s blog!</title>
+  
+    <link rel="shortcut icon" href="/images/hamster.png">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "owuiviuwo";
+  mashiro_option.author_name = "owuiviuwo";
+  mashiro_option.site_url = "https://owuiviuwo.github.io/";
+  mashiro_option.v_appId = "Bca3aRLRAJx2I6PNPDTapKBT-MdYXbMMI";
+  mashiro_option.v_appKey = "o1JOvsCvLL7SkH0kH1SeRXKK";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover0.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover1.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover2.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover3.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover4.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover5.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover6.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover7.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover8.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover9.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover10.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-grid">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <!--<a href="https://owuiviuwo.github.io/">-->
+		<a href="/random.html">
+          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Learn and Live</p>
+        <div class="top-social_v2">
+		<!-- 这里去掉了框架原来的显示前一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		<!--
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+          
+            
+              
+                <li>
+                  <a href="http://github.com/owuiviuwo" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.cnblogs.com/owuiviuwo" target="_blank" class="social-github" title="cnblogs">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/cnblogs.svg">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/owuiviuwo" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/zhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="mailto:owuiviuwo@163.com" target="_blank" class="social-github" title="email">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/email.svg">
+                  </a>
+                </li>
+              
+            
+          
+		  <!-- 这里去掉了框架原来的显示后一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		  <!--
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!-- 这里去掉了框架原来的视频播放部分 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+  <!--
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  -->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono"></span>
+            <span class="shironeko">owuiviuwo</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/random.html">
+                          <i class="fa fa-random" aria-hidden="true"></i>
+                          随机
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    数据
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/statistics/">
+                          <i class="fa fa-line-chart" aria-hidden="true"></i>
+                          统计
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/postcategory/">
+                          <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                          分类
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/">
+                          <i class="fa fa-tags" aria-hidden="true"></i>
+                          标签
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/shuoshuo/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-clock-o" aria-hidden="true"></i>
+                    说说
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    其他
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/atom.xml">
+                          <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                          RSS
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png);" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      2022-2023 春学期 矩阵与数值分析 C1 绪论</h1>
+      <p class="entry-census">
+        <span>
+          <a href="https://owuiviuwo.github.io/">
+            <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="https://owuiviuwo.github.io/">owuiviuwo</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2023-3-10<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+       <div id="outDateInfo">
+	   <!-- 过时信息提示，来源于 https://cndrew.cn/2020/04/04/date/ -->
+	   <style>
+		   .tip.share {
+				border-left-color: rgb(238, 5, 5);
+				background: #fff;
+			}
+			.tip {
+				display:block;
+				background: #fff;
+				padding: 8px 20px;
+				position: relative;
+				margin: 0 0 20px;
+			 
+				font-family: Georgia, serif;
+				font-size: 16px;
+				line-height: 1.2;
+				color: #666;
+				text-align: justify;
+				border-left: 5px solid      #3CB371;
+			 
+				/*盒子阴影 - (选项)*/
+				-moz-box-shadow: 2px 2px 15px #ccc;
+				-webkit-box-shadow: 2px 2px 15px #ccc;
+				box-shadow: 2px 2px 15px #ccc;
+			}
+			.tip.share:before {
+				background: #ddd;
+				content: "🐷";
+			}
+			.tip:before {
+				background: #38a3fd;
+				border-radius: 50%;
+				color: #fff;
+				content: "i";
+				font-family: Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+				font-size: 16px;
+				height: 21px;
+				line-height: 21px;
+				margin-left: -32px;
+				margin-top: 8px;
+				position: absolute;
+				text-align: center;
+				width: 21px;
+			}
+	   </style>
+	   	  <div id="point"></div>
+			 <script>
+			  function intervalTime(startTime,endTime){
+				  var date1 = new Date(startTime);
+				  var date2 = new Date(endTime);  
+				  var date3 = date2.getTime() - date1.getTime(); 
+				  var days = Math.floor(date3 / (24 * 3600 * 1000));
+				  return days;
+			  }
+			  function format(Date){
+				var Y = Date.getFullYear();
+				var M = Date.getMonth() + 1;
+				  M = M < 10 ? '0' + M : M;
+				var D = Date.getDate();
+				  D = D < 10 ? '0' + D : D;
+				var H = Date.getHours();
+				  H = H < 10 ? '0' + H : H;
+				var Mi = Date.getMinutes();
+				  Mi = Mi < 10 ? '0' + Mi : Mi;
+				var S = Date.getSeconds();
+				  S = S < 10 ? '0' + S : S;
+				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
+			  }
+			  // var pdate = new Date("1678426495000");
+			  var pdate = new Date(1678426495000);
+			  console.log("pdate="+pdate);
+			  console.log("1678426495000");
+			  //var update = new Date("1678427605912");
+			  var update = new Date(1678427605912);
+			  console.log("1678427605912");
+			  console.log("update="+update);
+			  var now = new Date();
+			  console.log("now="+now);
+			  now=format(now);
+			  pdate=format(pdate);
+			  update=format(update);
+			  var days=intervalTime(pdate,now),udays=intervalTime(update,now);
+			  var mid=parseInt(days,10);
+			  var mi=parseInt("30",10);
+			  if(mid > mi){
+				document.getElementById("point").innerHTML="<div class=\"tip share\">请注意，本文编写于"+days+"天前，最后修改于"+udays+"天前，其中某些信息可能已经过时。<img src=\"https://cdn.jsdelivr.net/gh/drew233/cdn/kawayi.webp\"><\img> </div>";
+			  }
+			</script>
+	   </div>
+
+	  
+	  <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="2022-2023-春学期-矩阵与数值分析-C1-绪论"><a href="#2022-2023-春学期-矩阵与数值分析-C1-绪论" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C1 绪论"></a>2022-2023 春学期 矩阵与数值分析 C1 绪论</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本文内容来自于对矩阵与数值分析课程资料的整理；</p>
+<p>本文所涉及的课程指东北某沿海高校，计算机学院硕士生必修课“矩阵与数值分析”，课程资料包括课程PPT、教材《计算机科学计算 第二版》<sup><a href="#fn_1" id="reffn_1">1</a></sup>，以及网络资料，师兄的笔记等。</p>
+<blockquote id="fn_1">
+<sup>1</sup>. 《计算机科学计算 第二版》 作者: 张宏伟 金光日 施吉林；出版社: 高等教育出版社；页数: 379；定价: 38.1元；装帧: 平装-胶订；ISBN: 9787040365955 出版年：2013；学科主题: 电子计算机 教材 科学计算-高等学校；中图法分类号: TP301.6； 一般附注: 高等学校教材<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="C1-绪论"><a href="#C1-绪论" class="headerlink" title="C1 绪论"></a>C1 绪论</h2><h3 id="1-1-计算机科学计算研究对象与特点"><a href="#1-1-计算机科学计算研究对象与特点" class="headerlink" title="1.1 计算机科学计算研究对象与特点"></a>1.1 计算机科学计算研究对象与特点</h3><p>该部分介绍了计算机科学计算研究对象与特点；</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/944d5ca708c29c0935ba9c367423ca31-20230310134508866-de0912.png" alt="image-20230309102746434"></p>
+<h3 id="1-2-误差分析与数值方法的稳定性"><a href="#1-2-误差分析与数值方法的稳定性" class="headerlink" title="1.2 误差分析与数值方法的稳定性"></a>1.2 误差分析与数值方法的稳定性</h3><h4 id="误差的来源与分类"><a href="#误差的来源与分类" class="headerlink" title="误差的来源与分类"></a>误差的来源与分类</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/233a3a75ec3ee7c69e260e5aef21273f-20230310134543020-9617e8.png" alt="image-20230309102922186"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/16edcec3d031def1772557f271c243c2-20230310134556336-4e58d5.png" alt="image-20230309102939864"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/2a68edd42c2a62245b65aa42a7dd0642-20230310134603742-6e80c9.png" alt="image-20230309102959261"></p>
+<h4 id="误差基本概念与有效数字"><a href="#误差基本概念与有效数字" class="headerlink" title="误差基本概念与有效数字"></a>误差基本概念与有效数字</h4><h5 id="相对与绝对误差："><a href="#相对与绝对误差：" class="headerlink" title="相对与绝对误差："></a><strong>相对与绝对误差：</strong></h5><ul>
+<li>绝对误差：设 x 为精确值，a 为 x 的一个近似值，称 x-a 为近似值 a 的绝对误差，简称误差。误差 x-a 可正可负。通常准确值 x 是未知的，因此 x-a 也是未知的。</li>
+<li>绝对误差界：设 x 为精确值，a 为 x 的一个近似值，若有常数 $e_a$ 使得 $|x-a|\leq e_a$ ，则 $e_a$ 叫做近似值 a 的误差界（限）。它总是正数。显然有 $a-e_a\leq x\leq a+e_a$。</li>
+<li>相对误差：若 $x\neq0$，则将近似值的误差与准确值的比值$\frac{x-a}{x}$ 称为近似值 a 的相对误差。相对误差也可正可负。实际计算中，如果真值 x 未知时，通常取 $ \frac{x-a}{x} \approx \frac{x-a}{a}$ 作为 a 的相对误差，条件是 $\frac{x-a}{x}$  较小。</li>
+<li>相对误差界（限）：相对误差的绝对值上限叫做相对误差界（限），记为 $\frac{x-a}{a}\leq\frac{e_a}{|a|}$。</li>
+</ul>
+<p>误差界的取法：当准确值 x 的位置比较多时，人们常常按照四舍五入的原则得到 x 的前几位近似值 a。</p>
+<h5 id="例如："><a href="#例如：" class="headerlink" title="* 例如："></a>* 例如：</h5><p>$x = \pi = 3.1415926\cdots$</p>
+<p>取3位：$a_1 = 3.14, \pi-a_1=0.00159265\cdots$</p>
+<p>取5位：$a_2 = 3.1416,\pi-a_2=-0.00000735\cdots$</p>
+<p>那么它们的误差界的取法应为：</p>
+<p>$|\pi-3.14|\leq\frac{1}{2}\times 10^{-2}, |\pi-3.1416|\leq\frac{1}{2}\times10^{-4}$</p>
+<h5 id="有效数字相关"><a href="#有效数字相关" class="headerlink" title="有效数字相关"></a><strong>有效数字相关</strong></h5><p>定义：设 x 为精确值，a 为 x 的一个近似值 ，a 由 n 位数组成，自左向右第 i 位为$a_i$，是 0 到 9 之中的一个数字，且$i\geq1, a_1\neq 0$，表示为： $a = \pm 10^k\times0.a_1a_2\cdots a_n\cdots$，其中，n 为正整数，k 为整数，如果其绝对误差界 $|x-a|\leq\frac{1}{2}\times 10^{k-n}$，则称 a 为 x 的具有 <strong>n</strong> 位有效数字的近似值</p>
+<p>有关结论：</p>
+<blockquote>
+<ul>
+<li>有效数字位数与小数点的位置无关</li>
+<li>一般来说，绝对误差与小数位数有关，相对误差与有效数字位数有关</li>
+<li>如果一个近似值是由精确值四舍五入得到的，那么，从这个近似值的末尾数向前数起直至在五非零数字位置，所属到的数字均为有效数字</li>
+</ul>
+</blockquote>
+<p>求有效数字位数的步骤：首先将近似值表示为定义中 a 的形式，可以得到 k，接下来一句上述定义计算绝对误差界，得到 k-n ，最后即可依据上述数据得到有效数字位数 n 。</p>
+<h5 id="例如1："><a href="#例如1：" class="headerlink" title="* 例如1："></a>* 例如1：</h5><p>对于 $ e = 2.71828182\cdots$，下面各个值的有效数字的位数。</p>
+<p>取 $a=2.718 = 10^1\times 0.2718, k=1$，</p>
+<p>其绝对误差界为 $|e-a|&lt;0.0003&lt;\frac{1}{2}\times10^{-3}, k-n=-3, n=4$， </p>
+<p>$a$ 是 $e$ 的具有4位有效数字的近似值。</p>
+<p>取 $a_1=2.7182 = 10^1\times 0.27182, k=1$，</p>
+<p>其绝对误差界为 $|e-a_1|&lt;0.00009&lt;\frac{1}{2}\times10^{-3}, k-n=-3, n=4$， </p>
+<p>$a_1$ 是 $e$ 的具有4位有效数字的近似值。</p>
+<h5 id="例如2："><a href="#例如2：" class="headerlink" title="* 例如2："></a>* 例如2：</h5><p>下列近似值的绝对误差界均为 0.005，问其有效数字的位数。</p>
+<p>$a=138.00, b=-0.0312, c=0.86\times 10 ^{-4}$</p>
+<p>对于$a$,  $|x-a|&lt;\frac{1}{2}\times10^{-2}, k-n=-2$，且 $a=138.00=0.138\times10^3, k=3, n=5$，a 具有5位有效数字。</p>
+<p>对于$b$,  $|x-b|&lt;\frac{1}{2}\times10^{-2}, k-n=-2$，且 $b=-0.0312=-0.312\times10^{-1}, k=-1, n=1$，b 具有1位有效数字。</p>
+<p>对于$c$,  $|x-c|&lt;\frac{1}{2}\times10^{-2}, k-n=-2$，且 $c=0.86\times 10^{-4}, k=-4, n=-2$，不满足 $n$ 为正整数的条件，故 c  具有0位有效数字。</p>
+<h5 id="有效数字与相对误差界"><a href="#有效数字与相对误差界" class="headerlink" title="有效数字与相对误差界"></a><strong>有效数字与相对误差界</strong></h5><p>关于有效数字与相对误差界有如下定理：</p>
+<p>若实数 x 为某个精确值， a 为它的一个近似值，其表达式形式如</p>
+<p> $a=\pm10^k\times0.a_1a_2\cdots a_n\cdots$</p>
+<ul>
+<li>如果 a 有 n 位有效数字，则其相对误差满足 $\frac{|x-a|}{|a|}\leq\frac{1}{2a_1}\times10^{1-n}$.</li>
+<li>如果其相对误差满足 $\frac{|x-a|}{|a|}\leq\frac{1}{2(a_1+1)}\times10^{1-n}$，则 a 至少有 n 位有效数字。</li>
+</ul>
+<p>其推导过程如下所示：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/f241b52366502c2eeae50e746e632a56-20230310134613914-48ead2.png" alt="有效数字与相对误差界的关系"></p>
+<h4 id="函数计算的误差估计"><a href="#函数计算的误差估计" class="headerlink" title="函数计算的误差估计"></a>函数计算的误差估计</h4><h5 id="针对一元函数："><a href="#针对一元函数：" class="headerlink" title="针对一元函数："></a><strong>针对一元函数：</strong></h5><p>思路：使用 Taylor 展开计算解决这一问题，例如将 f(x) 在 x=a 展开：</p>
+<p>$ f(x)=f(a)+f(a)’(x-a) + \frac{f’’(\xi)(x-a)}{2}$</p>
+<p>$ |f(x)-f(a)|\leq|f’(a)||x-a|+\frac{|f’’(xi)||(x-a)|^2}{2}$</p>
+<p>由上式可得，</p>
+<p>近似绝对误差估计式为：$|f(x)-f(a)|\approx|f’(a)||x-a|$</p>
+<p>近似相对误差界为：$\frac{|f(x)-f(a)|}{|f(a)}\leq\frac{f’(a)}{f(a)}|x-a|$</p>
+<h5 id="例如1"><a href="#例如1" class="headerlink" title="* 例如1"></a>* 例如1</h5><p>计算 $\sqrt{a}$ 的相对误差界</p>
+<p>解： 相对误差界为</p>
+<p>$\frac{\sqrt{x}-\sqrt{a}}{\sqrt{a}}\leq\frac{(\sqrt{x})’|_{x=a}}{\sqrt{a}}|x-a|=\frac{1}{2(\sqrt{a})^2}|x-a|=\frac{1}{2}\frac{|x-a|}{|a|}$</p>
+<p>可知，$\sqrt{a}$ 的相对误差为 $a$ 的相对误差的一半</p>
+<h5 id="类似的，针对多变元的情况，"><a href="#类似的，针对多变元的情况，" class="headerlink" title="类似的，针对多变元的情况，"></a><strong>类似的，针对多变元的情况，</strong></h5><p>如果 $f(x_1,x_2,\cdots,x_n)$ 为 $n$ 元函数，自变量 $x_1,x_2,\cdots,x_n$ 的近似值为 $a_1,a_2,\cdots,a_n$ ，</p>
+<p>则 $f(x_1,x_2,\cdots,x_n)-f(a_1,a_2,\cdots,a_n)\approx\sum^n_{k=1}(\frac{\partial f}{\partial x_k})_a(x_k-a_k)$ </p>
+<p>的函数值的误差界 $|f(x_1,x_2,\cdots,x_n)-f(a_1,a_2,\cdots,a_n)|\approx\sum^n_{k=1}|(\frac{\partial f}{\partial x_k})_a||x_k-a_k|$</p>
+<h5 id="例如2"><a href="#例如2" class="headerlink" title="* 例如2"></a>* 例如2</h5><p>可利用上述定义计算四则运算的误差估计</p>
+<p>$|f(x_1,x_2)-f(a_1,a_2)|\leq|(\frac{\partial f}{\partial x_1})_{a}|\cdot |x_a-a_1|+|(\frac{\partial f}{\partial x_2})_{a}|\cdot |x_2-a_2|$</p>
+<p>针对加减法 $f(x_1,x_2)=x_1\pm x_2$， 有 $ |(x_1\pm x_2)-(a_1\pm a_2)|\leq|x_1-a_1|+|x_2-a_2|$</p>
+<blockquote>
+<p>可知：两个近似数相加减，其运算结果的精度不必原始数据的任何一个精度高。</p>
+<p>注意：在计算中应避免两个相近的数相减，否则容易导致有效数字的损失</p>
+</blockquote>
+<p>针对乘法 $f(x_1,x_2)=x_1\cdot x_2$，有 $|x_1x_2-a_1a_2|\leq |a_2||x_1-a_1|+|a_1||x_2-a_2|$</p>
+<p>针对除法 $f(x_1,x_2)=\frac{x_1}{x_2}$，有 $|\frac{x_1}{x_2}-\frac{a_1}{a_2}|\leq\frac{|x_1-a_1|}{|a_2|}+\frac{|a_1||x_2-a_2|}{|a_2|^2}\leq\frac{|a_2||x_1-a_1|+|a_1||x_2-a_2|}{|a_2|^2}$</p>
+<blockquote>
+<p>可知，计算中应尽力避免小数作除数</p>
+</blockquote>
+<h4 id="数值方法数值稳定性"><a href="#数值方法数值稳定性" class="headerlink" title="数值方法数值稳定性"></a>数值方法数值稳定性</h4><h5 id="定义："><a href="#定义：" class="headerlink" title="定义："></a>定义：</h5><p>用某一种数值方法求一个问题的数值解，如果在方法的计算过程中舍入误差在一定条件下能够得到控制（或者说舍入误差增长不影响产生可靠的结果），则称该方法是数值稳定的；出现与数值稳定相反的情况，则称之为数值不稳定的。（蝴蝶效应？）</p>
+<h5 id="例如：-1"><a href="#例如：-1" class="headerlink" title="* 例如："></a>* 例如：</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/fb07d07a05f7fb94b2ee223c58a00190-20230310134622348-cbdf45.png" alt="数值稳定性1"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/92c728495a3672f61631a47b09e22020-20230310134626548-e99886.png" alt="数值稳定性"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/3b34f7b042d38463e7b6e193a6bc0477-20230310134630463-4fb710.jpeg" alt="稳定性数值"></p>
+<p>可见，两种方法计算得到的误差是有显著区别的。方法一每次都会使误差放大5倍；方法二每次都会使误差缩小为原来的 $\frac{1}{5}$。递推计算多次后就会有相当大的差别。而事实上方法一符合通常的思路，因为方法一的起点是已知的；而方法二的起点是未知的，计算难以开始。</p>
+<p>一种可能的思路是，由积分中值定理可知，显然积分的结果在 0-1 之间，那不妨假设 $I_{15}=\frac{1}{2}$，并以此利用方法二反推得到 $I_7$，这样最后递推计算 8 次后，误差被缩小为原来的 $(\frac{1}{5})^8$，这对于 0-1 之间的结果来说是可以接受的，或者可以取大于 15 的数字开始递推更多次，使得误差被进一步缩小。</p>
+<h5 id="避免误差危害的基本原则"><a href="#避免误差危害的基本原则" class="headerlink" title="避免误差危害的基本原则"></a><strong>避免误差危害的基本原则</strong></h5><ol>
+<li>避免有效数字的损失</li>
+</ol>
+<ul>
+<li>避免计算机上出现的”大数吃小数“</li>
+</ul>
+<p>例如：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/2c5656b36c80bbb6e106f4622fc297f8-20230310134635109-7e7b94.jpeg" alt="大数吃小数"></p>
+<ul>
+<li>利用求根公式求解一元二次方程时，若 b 远大于 ac 的积，则 $\sqrt{b^2-4ac}\approx|b|$，分母中的 $-b\pm\sqrt{b^2-4ac}\approx0 $， 出现了两相近的数相减的情况。</li>
+</ul>
+<p>其例子与解决方法如下：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/09a53b25ca0186cfe8296d7614dc9c6a-20230310134639707-9132ad.jpeg" alt="Q54E8H2SPT8Q2R6C"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/27137d31acfdd4cfe484409ad6895227-20230310134645073-5b27a8.png" alt="N59MKS"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/2399dcee7922b8510cdb2bda50c2f63a-20230310134647011-add648.png" alt="EXTZE"></p>
+<ul>
+<li>避免小数作除法或大数作乘数</li>
+</ul>
+<ol>
+<li>减少运算次数</li>
+</ol>
+<ul>
+<li>使用秦九韶算法</li>
+</ul>
+<p>例如求 $p_n(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ 的值，可通过如下过程：</p>
+<p>$\begin{aligned}p_n(x)&amp;=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\\&amp;=(a_nx+a_{n-1})x^{n-1}+\cdots+a_1x+a_0\\&amp;=((a_nx+a_{n-1})x+a_{n-2})x^{n-2}+a_{n-3}x^{n-3}+\cdots a_1x+a_0\\&amp;=\cdots=\\&amp;=((\cdots((a_nx+a_{n-1})x+a_{n-2})x+\cdots+a_{2})x+a_1)x+a_0\end{aligned}$</p>
+<p>相较于直接逐项求和计算需要的 $2n-1$ 次乘法，使用秦九韶算法后，仅需要计算总共 $n$ 次乘法即可得到所需的结果。</p>
+<p>例如：$P_5(x)=5x^5+x^3-3x^2+x-1$</p>
+<p>$\begin{aligned}P_5(x)&amp;=5x^5+x^3-3x^2+x-1\\&amp;=5x^5+0x^4+1x^3-3x^2+x-1\\&amp;=((((5x+0)x+1)x-3)x+1)x-1\end{aligned}$</p>
+<ul>
+<li>使用泰勒展开</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/ed4a525634f7b07e4bc0ccbc4611ab96-20230310134652490-842eb4.png" alt="image-20230308204359988"></p>
+<h3 id="1-3-向量与矩阵范数"><a href="#1-3-向量与矩阵范数" class="headerlink" title="1.3 向量与矩阵范数"></a>1.3 向量与矩阵范数</h3><p><em>范数的概念是复数模的概念的自然推广</em></p>
+<h4 id="向量范数"><a href="#向量范数" class="headerlink" title="向量范数"></a>向量范数</h4><h5 id="条件"><a href="#条件" class="headerlink" title="条件"></a>条件</h5><p>对任意向量 $x$ 和 $y$ 及复数 $a\in C$，$f(x)=||x||$函数满足以下三个条件：</p>
+<ol>
+<li><p>非负性</p>
+<p>  $||x||\geq0, ||x||=0 \Leftrightarrow x=0_{n\times1}$</p>
+</li>
+<li><p>齐次性</p>
+<p>  $||ax||=|a|\cdot||x||$</p>
+</li>
+<li><p>三角不等式</p>
+<p>  $||x+y||\leq||x||+||y||$</p>
+</li>
+</ol>
+<p>称函数 $||*||$ 为 上的一个向量范数，是连续函数</p>
+<h5 id="常用的向量范数"><a href="#常用的向量范数" class="headerlink" title="常用的向量范数"></a>常用的向量范数</h5><p>p-范数</p>
+<p>$||x||_p=(\sum^n_{i=1}|x_i|^p)^{1/p}, 1\leq p&lt;+\infty$</p>
+<p>特别的，</p>
+<p>$p=1, ||x||_1=(\sum^n_{i=1}|x_i|)$，$|x_i|$ 表示 $x_i$ 的模</p>
+<p>$p=2, ||x||_2=(\sum^n_{i=1}|x_i|^2)^{1/2}=\sqrt{x^Hx}=\sqrt{(x,x)}$，其中 $x^H$ 表示 向量$x$ 的共轭转置</p>
+<p>$p=+\infty, ||x||_\infty=\max_\limits{ 1\leq i\leq n}|x_i|$</p>
+<h5 id="向量加权范数"><a href="#向量加权范数" class="headerlink" title="向量加权范数"></a>向量加权范数</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/d4722b5e500d4109f7c84eb751128138-20230310134659848-10f333.png" alt="image-20230308214829897"></p>
+<h5 id="例如"><a href="#例如" class="headerlink" title="* 例如"></a>* 例如</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/5335c9396952bd567a05b36ec0647548-20230310134704990-63c9a4.png" alt="image-20230308214854887"></p>
+<h5 id="等价性定理："><a href="#等价性定理：" class="headerlink" title="等价性定理："></a>等价性定理：</h5><p>设 $||\cdot||_\beta$ 和 $||\cdot||_\alpha$ 为 $C^n$ 上的任意两种向量范数，则存在两个与向量无关的正常数 $c_1&gt;0, c_2&gt;0$，使得 $c_1||x||_\beta\leq||x||_\alpha\leq c_2||x||_\beta$，并称 $||\cdot||_\beta$ 和 $||\cdot||_\alpha$ 为 $C^n$ 上的等价范数。</p>
+<p>这一定理指出了尽管不同范数的值不一定相同，但都可以对向量进行度量。</p>
+<p>特别的，</p>
+<p>$||x||_\infty\leq||x||_1\leq n||x||_\infty$</p>
+<p>$\frac{1}{\sqrt{n}}||x||_1\leq||x||_2\leq||x||_1$</p>
+<p>$\frac{1}{\sqrt{n}}||x||_2\leq||x||_\infty\leq||x||_2$</p>
+<p>或者</p>
+<p>$||x||_\infty\leq||x||_2\leq||x||_1\leq\sqrt{n}||x||_2\leq n||x||_\infty$</p>
+<h4 id="矩阵范数-m-F"><a href="#矩阵范数-m-F" class="headerlink" title="矩阵范数 (m, F)"></a>矩阵范数 (m, F)</h4><p><em>矩阵可以看（拉）做一个向量，可以把向量范数的概念直接推广到矩阵上</em></p>
+<h5 id="条件-1"><a href="#条件-1" class="headerlink" title="条件"></a>条件</h5><p>对任意矩阵 $A$ 和 $B$ 及复数 $a\in C$ ，函数 $f(A)=||A||$ 满足以下<strong>四</strong>个条件：</p>
+<ol>
+<li><p>非负性</p>
+<p>  $||A||\geq0, ||A||=0\Leftrightarrow A=0$</p>
+</li>
+<li><p>齐次性</p>
+<p>  $||\alpha A||=|\alpha|\cdot||A||$</p>
+</li>
+<li><p>三角不等式</p>
+<p>  $||A+B||\leq||A||+||B||$</p>
+</li>
+<li><p><strong>相容性</strong></p>
+<p>  相比于向量范数，矩阵范数应考虑到矩阵乘法。</p>
+<p>  对任意矩阵 $A\in C^{m\times l}$，$B\in C^{l\times n}$，满足 $||AB||_{M1}\leq||A||_{M2}\cdot||B||_{M3}$</p>
+</li>
+</ol>
+<p>满足非负性、齐次性、三角不等式、相容性的函数 $||  ||$ 称为矩阵范数</p>
+<h5 id="对于矩阵-A-m-times-n-，常见的矩阵范数有："><a href="#对于矩阵-A-m-times-n-，常见的矩阵范数有：" class="headerlink" title="对于矩阵 $A_{m\times n}$，常见的矩阵范数有："></a>对于矩阵 $A_{m\times n}$，常见的矩阵范数有：</h5><ul>
+<li><p>$m_1$ 范数，$||A||_{m_1}=\sum^m_{i=1}\sum^n_{j=1}|a_{ij}|$；</p>
+</li>
+<li><p>$F$ 范数，$||A||_F=(\sum^m_{i=1}\sum^n_{j=1}|a_{ij}|^2)^{1/2}$；</p>
+</li>
+<li><p>$m_\infty$ 范数，$||A||_{m_\infty}=\sqrt{m\cdot n}\cdot\max\limits_{ij}|a_{ij}|$；</p>
+<p>   注意 $||A||_{m‘_\infty}=\max\limits_{ij}|a_{ij}|$ 不构成 $A$ 的范数，理由如下图所示：</p>
+<p>   <img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6d3e49b33386c8f91f32225c9f668531-20230310134715604-ae488b.png" alt="image-20230308222556647"></p>
+</li>
+</ul>
+<p>矩阵范数的等价性定理：设 $||\cdot||_\beta$ 和 $||\cdot||_\alpha$ 为 $C^{n\times n}$ 上的任意两种矩阵范数，则存在两个与矩阵无关的正常数 $c_1&gt;0, c_2&gt;0$，使得 $c_1||A||_\beta\leq||A||_\alpha\leq c_2||A||_\beta$，并称 $||\cdot||_\beta$ 和 $||\cdot||_\alpha$ 为 $C^{n\times n}$ 上的等价范数。</p>
+<h4 id="矩阵范数的性质"><a href="#矩阵范数的性质" class="headerlink" title="矩阵范数的性质"></a>矩阵范数的性质</h4><h5 id="定义：-1"><a href="#定义：-1" class="headerlink" title="定义："></a>定义：</h5><p>​           称集合 $\sigma(A)=\{\lambda|\det(\lambda I-A)=0\}$ 为矩阵 $A\in C^{n\times n}$ 的谱；也就是 $A$ 的所有的特征值全体；</p>
+<p>​          称实数 $\rho(A)=\max|\lambda|$ 为矩阵 $A\in C^{n\times n}$ 的谱半径；也就是 $A$ 的绝对值最大的特征值；谱半径<strong>不是</strong>矩阵的范数。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/a197b6861eb226a20c3e598aee51eaed-20230310134720067-ddc537.png" alt="image-20230309142220167"></p>
+<h5 id="三个重要定理"><a href="#三个重要定理" class="headerlink" title="三个重要定理"></a>三个重要定理</h5><p>定理1：设 $|| \cdot ||_M$ 为矩阵 $C^{n\times n}$ 空间的任一矩阵范数，则对任意的 $n$ 阶方阵 $A$ 均有 $\rho(A)\leq||A||_M$，其中 $\rho(A)\leq||A||_M$ 为 $A$ 方阵的谱半径</p>
+<p>证明：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/71e7733a7d414cd21579466c4c2f523d-20230310134726059-5a61d7.png" alt="image-20230309142137773"></p>
+<p>定理2：对于任给的 $\varepsilon&gt;0$ ，则存在 $C^{n\times n}$ 上的一种算子范数 $||  ||_M$ （依赖矩阵 $A$ 和常数 $\varepsilon$），使得 $||A||_M\leq\rho(A)+\varepsilon$;</p>
+<p>注意：对另一矩阵 $B$，不等式不一定成立</p>
+<p>定理3： 设 $A\in C^{n\times n}$ ，如果有 $C^{n\times n}$ 上的一种矩阵范数 $||\cdot||$，使得 $||A||&lt;1$ 则</p>
+<p>（1）$ I\pm A$ 可逆；</p>
+<p>（2）$||(I\pm A)^{-1}||\leq\frac{||I||}{1-||A||}$；</p>
+<p>（3）$||I-(I\pm A)^{-1}||\leq\frac{||A||}{1-||A||}$；</p>
+<p>注：如果 $\lambda_i, i=1,2,\cdots,n$ 是矩阵 $A$ 的特征值，则矩阵 $I\pm A$ 的特征值为 $\mu_i=1\pm\lambda_i, i=1,2,\cdots,n$</p>
+<p>证明：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/74f7f4bc73fc86d60a8ae7571d9232f6-20230310134731597-26749e.jpeg" alt="K{QOJHX~V3L3QA32VLLW0W6"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/2ee479ab96ec31d7524a35e56b6f4d5e-20230310134733999-81c5ec.jpeg" alt="fjsfhskfha"></p>
+<h4 id="算子范数"><a href="#算子范数" class="headerlink" title="算子范数"></a>算子范数</h4><p><em>由于矩阵与向量的乘积在矩阵计算中经常出现，所以希望矩阵范数与向量范数之间最好有某种协调性</em></p>
+<h5 id="相容性"><a href="#相容性" class="headerlink" title="相容性"></a>相容性</h5><p>矩阵范数与向量范数的相容性的定义： 对矩阵范数 $||  ||_M$ 与向量范数 $||  ||_V$，有 $||Ax||_V\leq||A||_M||x||_V$</p>
+<p>显然，不是任意的矩阵范数与任意的向量范数相容。</p>
+<p>结论：</p>
+<ul>
+<li>矩阵 m1-范数与向量 p-范数相容，即 $||Ax||_P\leq ||A||_{m1}||x||_p$</li>
+<li>矩阵 F-范数与向量 2-范数相容，即 $||Ax||_2\leq||A||_F||x||_2$</li>
+<li>对任一矩阵范数均存在与之相容的向量范数</li>
+</ul>
+<p>定理1.4（算子范数定义）：已知 $C^m$ 和 $C^n$ 上的同类向量范数 $||\cdot||_V$，$A$ 为 $m\times n$ 矩阵，定义 $||A||_M=\max\limits_{x\neq0}\frac{||Ax||_V}{||x||_V}=\max\limits_{||x||_V=1}||Ax||_V$，则 $||A||_M$ <strong>是一种矩阵范数</strong>，且与已知的向量范数相容。</p>
+<h5 id="对于矩阵-A-m-times-n-，常用的算子范数有"><a href="#对于矩阵-A-m-times-n-，常用的算子范数有" class="headerlink" title="对于矩阵 $A_{m\times n}$，常用的算子范数有"></a>对于矩阵 $A_{m\times n}$，常用的算子范数有</h5><ul>
+<li><p>列和范数：$||A||_1=\max\limits_{1\leq j\leq n}\sum_{i=1}^m|a_{ij|}$</p>
+</li>
+<li><p>行和范数：$||A||_\infty=\max\limits_{1\leq i\leq m}\sum^n_{j=1}||a_{ij}||$</p>
+</li>
+<li><p>谱范数：$||A||_2=\sqrt{\lambda_\max(A^HA)}=\sqrt{\rho(A^HA)}$，（谱半径开根号）</p>
+<p>   可以证明：$||A||^2_2\leq||A||_1||A||_\infty$</p>
+</li>
+</ul>
+<p>其中 $\lambda_\max(A^HA)$ 表示矩阵 $A^HA$ 的最大特征值；（或 $\sqrt{\rho(A^HA)}$）</p>
+<p>特别的，$||A||_{m_1}$、$||A||_F$ 不是算子范数</p>
+<p><em>（下标带 m、F 的是矩阵范数，其他的是矩阵范数中的算子范数？）</em></p>
+<h5 id="例如1-1"><a href="#例如1-1" class="headerlink" title="* 例如1"></a>* 例如1</h5><p>针对单位矩阵</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/1d28e82aec9f16185651c84cddfb08e3-20230310134739918-fdc8ec.png" alt="image-20230309101032969"></p>
+<h5 id="例如2-1"><a href="#例如2-1" class="headerlink" title="* 例如2"></a>* 例如2</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/a9ddce8721dd1b16f9b3d11d2a2105e9-20230310134737191-be335a.png" alt="image-20230309101052080"></p>
+<h5 id="酉矩阵的范数不变性"><a href="#酉矩阵的范数不变性" class="headerlink" title="*酉矩阵的范数不变性"></a><strong>*酉矩阵的范数不变性</strong></h5><p>对于酉矩阵 $U, U^HU=UU^H=I$，（该矩阵与其共轭转置的乘积为单位矩阵），</p>
+<p>有 $||U||_2=1, ||AU||_2=||UA||_2=||A||_2$；</p>
+<p>推导过程如下：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/984bb2d0d962900d9db9b8d43941b355-20230310134748610-fa517c.png" alt="image-20230309101726967"></p>
+<h5 id="F-范数的酉不变性"><a href="#F-范数的酉不变性" class="headerlink" title="*F-范数的酉不变性"></a><strong>*F-范数的酉不变性</strong></h5><p>设 $A$ 为 $n$ 阶方阵，则存在 $n$ 阶酉阵 $U$ 和 $V$， 使得 $||UA||_F=||AV||_F=||UAV||_F=||A||_F$</p>
+<p>推导过程如下：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/1517105901cb4475f3b9918e7fd9ac26-20230310134751114-a6cb62.png" alt="image-20230309102210904"></p>
+<h5 id="其他的结论"><a href="#其他的结论" class="headerlink" title="其他的结论"></a><strong>其他的结论</strong></h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/414e95534f595e7b060518969e1ed860-20230310134756860-9fb7fb.png" alt="image-20230309103127762"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/2646f30160b3f7865f7b85d90445942a-20230310134758848-ad0310.png" alt="image-20230309103146264"></p>
+
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <!--<li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@mainnull"></li>-->
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/custom/donate/WechanSQ2.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2023/03/02/2022秋学期-高级操作系统期末整理-精简版/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/26/151d61752a11157cec91f00c2a37e943-20230226104700259-a12130.jpeg" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/26/151d61752a11157cec91f00c2a37e943-20230226104700259-a12130.jpeg">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                2022秋学期 高级操作系统期末整理-精简版</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+
+
+    <div id="tcomment"></div>
+	<style>
+	.el-textarea__inner{
+		height: 130px;
+	}
+	</style>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js"></script>
+    <script>
+    window.onload = function () {
+      var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+      document.getElementById("page_loading_time").innerHTML = "It took me " + loadTime + "ms to meet you this time";
+      console.log('Page load time is ' + loadTime);
+      // var valine = new Valine();
+      // valine.init({
+      //   el: '#vcomments',
+      //   avatar: 'monsterid',
+      //   appId: "",
+      //   appKey: "",
+      //   path: window.location.pathname,
+      //   serverURL: "",
+      //   placeholder: "你是我一生只会遇见一次的惊喜"
+      // })
+        twikoo.init({
+          envId: 'https://vercel-for-blog.vercel.app/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+          el: '#tcomment', // 容器元素
+          // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+          // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+          // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+        })
+    }
+    </script>
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="https://owuiviuwo.github.io/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg" itemprop="image" alt="owuiviuwo" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://owuiviuwo.github.io/" itemprop="url" rel="author">owuiviuwo</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>Learn and Live</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 owuiviuwo<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;" id="blog_running_year">&copy 2022-2023 owuiviuwo</p>
+	  <p style="color: #999; font-size:10px;" id="page_loading_time"></p>
+      <!--<p style="color: #666666;" id="blog_running_year">&copy <span id="blog_running_year_cal"></span> owuiviuwo</p>-->
+      <p style="color: #aaa; font-size: 13px;" id="blog_running_time" ></p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> 
+		<i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by 
+		<a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&
+		<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a><!--, Powered by Hexo, Hosted by Coding Pages</a>-->
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+//var startDay = new Date("2022-12-15");
+//var nowDay = new Date();
+//var dayDiff = Math.floor((nowDay-startDay)/24/60/60/1000);
+//console.log("网站已运行 " + dayDiff + "天！");
+//document.getElementById("blog_running_time").innerHTML = "&copy 2022-"+ nowDay.getFullYear() +" owuiviuwo";
+
+function siteTime() {
+	var seconds = 1000;
+	var minutes = seconds * 60;
+	var hours = minutes * 60;
+	var days = hours * 24;
+	var years = days * 365;
+	var today = new Date();
+	var startYear = "2022";
+	var startMonth = "12";
+	var startDate = "15";
+	var startHour = "0";
+	var startMinute = "0";
+	var startSecond = "0";
+	var todayYear = today.getFullYear();
+	var todayMonth = today.getMonth() + 1;
+	var todayDate = today.getDate();
+	var todayHour = today.getHours();
+	var todayMinute = today.getMinutes();
+	var todaySecond = today.getSeconds();
+	var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+	var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+	var diff = t2 - t1;
+	var diffYears = Math.floor(diff / years);
+	var diffDays = Math.floor((diff / days) - diffYears * 365);
+	var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+	var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+		minutes);
+	var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+		diffMinutes * minutes) / seconds);
+		
+	diffDays = diffDays < 10 ? '0' + diffDays : diffDays;
+	diffHours = diffHours < 10 ? '0' + diffHours : diffHours;
+	diffMinutes = diffMinutes < 10 ? '0' + diffMinutes : diffMinutes;
+	diffSeconds = diffSeconds < 10 ? '0' + diffSeconds : diffSeconds;
+		
+//	if (startYear == todayYear) {
+//		document.getElementById("blog_running_year_cal").innerHTML = todayYear;
+//	} else {
+//		document.getElementById("blog_running_year_cal").innerHTML = startYear + " - " + todayYear;
+//	}
+	if (diffYears == 0) {
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+			" 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	} else{
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+			" 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	}
+}
+setInterval(siteTime, 1000);
+            
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+      <!-- 实现换肤功能 -->
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+ <div class="theme-controls row-container">
+  <ul class="menu-list">
+   <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+   <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+   <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+   <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+   <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+   <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+   <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+   <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+  </ul>
+ </div>
+</div>
+<canvas id="night-mode-cover"></canvas> 
+  <div class="changeSkin-gear no-select" >
+  <div class="keys" id="setbtn"> 
+   <span id="open-skinMenu"> 切换主题 | SCHEME TOOL  
+     <i class="iconfont icon-gear inline-block rotating"></i> 
+   </span>
+  </div>
+</div>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">owuiviuwo</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.cnblogs.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.zhihu.com/people/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="mailto:owuiviuwo@163.com" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/random.html">
+                  <i class="fa fa-random" aria-hidden="true"></i>
+                  随机
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            数据
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/statistics/">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  统计
+                </a>
+              </li>
+            
+              <li>
+                <a href="/postcategory/">
+                  <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                  分类
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                  标签
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/shuoshuo/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-clock-o" aria-hidden="true"></i>
+            说说
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            其他
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                  RSS
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  
+ 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>

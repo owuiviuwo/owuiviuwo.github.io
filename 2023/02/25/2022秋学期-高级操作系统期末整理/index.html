@@ -478,9 +478,9 @@
 			  var pdate = new Date(1677312453000);
 			  console.log("pdate="+pdate);
 			  console.log("1677312453000");
-			  //var update = new Date("1677768074535");
-			  var update = new Date(1677768074535);
-			  console.log("1677768074535");
+			  //var update = new Date("1677939223411");
+			  var update = new Date(1677939223411);
+			  console.log("1677939223411");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -852,7 +852,7 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/d59f7327a320c65750e9a5dd600fa746-20230225162652469-827afb.png" alt="image-20230206003219662"></p>
 <p>类似的，在下图的例子中，消息a早于消息q</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/cabb963ad7ab6b5db41e99491502e9f0-20230225162658755-091717.png" alt="image-20230206012548962"></p>
-<p>哪个事件在实际上首先发生并不重要，重要的是所有进程对时间的发生顺序意见一致</p>
+<p>哪个事件在实际上首先发生并不重要，重要的是所有进程对事件的发生顺序意见一致</p>
 <h3 id="选举算法"><a href="#选举算法" class="headerlink" title="* 选举算法"></a>* 选举算法</h3><p>选择一个进程作为协调者、发起者或其他特殊角色，一般选择进程号最大的进程（假设每个进程都知道其他进程的进程号，但不知道是否还在运行）；目的是：保证选举进行后，所有进程都认可被选举的进程。相关的算法包括：Bully算法、环算法、无线环境下的选举算法、大型系统中的选举算法。</p>
 <h3 id="选举算法中Bully算法的思想"><a href="#选举算法中Bully算法的思想" class="headerlink" title="选举算法中Bully算法的思想"></a>选举算法中Bully算法的思想</h3><p>当进程P注意到需要选举一个进程作协调者时：</p>
 <ul>
@@ -927,7 +927,7 @@
 <li>网络通信开销</li>
 <li>强一致性要求的原子操作很难快速完成</li>
 </ul>
-<p>解决办法：放宽一致性方面的限制，放款程度取决于复制数据的访问和更新模式以及数据的用途</p>
+<p>解决办法：放宽一致性方面的限制，放宽程度取决于复制数据的访问和更新模式以及数据的用途</p>
 </li>
 </ul>
 <h3 id="以数据为中心的一致性模型"><a href="#以数据为中心的一致性模型" class="headerlink" title="* 以数据为中心的一致性模型"></a>* 以数据为中心的一致性模型</h3><ul>
@@ -1280,7 +1280,7 @@
 </ul>
 <p>下图描述了使用消息摘要对消息进行数字签名的过程</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/889340a7f224d40918d336abee69fab5-20230225165435440-38f06c.png" alt="image-20230207174356982"></p>
-<p>上图中，消息摘要使用A的私钥加密后发送，消息使用明文发送，若需要保密可使用B的公钥加密后发送；B得到消息与加密后的摘要后，单独计算消息得到所接收消息的摘要，并使用A的公钥解密收到的摘要，若计算出的摘要与解密后的摘要相匹配，则证明该消息是由A签名的。</p>
+<p>上图中，消息摘要使用A的私钥加密后发送，消息使用明文发送，若需要保密可使用B的公钥加密后发送；B得到消息与加密后的摘要后，单独计算消息摘要，得到所接收消息的摘要，并使用A的公钥解密收到的摘要，若计算出的摘要与解密后的摘要相匹配，则证明该消息是由A签名的。</p>
 <h3 id="Diffie-Hellman-建立共享密钥的原理。"><a href="#Diffie-Hellman-建立共享密钥的原理。" class="headerlink" title="Diffie-Hellman 建立共享密钥的原理。"></a>Diffie-Hellman 建立共享密钥的原理。</h3><p>原理：</p>
 <ul>
 <li>首先A和B双方约定两个大整数n和g，其中1&lt;g&lt;n;这两个整数无需保密，然后执行下面的过程：</li>
@@ -1351,7 +1351,7 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/ec470a5194e36ff0a24a9d4136e9d6af-20230225165529264-89f9b5.jpeg" alt="2022第十章分布式文件系统"></p>
 <ul>
 <li>Coda 允许客户在断开连接时（ASVG为空）的继续操作，基于本地备份，再次连接后回传服务器。基于事实：两个进程打开相同文件进行写操作很罕见。使用储藏技术（hoarding）。</li>
-<li>也就是，为了成功地完成断开连接操作，需要解决的问题时确保客户缓存包含连接断开期间将访问的那些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</li>
+<li>也就是，为了成功地完成断开连接操作，需要解决的问题是确保客户缓存包含连接断开期间将访问的那些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</li>
 </ul>
 <p>下图描述了对于一个卷，Coda客户的状态转换图：</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/25/08f212c9be2c45808bc0f99dbf012fec-20230225165532637-fe3545.jpeg" alt="2022第十章分布式文件系统"></p>

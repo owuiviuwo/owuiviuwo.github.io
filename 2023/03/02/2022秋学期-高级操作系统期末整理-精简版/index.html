@@ -478,9 +478,9 @@
 			  var pdate = new Date(1677764593000);
 			  console.log("pdate="+pdate);
 			  console.log("1677764593000");
-			  //var update = new Date("1677831823301");
-			  var update = new Date(1677831823301);
-			  console.log("1677831823301");
+			  //var update = new Date("1677939242987");
+			  var update = new Date(1677939242987);
+			  console.log("1677939242987");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -753,7 +753,7 @@
 <li>当系统<code>j</code>接收消息时，将它的时钟设为当前值和到达时间戳这两者的最大值加一</li>
 <li>在每个站点，时间的排序遵循以下规则：对来自站点<code>i</code>的消息x和站点<code>j</code>的消息y，如果 $T_i&lt;T_j$或$T_i=T_j$，且$i&lt;j$，则说消息x早于消息y</li>
 </ul>
-<p>哪个事件在实际上首先发生并不重要，重要的是所有进程对时间的发生顺序意见一致</p>
+<p>哪个事件在实际上首先发生并不重要，重要的是所有进程对事件的发生顺序意见一致</p>
 <p>例如下图中，消息 a 最早，接下来是消息 x，接下来是消息 b，最后是消息 j；可以看到消息 b 和消息 j 的时间戳是相同的，但是消息 b 来自站点P1，消息 j 来自站点P3，1&lt;3，因此所有站点都认同消息 b 早于消息 j 的结论。</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/02/d59f7327a320c65750e9a5dd600fa746-20230302214809277-1e4685.png" alt="image-20230206003219662"></p>
 <p>类似的，在下图的例子中，消息a早于消息q</p>
@@ -821,7 +821,7 @@
 <li>网络通信开销</li>
 <li>强一致性要求的原子操作很难快速完成</li>
 </ul>
-<p>解决办法：放宽一致性方面的限制，放款程度取决于复制数据的访问和更新模式以及数据的用途</p>
+<p>解决办法：放宽一致性方面的限制，放宽程度取决于复制数据的访问和更新模式以及数据的用途</p>
 </li>
 </ul>
 <h3 id="能区分是否符合严格一致性、顺序一致性、因果一致性和FIFO一致性"><a href="#能区分是否符合严格一致性、顺序一致性、因果一致性和FIFO一致性" class="headerlink" title="能区分是否符合严格一致性、顺序一致性、因果一致性和FIFO一致性"></a>能区分是否符合严格一致性、顺序一致性、因果一致性和FIFO一致性</h3><ol>
@@ -1081,7 +1081,7 @@
 </ul>
 <p>下图描述了使用消息摘要对消息进行数字签名的过程</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/02/889340a7f224d40918d336abee69fab5-20230302215142287-e4ff59.png" alt="image-20230207174356982"></p>
-<p>上图中，消息摘要使用A的私钥加密后发送，消息使用明文发送，若需要保密可使用B的公钥加密后发送；B得到消息与加密后的摘要后，单独计算消息得到所接收消息的摘要，并使用A的公钥解密收到的摘要，若计算出的摘要与解密后的摘要相匹配，则证明该消息是由A签名的。</p>
+<p>上图中，消息摘要使用A的私钥加密后发送，消息使用明文发送，若需要保密可使用B的公钥加密后发送；B得到消息与加密后的摘要后，单独计算消息摘要，得到所接收消息的摘要，并使用A的公钥解密收到的摘要，若计算出的摘要与解密后的摘要相匹配，则证明该消息是由A签名的。</p>
 <h3 id="Diffie-Hellman-建立共享密钥的原理。"><a href="#Diffie-Hellman-建立共享密钥的原理。" class="headerlink" title="Diffie-Hellman 建立共享密钥的原理。"></a>Diffie-Hellman 建立共享密钥的原理。</h3><p>原理：</p>
 <ul>
 <li>首先A和B双方约定两个大整数n和g，其中1&lt;g&lt;n;这两个整数无需保密，然后执行下面的过程：</li>
@@ -1161,7 +1161,7 @@
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/02/ec470a5194e36ff0a24a9d4136e9d6af-20230302215235737-64ab87.jpeg" alt="2022第十章分布式文件系统"></p>
 <ul>
 <li><strong><em>Coda 允许客户在断开连接时（ASVG为空）的继续操作，基于本地备份，再次连接后回传服务器。基于事实：两个进程打开相同文件进行写操作很罕见。使用储藏技术（hoarding）。</em></strong></li>
-<li><strong><em>也就是，为了成功地完成断开连接操作，需要解决的问题时确保客户缓存包含连接断开期间将访问的那些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</em></strong></li>
+<li><strong><em>也就是，为了成功地完成断开连接操作，需要解决的问题是确保客户缓存包含连接断开期间将访问的那些文件。如果采用简单的缓存方法，可以证明客户可能由于缺少必要的文件而不能继续执行。预先使用适当的文件填充高速缓存称为储藏。</em></strong></li>
 </ul>
 <p>下图描述了对于一个卷，Coda客户的状态转换图：</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/02/08f212c9be2c45808bc0f99dbf012fec-20230302215240645-97e8ae.jpeg" alt="2022第十章分布式文件系统"></p>
@@ -1194,9 +1194,26 @@
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2023/03/10/2022-2023-春学期-矩阵与数值分析-C1-绪论/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                2022-2023 春学期 矩阵与数值分析 C1 绪论</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
         
           
-            <div class="post-nepre full next">
+            <div class="post-nepre half next">
           
             <a href="/2023/02/25/2022秋学期-高级操作系统期末整理/" rel="next">
               <div class="background">
