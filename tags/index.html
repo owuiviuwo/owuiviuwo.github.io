@@ -417,7 +417,7 @@
 <script type="text/javascript" src="/js/jqcloud-1.0.4.min.js"></script>
 <script type="text/javascript">
     
-    $('#tag-wordcloud').jQCloud([{"text":"课程","weight":5,"link":"/tags/课程/"},{"text":"高级操作系统","weight":3,"link":"/tags/高级操作系统/"},{"text":"分布式","weight":3,"link":"/tags/分布式/"},{"text":"hexo","weight":1,"link":"/tags/hexo/"},{"text":"博客美化","weight":1,"link":"/tags/博客美化/"},{"text":"矩阵与数值分析","weight":2,"link":"/tags/矩阵与数值分析/"},{"text":"数学","weight":2,"link":"/tags/数学/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"课程","weight":5,"link":"/tags/课程/"},{"text":"矩阵与数值分析","weight":2,"link":"/tags/矩阵与数值分析/"},{"text":"数学","weight":2,"link":"/tags/数学/"},{"text":"高级操作系统","weight":3,"link":"/tags/高级操作系统/"},{"text":"分布式","weight":3,"link":"/tags/分布式/"},{"text":"hexo","weight":1,"link":"/tags/hexo/"},{"text":"博客美化","weight":1,"link":"/tags/博客美化/"}], {
         autoResize: true
     });
 </script>
@@ -445,46 +445,10 @@
                 </a>
                 
                 
-                <a href="/tags/高级操作系统/" title="高级操作系统: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="高级操作系统" style="background-color: #F5EEF8;">高级操作系统
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/分布式/" title="分布式: 3">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="分布式" style="background-color: #D5F5E3;">分布式
-                        <span class="tag-length">3</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/hexo/" title="hexo: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="hexo" style="background-color: #E8F8F5;">hexo
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
-                <a href="/tags/博客美化/" title="博客美化: 1">
-                    <span class="chip center-align waves-effect waves-light
-                             chip-default "
-                            data-tagname="博客美化" style="background-color: #FEF9E7;">博客美化
-                        <span class="tag-length">1</span>
-                    </span>
-                </a>
-                
-                
                 <a href="/tags/矩阵与数值分析/" title="矩阵与数值分析: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="矩阵与数值分析" style="background-color: #F8F9F9;">矩阵与数值分析
+                            data-tagname="矩阵与数值分析" style="background-color: #F5EEF8;">矩阵与数值分析
                         <span class="tag-length">2</span>
                     </span>
                 </a>
@@ -493,8 +457,44 @@
                 <a href="/tags/数学/" title="数学: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
-                            data-tagname="数学" style="background-color: #82E0AA;">数学
+                            data-tagname="数学" style="background-color: #D5F5E3;">数学
                         <span class="tag-length">2</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/高级操作系统/" title="高级操作系统: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="高级操作系统" style="background-color: #E8F8F5;">高级操作系统
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/分布式/" title="分布式: 3">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="分布式" style="background-color: #FEF9E7;">分布式
+                        <span class="tag-length">3</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/hexo/" title="hexo: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="hexo" style="background-color: #F8F9F9;">hexo
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/tags/博客美化/" title="博客美化: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="博客美化" style="background-color: #82E0AA;">博客美化
+                        <span class="tag-length">1</span>
                     </span>
                 </a>
                 
@@ -1003,5 +1003,21 @@ setInterval(siteTime, 1000);
   
  
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 </body>
 </html>
