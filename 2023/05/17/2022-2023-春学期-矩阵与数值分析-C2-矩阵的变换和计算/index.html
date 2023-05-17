@@ -478,9 +478,9 @@
 			  var pdate = new Date(1684317250000);
 			  console.log("pdate="+pdate);
 			  console.log("1684317250000");
-			  //var update = new Date("1684317786429");
-			  var update = new Date(1684317786429);
-			  console.log("1684317786429");
+			  //var update = new Date("1684319402970");
+			  var update = new Date(1684319402970);
+			  console.log("1684319402970");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -663,6 +663,7 @@ x_k=\frac{b^{(k-1)}_{k}-a^{(k-1)}_{k,k+1}x_{k+1}-a^{(k-1)}_{kn}x_n}{a^{(k-1)}_{k
 <h5 id="矩阵的-LU-分解"><a href="#矩阵的-LU-分解" class="headerlink" title="矩阵的 LU 分解"></a>矩阵的 LU 分解</h5><p><em>自然的， Gauss 消去法将原方程组的系数矩阵转换成了上三角矩阵简便了计算。也存在其他转换上三角矩阵的方法；例如通过矩阵乘法的方式表示上述 Gauss 消去的过程</em></p>
 <p>在 *例1中，可以将三次消元过程写成矩阵形式</p>
 <script type="math/tex; mode=display">
+\begin{aligned}
 L_1A&=
 \left\{
 \begin{matrix}
@@ -690,7 +691,6 @@ L_1A&=
 \end{matrix}
 \right\}
 \\
-
 L_2(L_1A)&=
 \left\{
 \begin{matrix}
@@ -743,7 +743,8 @@ L_3(L_2L_1A)&=
 0&0&2&2\\
 0&0&0&2
 \end{matrix}
-\right\}&=U</script><p>接下来，对矩阵 $L_1, L_2, L_3$分别求逆，可得</p>
+\right\}&=U
+\end{aligned}</script><p>接下来，对矩阵 $L_1, L_2, L_3$分别求逆，可得</p>
 <script type="math/tex; mode=display">
 L_1^{-1}=
 \left\{
