@@ -478,9 +478,9 @@
 			  var pdate = new Date(1684317250000);
 			  console.log("pdate="+pdate);
 			  console.log("1684317250000");
-			  //var update = new Date("1684319402970");
-			  var update = new Date(1684319402970);
-			  console.log("1684319402970");
+			  //var update = new Date("1684320415820");
+			  var update = new Date(1684320415820);
+			  console.log("1684320415820");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -1844,58 +1844,53 @@ l_2u_1&l_2d_1+u_2&d_2&&\\
 &\ddots&\ddots&\ddots&\\
 &&l_{n-1}u_{n-2}&u_{n-1}&d_{n-1}\\
 &&&l_nu_{n-1}&l_nd_{n-1}+u_n
-\end{Bmatrix}</script><ul>
-<li><p>追赶法解三对角矩阵的算法：</p>
-<p>   对 A 进行 LU 分解，公式如下：</p>
+\end{Bmatrix}</script><p>追赶法解三对角矩阵的算法：</p>
+<p>对 A 进行 LU 分解，公式如下：</p>
 <script type="math/tex; mode=display">
-   \left\{
-   \begin{array}{ml}
-   d_i=c_i,\ &i=1,2,\cdots,n-1\\
-   u_1=b_1\\
-   l_i=\frac{a_i}{u_{i-1}},\ &i=2,3,\cdots,n\\
-   u_i=b_i-l_ic_{i-1},\ &i=2,3,\cdots,n
-   \end{array}
-   \right.</script><p>   计算次序是</p>
+\left\{
+\begin{array}{ml}
+d_i=c_i,\ &i=1,2,\cdots,n-1\\
+u_1=b_1\\
+l_i=\frac{a_i}{u_{i-1}},\ &i=2,3,\cdots,n\\
+u_i=b_i-l_ic_{i-1},\ &i=2,3,\cdots,n
+\end{array}
+\right.</script><p>计算次序是</p>
 <script type="math/tex; mode=display">
-   u_1\rightarrow l_2\rightarrow u_2\rightarrow l_3\rightarrow u_3\rightarrow \cdots\rightarrow l_n\rightarrow u_n</script><p>   LU 分解的计算量：乘除法 $2(n-1)$，加减法 $n-1$</p>
-<p>   求解下三角形方程组 $Ly=f$</p>
+u_1\rightarrow l_2\rightarrow u_2\rightarrow l_3\rightarrow u_3\rightarrow \cdots\rightarrow l_n\rightarrow u_n</script><p>LU 分解的计算量：乘除法 $2(n-1)$，加减法 $n-1$</p>
+<p>求解下三角形方程组 $Ly=f$</p>
 <script type="math/tex; mode=display">
-   \begin{Bmatrix}
-   1&&&&\\
-   l_2&1&&&\\
-   &l_3&\ddots&&\\
-   &&\ddots&1&\\
-   &&&l_n&1
-   \end{Bmatrix}
-   \begin{Bmatrix}
-   y_1\\y_2\\\vdots\\y_{n-1}\\y_n
-   \end{Bmatrix}
-   =
-   \begin{Bmatrix}
-   f_1\\f_2\\\vdots\\f_{n-1}\\f_n
-   \end{Bmatrix}</script></li>
-</ul>
-<script type="math/tex; mode=display">
-     y_1=f_1,\ l_iy_{i-1}+y_i=f_i,\ y_i=f_i-l_i\cdot y_{i-1},\ i=2,3,\cdots,n</script><p>计算量：乘除法 $n-1$，加减法$n-1$</p>
+\begin{Bmatrix}
+1&&&&\\
+l_2&1&&&\\
+&l_3&\ddots&&\\
+&&\ddots&1&\\
+&&&l_n&1
+\end{Bmatrix}
+\begin{Bmatrix}
+y_1\\y_2\\\vdots\\y_{n-1}\\y_n
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+f_1\\f_2\\\vdots\\f_{n-1}\\f_n
+\end{Bmatrix}</script><script type="math/tex; mode=display">
+y_1=f_1,\ l_iy_{i-1}+y_i=f_i,\ y_i=f_i-l_i\cdot y_{i-1},\ i=2,3,\cdots,n</script><p>计算量：乘除法 $n-1$，加减法$n-1$</p>
 <p>求解上三角形方程组</p>
-<pre><code> $$
- \begin{Bmatrix}
- u_1&amp;d_1&amp;&amp;&amp;\\
- &amp;u_2&amp;d_2&amp;&amp;\\
- &amp;&amp;\ddots&amp;\ddots&amp;\\
- &amp;&amp;&amp;u_{n-1}&amp;d_{n-1}\\
- &amp;&amp;&amp;&amp;u_n
- \end{Bmatrix}
- \begin{Bmatrix}
- x_1\\x_2\\\vdots\\x_{n-1}\\x_n
- \end{Bmatrix}
- =
- \begin{Bmatrix}
- y_1\\y_2\\\vdots\\y_{n-1}\\y_n
- \end{Bmatrix}
- $$
-</code></pre><script type="math/tex; mode=display">
-     x_n=y_n/u_n,\ u_i\cdot x_i+d_ix_{i+1}=y_i,\ x_i=(y_i-d_ix_{i+1})/u_i,\ i=n-1,n-2,\cdots,1</script><p>解方程计算量：乘除法 $2(n-1)+1$，加减法 $n-1$</p>
+<script type="math/tex; mode=display">
+\begin{Bmatrix}
+u_1&d_1&&&\\
+&u_2&d_2&&\\
+&&\ddots&\ddots&\\
+&&&u_{n-1}&d_{n-1}\\
+&&&&u_n
+\end{Bmatrix}
+\begin{Bmatrix}
+x_1\\x_2\\\vdots\\x_{n-1}\\x_n
+\end{Bmatrix}
+=
+\begin{Bmatrix}
+y_1\\y_2\\\vdots\\y_{n-1}\\y_n
+\end{Bmatrix}</script><script type="math/tex; mode=display">
+x_n=y_n/u_n,\ u_i\cdot x_i+d_ix_{i+1}=y_i,\ x_i=(y_i-d_ix_{i+1})/u_i,\ i=n-1,n-2,\cdots,1</script><p>解方程计算量：乘除法 $2(n-1)+1$，加减法 $n-1$</p>
 <p>追赶法的使用条件：</p>
 <p>设具有三对角形式的矩阵 A，满足条件</p>
 <ol>
@@ -2146,7 +2141,7 @@ H(\omega)=I-2\frac{\omega\omega^T}{\omega^T\omega}=
 \end{Bmatrix}
 -\frac{2}{12}
 \begin{Bmatrix}
--2i\\-2i\\0\\2
+-2i\\ -2i\\0\\2
 \end{Bmatrix}
 \begin{Bmatrix}
 -2i,-2i,0,2
@@ -2189,12 +2184,12 @@ Q_1A=
 \end{Bmatrix}\\
 \tilde{a_1}=
 \begin{Bmatrix}
-1\\-1
+1\\ -1
 \end{Bmatrix}
 ,\ ||\tilde{a_1}||_2=\sqrt{2},\\
-\tilde{\omega}_2=\tilde{a_1}-||\tilde{a_1}||_2e_1=\begin{Bmatrix}1\\-1\end{Bmatrix}-\begin{Bmatrix}\sqrt2\\0\end{Bmatrix}=
+\tilde{\omega}_2=\tilde{a_1}-||\tilde{a_1}||_2e_1=\begin{Bmatrix}1\\ -1\end{Bmatrix}-\begin{Bmatrix}\sqrt2\\0\end{Bmatrix}=
 \begin{Bmatrix}
-1-\sqrt{2}\\-1
+1-\sqrt{2}\\ -1
 \end{Bmatrix}\\
 \tilde{Q_2}=H(\tilde{\omega_2})=I-\frac{2}{\tilde{\omega_2}^T\tilde{\omega_2}}\tilde{\omega_2}\tilde{\omega_2}^T=\frac{1}{2}
 \begin{Bmatrix}
@@ -2453,7 +2448,7 @@ A=URU^H</script><p>其中 $R\in C^{n\times n}$ 为上三角矩阵.</p>
 -1& -1&0\\
 0&-1&-1
 \end{vmatrix}
-=0</script><p>显然 $\begin{vmatrix}2&amp;3\-1&amp;-1\end{vmatrix}=1\neq0$，故 $\mathrm{rank}(\lambda_1I - A)=2$，从而 $\alpha_1=3-2=1&lt;3=m_1$</p>
+=0</script><p>显然 $\begin{vmatrix}2&amp;3\ -1&amp;-1\end{vmatrix}=1\neq0$，故 $\mathrm{rank}(\lambda_1I - A)=2$，从而 $\alpha_1=3-2=1&lt;3=m_1$</p>
 <h4 id="半单和亏损"><a href="#半单和亏损" class="headerlink" title="半单和亏损"></a>半单和亏损</h4><p>定义：设 A 为 n 阶方阵，$\lambda_i$ 为其特征值，$m_i$ 和 $\alpha_i$ 分别为其代数重数和几何重数，如果 $m_i=\alpha_i$ ，则称特征值 $\lambda_i$ 为半单的；如果 $m_i&gt;\alpha_i$ ，则称特征值 $\lambda_i$ 为亏损的。</p>
 <ul>
 <li>代数重数为 1 的特征值一定是半单的</li>
@@ -2588,27 +2583,27 @@ r_{l+1}+r_{l-1}-2r_l</script><p>其中，</p>
 <script type="math/tex; mode=display">
 r_l=rank(\lambda_iI-A)^l.\ r_0=rank(\lambda_iI-A)^0=rank(I)=n</script><h5 id="例17"><a href="#例17" class="headerlink" title="* 例17"></a>* 例17</h5><p>求下列矩阵的 Jordan 标准型，其中</p>
 <script type="math/tex; mode=display">
-A=\begin{Bmatrix}3&0&8\\3&-1&6\\-2&0&-5\end{Bmatrix}
+A=\begin{Bmatrix}3&0&8\\3&-1&6\\ -2&0&-5\end{Bmatrix}
 \ \ \ 
-B=\begin{Bmatrix}2&0&-1&0\\-1&1&0&-1\\0&0&2&0\\1&1&1&3\end{Bmatrix}
+B=\begin{Bmatrix}2&0&-1&0\\ -1&1&0&-1\\0&0&2&0\\1&1&1&3\end{Bmatrix}
 \ \ \ 
-C=\begin{Bmatrix}3&1&0&0\\-4&-1&0&0\\0&0&2&1\\0&0&-1&0\end{Bmatrix}
+C=\begin{Bmatrix}3&1&0&0\\ -4&-1&0&0\\0&0&2&1\\0&0&-1&0\end{Bmatrix}
 \ \ \ 
 D=\begin{Bmatrix}1&0&0&1\\1&1&0&2\\0&0&1&3\\0&0&0&2\end{Bmatrix}
 \ \ \</script><p>解：</p>
 <ol>
-<li><p>对  $A=\begin{Bmatrix}3&amp;0&amp;8\\3&amp;-1&amp;6\-2&amp;0&amp;-5\end{Bmatrix}$ 有</p>
+<li><p>对  $A=\begin{Bmatrix}3&amp;0&amp;8\\3&amp;-1&amp;6\ -2&amp;0&amp;-5\end{Bmatrix}$ 有</p>
 <script type="math/tex; mode=display">
   \det(\lambda I-A)=(\lambda+1)^3</script><p>  于是，A 的特征值为 $\lambda_1=-1$，代数重数为 3，故以 $\lambda_1=-1$ 为特征值的 Jordan 块阶数的和为 3，而</p>
 <script type="math/tex; mode=display">
   (\lambda_1I-1)=
   \begin{Bmatrix}
-  -4&0&-8\\-3&0&-6\\2&0&4
+  -4&0&-8\\ -3&0&-6\\2&0&4
   \end{Bmatrix}</script><p>  的任何二阶行列式的值均为 0，即 $rank(\lambda_1I-A)=1,  3-rank(\lambda_1I-A)=2$</p>
 <p>  故 $\lambda_1=-1$ 的几何重数为 2，以 $\lambda_1=-1$ 为特征值的 Jordan 块的个数为 2 个，因此 A 的 Jordan 标准型为 </p>
 <script type="math/tex; mode=display">
   J=\begin{Bmatrix}-1&&\\&-1&1\\&&-1\end{Bmatrix}\ 或\ J=\begin{Bmatrix}-1&1&\\&-1&\\&&-1\end{Bmatrix}</script></li>
-<li><p>对 $B=\begin{Bmatrix}2&amp;0&amp;-1&amp;0\-1&amp;1&amp;0&amp;-1\\0&amp;0&amp;2&amp;0\\1&amp;1&amp;1&amp;3\end{Bmatrix}$ 有</p>
+<li><p>对 $B=\begin{Bmatrix}2&amp;0&amp;-1&amp;0\ -1&amp;1&amp;0&amp;-1\\0&amp;0&amp;2&amp;0\\1&amp;1&amp;1&amp;3\end{Bmatrix}$ 有</p>
 <script type="math/tex; mode=display">
   \det(\lambda I -B)=(\lambda-2)^4\\
   \lambda_1=\lambda_2=\lambda_3=\lambda_4=2</script><p>  所以，B 的特征值为 $\lambda_1=2$，代数重数为 4，以 2 为特征值的 Jordan 块的阶数之和为 4，且有</p>
@@ -2649,15 +2644,15 @@ D=\begin{Bmatrix}1&0&0&1\\1&1&0&2\\0&0&1&3\\0&0&0&2\end{Bmatrix}
   0&0&0&0\\
   0&0&0&0
   \end{Bmatrix}\\
-  r_2=\mathrm{rank}(\lambda_1I-B)^2=\mathrm{rank}(2I-B)^2=0</script><pre><code> 可以确定以 2 为特征值，阶数为 1 的Jordan 块的个数为：
-</code></pre><script type="math/tex; mode=display">
-  r_2+r_0-2r_1=0+4-2\times2=0</script><pre><code> 显然，由于不存在 1 阶的 Jordan 块，因此 B 的 Jordan 标准型只能是 (2,2) 的结构。
-</code></pre><p>  (2)若 $l=2$ ，则有</p>
+  r_2=\mathrm{rank}(\lambda_1I-B)^2=\mathrm{rank}(2I-B)^2=0</script><p> 可以确定以 2 为特征值，阶数为 1 的Jordan 块的个数为：</p>
 <script type="math/tex; mode=display">
-  r_3=\mathrm{rank}(\lambda_1I-B)^3=\mathrm{rank}(2I-B)^3=0</script><pre><code> 可以确定以 2 为特征值，阶数为 2 的Jordan 块的个数为：
-</code></pre><script type="math/tex; mode=display">
-  r_3+r_1-2r_2=0+2-2\times0=2</script><pre><code> 因此，存在两个阶数为 2 的 Jordan 块，所以 B 的 Jordan 标准型为(2,2)结构，具体表示如下：
-</code></pre><script type="math/tex; mode=display">
+  r_2+r_0-2r_1=0+4-2\times2=0</script><p> 显然，由于不存在 1 阶的 Jordan 块，因此 B 的 Jordan 标准型只能是 (2,2) 的结构。</p>
+<p>  (2)若 $l=2$ ，则有</p>
+<script type="math/tex; mode=display">
+  r_3=\mathrm{rank}(\lambda_1I-B)^3=\mathrm{rank}(2I-B)^3=0</script><p> 可以确定以 2 为特征值，阶数为 2 的Jordan 块的个数为：</p>
+<script type="math/tex; mode=display">
+  r_3+r_1-2r_2=0+2-2\times0=2</script><p> 因此，存在两个阶数为 2 的 Jordan 块，所以 B 的 Jordan 标准型为(2,2)结构，具体表示如下：</p>
+<script type="math/tex; mode=display">
   J=
   \begin{Bmatrix}
   2&1&&\\
@@ -2665,17 +2660,17 @@ D=\begin{Bmatrix}1&0&0&1\\1&1&0&2\\0&0&1&3\\0&0&0&2\end{Bmatrix}
   &&2&1\\
   &&&2
   \end{Bmatrix}</script></li>
-<li><p>对 $C=\begin{Bmatrix}3&amp;1&amp;0&amp;0\-4&amp;-1&amp;0&amp;0\\0&amp;0&amp;2&amp;1\\0&amp;0&amp;-1&amp;0\end{Bmatrix}$ 有</p>
+<li><p>对 $C=\begin{Bmatrix}3&amp;1&amp;0&amp;0\ -4&amp;-1&amp;0&amp;0\\0&amp;0&amp;2&amp;1\\0&amp;0&amp;-1&amp;0\end{Bmatrix}$ 有</p>
 <p>  将 C 写成分块的形式，$C=\begin{Bmatrix}C_1&amp;\\&amp;C_2\end{Bmatrix}$，其中</p>
 <script type="math/tex; mode=display">
   C_1=
   \begin{Bmatrix}
-  3&1\\-4&-1
+  3&1\\ -4&-1
   \end{Bmatrix}
   ,\ 
   C_2=
   \begin{Bmatrix}
-  2&1\\-1&0
+  2&1\\ -1&0
   \end{Bmatrix}</script><p>  分别求出子矩阵 $C_1, C_2$ 的 Jordan 标准型，有</p>
 <script type="math/tex; mode=display">
   \det(\lambda I-C_1)=(\lambda-1)^2</script><p>  于是 $C_1$ 的特征值为 $\lambda=1$，且其代数重数为 2，又有 $\lambda=1$ 的几何重数为 $2-\mathrm{rank}(\lambda I-C_1)=2-1=1$，即 $C_1$ 不可对角化，易得 $C_1$ 的 Jordan 标准型为 $J_1=\begin{Bmatrix}1&amp;1\\0&amp;1\end{Bmatrix}$</p>
@@ -2747,7 +2742,7 @@ At_{n_i}^i=\lambda_it_{n_i}^i+t_{n_i-1}^i
 <li>Jordan 链的链首 $t_1^i$ 不仅要求是一个特征向量，而且还要求可以利用上式求出 Jordan 链中的其他向量 $t_2^i,\cdots,t^i_{n_i}$，也就是说<strong>不是任何一个特征向量都可以作为 Jordan 链的链首，链首要求是特征向量且方程组可解</strong>。</li>
 <li>对应于某个特征值 $\lambda_i$ 的 Jordan 链虽然一定存在，但当与 $\lambda_i$ 相对应的线性无关的特征向量的个数大于或等于 2 时，关于特征 $\lambda_i$ 值的那些特征向量中的任何一个有可能都不能作为链首，因此必须从 $\lambda_i$ 的特征子空间中选取合适的向量作为 Jordan 链的链首，也就是<strong>对应特征向量空间中所有特征向量的某种线性组合</strong>。</li>
 </ol>
-<h5 id="例18"><a href="#例18" class="headerlink" title="* 例18"></a>* 例18</h5><p>计算 *例17 中将 $A=\begin{Bmatrix}3&amp;0&amp;8\\3&amp;-1&amp;6\-2&amp;0&amp;-5\end{Bmatrix}$ 化成 Jordan 标准型的变换矩阵 T</p>
+<h5 id="例18"><a href="#例18" class="headerlink" title="* 例18"></a>* 例18</h5><p>计算 *例17 中将 $A=\begin{Bmatrix}3&amp;0&amp;8\\3&amp;-1&amp;6\ -2&amp;0&amp;-5\end{Bmatrix}$ 化成 Jordan 标准型的变换矩阵 T</p>
 <p>解：</p>
 <p>由于已知</p>
 <script type="math/tex; mode=display">
@@ -2795,7 +2790,7 @@ x_1+2x_3=0
 <script type="math/tex; mode=display">
 t^1_{1}=
 \begin{Bmatrix}
-2\\0\\-1
+2\\0\\ -1
 \end{Bmatrix}
 \ \ 
 t^1_{2}=
@@ -2834,7 +2829,7 @@ x_1+2x_3=0
 \\
 t^2_{11}=
 \begin{Bmatrix}
-2\\0\\-1
+2\\0\\ -1
 \end{Bmatrix}
 \ \ 
 t^2_{12}=
@@ -2885,13 +2880,13 @@ x_1+2x_3=-1
 <script type="math/tex; mode=display">
 T=(T_1,T_2),T_1=t^1_1=
 \begin{Bmatrix}
-2\\0\\-1
+2\\0\\ -1
 \end{Bmatrix}
 ,\ \ 
 T_2=(y,z)
 =
 \begin{Bmatrix}
-4&1\\3&0\\-2&0
+4&1\\3&0\\ -2&0
 \end{Bmatrix}</script><p>或</p>
 <script type="math/tex; mode=display">
 T=(T_1,T_2),T_1=t^1_2=
@@ -2902,12 +2897,12 @@ T=(T_1,T_2),T_1=t^1_2=
 T_2=(y,z)
 =
 \begin{Bmatrix}
-4&1\\3&0\\-2&0
+4&1\\3&0\\ -2&0
 \end{Bmatrix}</script><p>变换矩阵也就可以表示为</p>
 <script type="math/tex; mode=display">
 T=
 \begin{Bmatrix}
-2&4&1\\0&3&0\\-1&-2&0
+2&4&1\\0&3&0\\ -1&-2&0
 \end{Bmatrix},\ 
 T^{-1}=
 \begin{Bmatrix}
@@ -2948,7 +2943,7 @@ T^{-1}=
 <li>Hamilton-Caylay 定理</li>
 </ul>
 <h4 id="Hamilton-Caylay-定理"><a href="#Hamilton-Caylay-定理" class="headerlink" title="Hamilton-Caylay 定理"></a>Hamilton-Caylay 定理</h4><p>定理：设 $A\in C^{n\times n},\psi(\lambda)=\det (\lambda I-A)$，则 $\psi(A)=O$</p>
-<h5 id="例19"><a href="#例19" class="headerlink" title="* 例19"></a>* 例19</h5><p>已知矩阵 $A=\begin{Bmatrix}-1&amp;1&amp;0\-4&amp;3&amp;0\\1&amp;0&amp;2\end{Bmatrix}$，计算</p>
+<h5 id="例19"><a href="#例19" class="headerlink" title="* 例19"></a>* 例19</h5><p>已知矩阵 $A=\begin{Bmatrix}-1&amp;1&amp;0\ -4&amp;3&amp;0\\1&amp;0&amp;2\end{Bmatrix}$，计算</p>
 <ol>
 <li><p>$A^7-A^5-19A^4+28A^3+6A-4I$</p>
 </li>
@@ -3139,7 +3134,7 @@ A^HA=
 <p>求出特征向量并使其标准正交化，得到矩阵 V</p>
 <script type="math/tex; mode=display">
 \begin{Bmatrix}
-2&0&-1\\0&2&-1\\-1&-1&1
+2&0&-1\\0&2&-1\\ -1&-1&1
 \end{Bmatrix}
 \begin{Bmatrix}
 x_1\\x_2\\x_3
@@ -3156,7 +3151,7 @@ v_1=\frac{p_1}{||p_1||_2}=\frac{1}{\sqrt{6}}\begin{Bmatrix}
 1\\1\\2
 \end{Bmatrix}</script><script type="math/tex; mode=display">
 \begin{Bmatrix}
-0&0&-1\\0&0&-1\\-1&-1&-1
+0&0&-1\\0&0&-1\\ -1&-1&-1
 \end{Bmatrix}
 \begin{Bmatrix}
 x_1\\x_2\\x_3
@@ -3168,15 +3163,15 @@ x_1\\x_2\\x_3
 \ \ 
 p_2=
 \begin{Bmatrix}
-1\\-1\\0
+1\\ -1\\0
 \end{Bmatrix}
 \ \ 
 v_2=\frac{p_2}{||p_2||_2}=\frac{1}{\sqrt{2}}
 \begin{Bmatrix}
-1\\-1\\0
+1\\ -1\\0
 \end{Bmatrix}</script><script type="math/tex; mode=display">
 \begin{Bmatrix}
--1&0&-1\\0&-1&-1\\-1&-1&-2
+-1&0&-1\\0&-1&-1\\ -1&-1&-2
 \end{Bmatrix}
 \begin{Bmatrix}
 x_1\\x_2\\x_3
@@ -3188,12 +3183,12 @@ x_1\\x_2\\x_3
 \ \ 
 p_3=
 \begin{Bmatrix}
--1\\-1\\1
+-1\\ -1\\1
 \end{Bmatrix}
 \ \ 
 v_3=\frac{p_3}{||p_3||_2}=\frac{1}{\sqrt{3}}
 \begin{Bmatrix}
--1\\-1\\1
+-1\\ -1\\1
 \end{Bmatrix}</script><script type="math/tex; mode=display">
 V=
 \begin{Bmatrix}
