@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础 | owuiviuwo&#39;s blog!</title>
+  
+    <link rel="shortcut icon" href="/images/hamster.png">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <link rel="stylesheet" type="text/css" href="/css/matery.css">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "owuiviuwo";
+  mashiro_option.author_name = "owuiviuwo";
+  mashiro_option.site_url = "https://owuiviuwo.github.io/";
+  mashiro_option.v_appId = "Bca3aRLRAJx2I6PNPDTapKBT-MdYXbMMI";
+  mashiro_option.v_appKey = "o1JOvsCvLL7SkH0kH1SeRXKK";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover0.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover1.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover2.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover3.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover4.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover5.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover6.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover7.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover8.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover9.webp,https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/cover/cover10.webp".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE9600}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE9600}::-webkit-scrollbar-thumb{background:#FE9600}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE9600}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE9600}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop filter-grid">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <!--<a href="https://owuiviuwo.github.io/">-->
+		<a href="/random.html">
+          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>Learn and Live</p>
+        <div class="top-social_v2">
+		<!-- 这里去掉了框架原来的显示前一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		<!--
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+          
+            
+              
+                <li>
+                  <a href="http://github.com/owuiviuwo" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.cnblogs.com/owuiviuwo" target="_blank" class="social-github" title="cnblogs">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/cnblogs.svg">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="https://www.zhihu.com/people/owuiviuwo" target="_blank" class="social-github" title="zhihu">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/zhihu.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="mailto:owuiviuwo@163.com" target="_blank" class="social-github" title="email">
+                    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/social/email.svg">
+                  </a>
+                </li>
+              
+            
+          
+		  <!-- 这里去掉了框架原来的显示后一张背景图功能 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+		  <!--
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+		  -->
+        </div>
+      </div>
+    </div>
+  </figure>
+  <!-- 这里去掉了框架原来的视频播放部分 在themes\Sakura\layout\_partial\headertop.ejs下 -->
+  <!--
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div>
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  -->
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono"></span>
+            <span class="shironeko">owuiviuwo</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/技术/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          技术
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/生活/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          生活
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/资源/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          资源
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随想/">
+                          <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                          随想
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/转载/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          转载
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/random.html">
+                          <i class="fa fa-random" aria-hidden="true"></i>
+                          随机
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="javascript:;">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    数据
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/statistics/">
+                          <i class="fa fa-line-chart" aria-hidden="true"></i>
+                          统计
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/postcategory/">
+                          <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                          分类
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/tags/">
+                          <i class="fa fa-tags" aria-hidden="true"></i>
+                          标签
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/comment/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+                    留言板
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/shuoshuo/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-clock-o" aria-hidden="true"></i>
+                    说说
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友人帐
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/donate/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+                    赞赏
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+                    其他
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/about/">
+                          <i class="fa fa-meetup" aria-hidden="true"></i>
+                          我？
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/theme-sakura/">
+                          <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                          主题
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/lab/">
+                          <i class="fa fa-cogs" aria-hidden="true"></i>
+                          Lab
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/atom.xml">
+                          <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                          RSS
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png);" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础</h1>
+      <p class="entry-census">
+        <span>
+          <a href="https://owuiviuwo.github.io/">
+            <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="https://owuiviuwo.github.io/">owuiviuwo</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2023-5-23<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+
+       <div id="outDateInfo">
+	   <!-- 过时信息提示，来源于 https://cndrew.cn/2020/04/04/date/ -->
+	   <style>
+		   .tip.share {
+				border-left-color: rgb(238, 5, 5);
+				background: #fff;
+			}
+			.tip {
+				display:block;
+				background: #fff;
+				padding: 8px 20px;
+				position: relative;
+				margin: 0 0 20px;
+			 
+				font-family: Georgia, serif;
+				font-size: 16px;
+				line-height: 1.2;
+				color: #666;
+				text-align: justify;
+				border-left: 5px solid      #3CB371;
+			 
+				/*盒子阴影 - (选项)*/
+				-moz-box-shadow: 2px 2px 15px #ccc;
+				-webkit-box-shadow: 2px 2px 15px #ccc;
+				box-shadow: 2px 2px 15px #ccc;
+			}
+			.tip.share:before {
+				background: #ddd;
+				content: "🐷";
+			}
+			.tip:before {
+				background: #38a3fd;
+				border-radius: 50%;
+				color: #fff;
+				content: "i";
+				font-family: Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+				font-size: 16px;
+				height: 21px;
+				line-height: 21px;
+				margin-left: -32px;
+				margin-top: 8px;
+				position: absolute;
+				text-align: center;
+				width: 21px;
+			}
+	   </style>
+	   	  <div id="point"></div>
+			 <script>
+			  function intervalTime(startTime,endTime){
+				  var date1 = new Date(startTime);
+				  var date2 = new Date(endTime);  
+				  var date3 = date2.getTime() - date1.getTime(); 
+				  var days = Math.floor(date3 / (24 * 3600 * 1000));
+				  return days;
+			  }
+			  function format(Date){
+				var Y = Date.getFullYear();
+				var M = Date.getMonth() + 1;
+				  M = M < 10 ? '0' + M : M;
+				var D = Date.getDate();
+				  D = D < 10 ? '0' + D : D;
+				var H = Date.getHours();
+				  H = H < 10 ? '0' + H : H;
+				var Mi = Date.getMinutes();
+				  Mi = Mi < 10 ? '0' + Mi : Mi;
+				var S = Date.getSeconds();
+				  S = S < 10 ? '0' + S : S;
+				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
+			  }
+			  // var pdate = new Date("1684772305000");
+			  var pdate = new Date(1684772305000);
+			  console.log("pdate="+pdate);
+			  console.log("1684772305000");
+			  //var update = new Date("1684773015552");
+			  var update = new Date(1684773015552);
+			  console.log("1684773015552");
+			  console.log("update="+update);
+			  var now = new Date();
+			  console.log("now="+now);
+			  now=format(now);
+			  pdate=format(pdate);
+			  update=format(update);
+			  var days=intervalTime(pdate,now),udays=intervalTime(update,now);
+			  var mid=parseInt(days,10);
+			  var mi=parseInt("30",10);
+			  if(mid > mi){
+				document.getElementById("point").innerHTML="<div class=\"tip share\">请注意，本文编写于"+days+"天前，最后修改于"+udays+"天前，其中某些信息可能已经过时。<img src=\"https://cdn.jsdelivr.net/gh/drew233/cdn/kawayi.webp\"><\img> </div>";
+			  }
+			</script>
+	   </div>
+
+	  
+	  <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础"><a href="#2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C3 矩阵分析基础"></a>2022-2023 春学期 矩阵与数值分析 C3 矩阵分析基础</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本文内容来自于对矩阵与数值分析课程资料的整理；</p>
+<p>本文所涉及的课程指东北某沿海高校，计算机学院硕士生必修课“矩阵与数值分析”，课程资料包括课程PPT、教材《计算机科学计算 第二版》<sup><a href="#fn_1" id="reffn_1">1</a></sup>，以及网络资料，师兄的笔记等。</p>
+<blockquote id="fn_1">
+<sup>1</sup>. 《计算机科学计算 第二版》 作者: 张宏伟 金光日 施吉林；出版社: 高等教育出版社；页数: 379；定价: 38.1元；装帧: 平装-胶订；ISBN: 9787040365955 出版年：2013；学科主题: 电子计算机 教材 科学计算-高等学校；中图法分类号: TP301.6； 一般附注: 高等学校教材<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<h2 id="C3-矩阵分析基础"><a href="#C3-矩阵分析基础" class="headerlink" title="C3 矩阵分析基础"></a>C3 矩阵分析基础</h2><h3 id="3-1-矩阵序列与级数"><a href="#3-1-矩阵序列与级数" class="headerlink" title="3.1 矩阵序列与级数"></a>3.1 矩阵序列与级数</h3><h4 id="矩阵序列相关定义与特性"><a href="#矩阵序列相关定义与特性" class="headerlink" title="矩阵序列相关定义与特性"></a>矩阵序列相关定义与特性</h4><p>矩阵序列：按整数 k 的序列，将 $C^{m\times n}$ 中的矩阵排成一列 $A_1,A_2,A_3,\cdots,A_k,\cdots$，称这列有序的矩阵为矩阵为矩阵序列，称 $A_k$ 为矩阵序列的一般项。</p>
+<p>矩阵序列的发散与收敛：$\{A_k\}^\infty_{k=1}$ 为 $C^{m\times n}$ 中的矩阵序列，其中 $A_k=(a_{ij}^{(k)})$，又 $A=a_{ij}\in C^{m\times n}$，如果 $\lim\limits_{k\rightarrow\infty}a^{(k)}_{ij}=a_{ij}$，对 $i=1,2,\cdots,m;j=1,2,\cdots,n$ 均成立，则称矩阵序列 $\{A_k\}^\infty_{k=1}$ 收敛，而 A 称为矩阵序列 $\{A_k\}^\infty_{k=1}$ 的极限，记为 $\lim\limits_{k\rightarrow\infty}A_k=A$；不收敛的矩阵序列称为发散的。</p>
+<p>可见矩阵序列收敛和矩阵中的元素都收敛的是相互充要的。</p>
+<p>矩阵序列收敛性与范数：设 $\{A_k\}^\infty_{k=1}$ 为 $C^{m\times n}$ 中的矩阵序列，$||\cdot||$ 为 $C ^{m\times n}$  中的一种矩阵范数，则矩阵序列 $\{A_k\}^\infty_{k=1}$ 收敛于 A 的充要条件是 $||A_k-A||$ 收敛于零。</p>
+<p>相关结论：设 $\{A_k\}^\infty_{k=1},A\in C ^{m\times n}$ ，并且 $\lim\limits_{k\rightarrow\infty}A_k=A$，则 $\lim\limits_{k\rightarrow\infty}||A_k||=||A||$；此结论只是充分条件，反过来不一定成立。</p>
+<p>对于矩阵序列的四则运算，有：</p>
+<p>设 $\{A_k\}^\infty_{k=1}$, 和 $\{B_k\}^\infty_{k=1}$，分别为$ C ^{m\times n}$ 和 $ C ^{n\times l}$，并且 $\lim\limits_{k\rightarrow\infty}A_k=A,\lim\limits_{k\rightarrow\infty}B_k=B$，则</p>
+<ul>
+<li>$\lim\limits_{k\rightarrow\infty}(\alpha A_k+\beta B_k)=\alpha A+\beta B,\forall\alpha,\beta\in C$</li>
+<li>$\lim\limits_{k\rightarrow\infty}A_kB_k=AB$</li>
+<li>设 $\{A_k\}^\infty_{k=1},A\in C ^{n\times n}$ 中的矩阵序列，并且 $\lim\limits_{k\rightarrow\infty}A_k=A,A_k(k=1,2,\cdots)$，和 $A\in C ^{n\times n}$ 均为可逆矩阵，则 $\lim\limits_{k\rightarrow\infty}A^{-1}=A^{-1}$；注意矩阵序列可逆不能保证极限一定可逆</li>
+<li>可逆矩阵极限可能奇异，非零矩阵极限可能为零</li>
+</ul>
+<p>收敛矩阵：$A\in C^{n\times n},\lim\limits_{k\rightarrow\infty}A^k=0$</p>
+<p>定理：$\rho(A)&lt;1$ 的充要条件是：存在 $C^{n\times n}$ 上的某种范数 $||\cdot||$ ，使得 $||A||&lt;1$</p>
+<p>定理：设 $C^{n\times n}$，$\lim\limits_{k\rightarrow\infty}A^k=0$ 的充分必要条件是存在 $C^{n\times n}$ 上的某种范数 $||\cdot||$ ，使得 $||A||&lt;1$</p>
+<p>所以有：</p>
+<p>$\rho(A)&lt;1\Leftrightarrow\lim\limits_{k\rightarrow\infty}A^k=0\Leftrightarrow任意  ||A||&lt;1$</p>
+<p>判断一个矩阵是否为收敛矩阵：</p>
+<ul>
+<li>若 $A^k$ 容易计算，则利用其判断收敛性</li>
+<li>判断矩阵的某种范数是否小于 1</li>
+<li>计算矩阵的谱半径</li>
+</ul>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/fcb01dec5e1017bc53853687f0803e62-20230523002958922-91291c.png" alt="image-20230518201307908"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/8be1db14f4c9e8fbeff9f23e6c66f3f4-20230523003005792-773551.png" alt="image-20230518201334394"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/c9638bd784d7ea53f355dc36adb30941-20230523003012625-0f4953.png" alt="image-20230518201354238"></p>
+<p><img src="T:/typoraPic/image-20230518201420008.png" alt="image-20230518201420008"></p>
+<p><img src="T:/typoraPic/image-20230518201451473.png" alt="image-20230518201451473"></p>
+<h4 id="矩阵级数相关定义与结论"><a href="#矩阵级数相关定义与结论" class="headerlink" title="矩阵级数相关定义与结论"></a>矩阵级数相关定义与结论</h4><p>定义：设 $\{A_k\}^\infty_{k=1}$ 为 $C ^{m\times n}$ 中的矩阵序列，称</p>
+<script type="math/tex; mode=display">
+A_1+A_2+\cdots+A_k+\cdots</script><p> 为由矩阵序列 $\{A_k\}^\infty_{k=1}$ 构成的矩阵级数，记为 $\sum\limits^\infty_{k=1}A_k$</p>
+<p>定义：记 $S_k=\sum\limits^k_{i=1}A_i$，称之为矩阵级数 $\sum\limits^\infty_{k=1}A_k$ 的前 k 项部分和，若矩阵序列 $\{S_k\}^\infty_{k=1}$ 收敛且 $\lim\limits_{k\rightarrow\infty}S_k=S$，则称矩阵级数 $\sum\limits^\infty_{k=1}A_k$ 收敛；矩阵 S 称为矩阵级数的和函数，记为 $S=\sum\limits^\infty_{k=1}A_k$。不收敛的矩阵级数称为发散的。矩阵级数收敛即 $m\times n$ 个数项级数 $\sum\limits^\infty_{k=1}a_{ij}^{(k)}$ 均收敛。</p>
+<p>定理：设 A 为 n 阶方阵，则 $\sum\limits_{k=0}^\infty A^k=I+A+A^2+\cdots+A^k+\cdots$ 收敛（$A^0=I$）的充要条件是 $\rho(A)&lt;1$</p>
+<p>定理：设 A 为 n 阶方阵，当 $\sum\limits_{k=0}^\infty A^k$ 收敛时，有 $\sum\limits_{k=0}^\infty A^k=(I-A)^{-1}$，而且存在 $C^{n\times n}$ 上的算子范数 $||\cdot||$，使得 $||(I-A)^{-1}-\sum\limits^m_{k=0}A^k||\leq\frac{||A||^{m+1}}{1-||A||}$</p>
+<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230519185032341-1684493998287-3.png" alt="image-20230519185032341"></p>
+<p><img src="T:/typoraPic/image-20230519190036391.png" alt="image-20230519190036391"></p>
+<p><img src="T:/typoraPic/image-20230519190119894.png" alt="image-20230519190119894"></p>
+<p><img src="T:/typoraPic/image-20230519190143789.png" alt="image-20230519190143789"></p>
+<h4 id="矩阵级数绝对收敛相关结论"><a href="#矩阵级数绝对收敛相关结论" class="headerlink" title="矩阵级数绝对收敛相关结论"></a>矩阵级数绝对收敛相关结论</h4><p>定义：设 $\sum\limits_{k=1}^\infty A_k$ 为 $C^{m\times n}$ 中的矩阵级数，其中 $A_k=(a^{(k)}_{ij})$。如果$\sum\limits_{k=1}^\infty a_{ij}^{(k)}$ 对任意的 $1\leq i\leq m,\, 1\leq j\leq n$ 均为绝对收敛的，则称矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 绝对收敛。</p>
+<p>定理：矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 为绝对收敛的充要条件是正项级数 $\sum\limits_{k=1}^\infty ||A_k||$收敛</p>
+<p>定理：若矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 是绝对收敛的，则它一定是收敛的，并且任意调换各项的顺序所得到的级数还是收敛的，且级数和不变；显然，收敛的级数不一定绝对收敛，而绝对收敛的级数一定是收敛的。</p>
+<p>定理：设 $\sum\limits_{k=1}^\infty A_k$ 为 $C^{m\times n}$ 中的绝对收敛的矩阵级数，$A=\sum\limits_{k=1}^\infty A_k$，设 $\sum\limits_{k=1}^\infty B_k$ 为 $C^{n\times l}$ 中的绝对收敛的矩阵级数，$B=\sum\limits_{k=1}^\infty B_k$，则 $\sum\limits_{k=1}^\infty A_k\cdot\sum\limits_{k=1}^\infty B_k$ 按任何方式排列得到的级数绝对收敛，且和为 AB。</p>
+<p>定理，设 $P\in C^{p\times m}$ 和 $Q\in C^{n\times q}$ 为给定矩阵，则 $\sum\limits_{k=0}^\infty A_k$ 收敛可以得到 $\sum\limits_{k=0}^\infty PA_kQ$ 收敛； $\sum\limits_{k=0}^\infty A_k$ 绝对收敛可以得到 $\sum\limits_{k=0}^\infty PA_kQ$ 绝对收敛；且有等式 $P(\sum\limits_{k=0}^\infty A_k)Q$</p>
+<h3 id="3-2-幂级数"><a href="#3-2-幂级数" class="headerlink" title="3.2 幂级数"></a>3.2 幂级数</h3><h4 id="收敛与发散"><a href="#收敛与发散" class="headerlink" title="收敛与发散"></a>收敛与发散</h4><p>矩阵幂级数的一般形式：$\sum\limits_{k=0}^\infty a_kA^k$</p>
+<p>定理：设 $\sum\limits^\infty_{k=0}a_kt^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，则</p>
+<ul>
+<li>$\rho(A)&lt;r$ 时，矩阵幂级数 $\sum\limits_{k=0}^\infty a_kA^k$ 绝对收敛</li>
+<li>$\rho(A)&gt;r$ 时，矩阵幂级数 $\sum\limits_{k=0}^\infty a_kA^k$ 发散</li>
+</ul>
+<p>定理：设 $\sum\limits_{k=0}^\infty a_k(z-z_0)^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，</p>
+<ul>
+<li>如果 A 的特征值均落在收敛圆内，即 $|\lambda-z_0|&lt;r$，其中 $\lambda$ 为任意特征值，则矩阵幂级数 $\sum\limits_{k=0}^\infty a_k(A-z_0I)^k$ 绝对收敛</li>
+<li>若有某个 $\lambda_{i_0}$ 使得 $|\lambda_{i_0}-z_0|&gt;r$，则幂级数 $\sum\limits_{k=0}^\infty a_k(A-z_0I)^k$ 发散</li>
+</ul>
+<h4 id="幂级数与解析函数的关系"><a href="#幂级数与解析函数的关系" class="headerlink" title="幂级数与解析函数的关系"></a>幂级数与解析函数的关系</h4><p><img src="T:/typoraPic/image-20230519192403417.png" alt="image-20230519192403417"></p>
+<p><img src="T:/typoraPic/image-20230519192415341.png" alt="image-20230519192415341"></p>
+<p>利用 Jordan 分解计算矩阵函数</p>
+<p><img src="T:/typoraPic/image-20230519193102336.png" alt="image-20230519193102336"></p>
+<p><img src="T:/typoraPic/image-20230519193110897.png" alt="image-20230519193110897"></p>
+<p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_kz^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|\lambda|&lt;r$，则</p>
+<script type="math/tex; mode=display">
+f(J)=
+\begin{pmatrix}
+f(\lambda)&f'(\lambda)&\cdots&\frac{f^{(n-1)}(\lambda)}{(n-1)!}\\
+&f(\lambda)&\ddots&\vdots\\
+&&\ddots&f'(\lambda)\\
+&&&f(\lambda)
+\end{pmatrix}</script><p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|\lambda-z_0|&lt;r$，则</p>
+<script type="math/tex; mode=display">
+f(J)=
+\begin{pmatrix}
+f(\lambda)&f'(\lambda)&\cdots&\frac{f^{(n-1)}(\lambda)}{(n-1)!}\\
+&f(\lambda)&\ddots&\vdots\\
+&&\ddots&f'(\lambda)\\
+&&&f(\lambda)
+\end{pmatrix}</script><p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_kz^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|t\lambda|&lt;r$，则</p>
+<script type="math/tex; mode=display">
+f(tJ)=
+\begin{pmatrix}
+f(t\lambda)&tf'(\lambda)&\cdots&\frac{t^{(n-1)}f^{(n-1)}(t\lambda)}{(n-1)!}\\
+&f(t\lambda)&\ddots&\vdots\\
+&&\ddots&tf'(\lambda)\\
+&&&f(t\lambda)
+\end{pmatrix}</script><p>定理（利用矩阵的 Jordan 分解求矩阵函数 f(A) 的具体表达式）：设 $f(z)=\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，$A=TJT^{-1}$ 为其 Jordan 分解， $J=\mathrm{diag}(J_1,J_2,\cdots,J_s)$；当 A 的特征值均落在收敛圆内时，即 $|\lambda-z_0|&lt;r$，其中 $\lambda$ 为 A 的任意特征值，则矩阵幂级数 $\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 绝对收敛，并且和矩阵为:</p>
+<script type="math/tex; mode=display">
+f(A)=T\mathrm{diag}(f(J_1),f(J_2),\cdots,f(J_s))T^{-1}</script><p>其中 $f(J_i)$ 的定义如前表达式。</p>
+<p>注意，若 A 的特征值为 $\lambda_1,\lambda_2,\cdots,\lambda_n$，则 f(A) 的特征值应为 $f(\lambda_1),f(\lambda_2),\cdots,f(\lambda_n)$</p>
+<p>计算矩阵函数值的基本步骤：</p>
+<ol>
+<li>计算 Jordan 分解 $A=TJT^{-1}=T\mathrm{diag}(J_1,\cdots,J_s)T^{-1}$</li>
+<li>求 $f(A)=T\mathrm{diag}(f(J_1),\cdots,f(J_s))T^{-1}$</li>
+</ol>
+<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230520141258088.png" alt="image-20230520141258088"></p>
+<p>已知 $J_i=\begin{pmatrix}-1&amp;1&amp;&amp;\ &amp;-1&amp;1\\&amp;&amp;-1&amp;1\\&amp;&amp;&amp;-1\end{pmatrix}$，求 $e^{J_i},\;e^{tJ_i}$</p>
+<p>解：</p>
+<script type="math/tex; mode=display">
+e^{J_i}=
+\begin{pmatrix}
+e^{-1}&e^{-1}&\frac{e^{-1}}{2}&\frac{e^{-1}}{6}\\
+&e^{-1}&e^{-1}&\frac{e^{-1}}{2}\\
+&&e^{-1}&e^{-1}\\
+&&&e^{-1}
+\end{pmatrix}\\
+e^{tJ_i}=
+\begin{pmatrix}
+e^{-t}&te^{-t}&\frac{t^2e^{-t}}{2}&\frac{t^3e^{-t}}{6}\\
+&e^{-t}&te^{-t}&\frac{t^2e^{-t}}{2}\\
+&&e^{-t}&te^{-t}\\
+&&&e^{-t}
+\end{pmatrix}</script><p><img src="T:/typoraPic/image-20230520142211513.png" alt="image-20230520142211513"></p>
+<p>求 sinA，sinAt，其中</p>
+<script type="math/tex; mode=display">
+A=
+\begin{pmatrix}
+1&&&\\
+&2&&\\
+&&3&\\
+&&&4\\
+\end{pmatrix},\;
+\sin A=
+\begin{pmatrix}
+\sin1&&&\\
+&\sin2&&\\
+&&\sin3&\\
+&&&\sin4\\
+\end{pmatrix},\;
+\sin At=
+\begin{pmatrix}
+\sin t&&&\\
+&\sin2t&&\\
+&&\sin3t&\\
+&&&\sin4t\\
+\end{pmatrix};\\
+
+A=
+\begin{pmatrix}
+1&&&\\
+&1&&\\
+&&1&\\
+&&&1\\
+\end{pmatrix},\;
+\sin A=
+\begin{pmatrix}
+\sin1&&&\\
+&\sin1&&\\
+&&\sin1&\\
+&&&\sin1\\
+\end{pmatrix},\;
+\sin At=
+\begin{pmatrix}
+\sin t&&&\\
+&\sin t&&\\
+&&\sin t&\\
+&&&\sin t\\
+\end{pmatrix};\\
+
+A=
+\begin{pmatrix}
+1&&&\\
+&1&1&\\
+&&1&1\\
+&&&1\\
+\end{pmatrix},\;
+\sin A=
+\begin{pmatrix}
+\sin1&&&\\
+&\sin1&\cos1&-\frac{\sin1}{2}\\
+&&\sin1&\cos1\\
+&&&\sin1\\
+\end{pmatrix},\;
+\sin At=
+\begin{pmatrix}
+\sin t&&&\\
+&\sin t&t\cos t&-\frac{t^2\sin t}{2}\\
+&&\sin t&t\cos t\\
+&&&\sin t\\
+\end{pmatrix};\\</script><p><img src="T:/typoraPic/image-20230520145644818.png" alt="image-20230520145644818"></p>
+<p><img src="T:/typoraPic/image-20230520145653998.png" alt="image-20230520145653998"></p>
+<h4 id="有限待定系数法"><a href="#有限待定系数法" class="headerlink" title="有限待定系数法"></a>有限待定系数法</h4><p>问题：给定函数 f(x)，计算 f(Ax)</p>
+<p>挑战：<strong>为避免计算矩阵的 Jordan 分解</strong></p>
+<script type="math/tex; mode=display">
+f(\lambda t)=p(\lambda,t)\psi(\lambda)+q(\lambda,t)</script><p>$\psi(\lambda)$ 为特征多项式，$q(\lambda,t)$ 为次数不超过 n-1 的含参多项式</p>
+<script type="math/tex; mode=display">
+\psi(\lambda)=\det(A-\lambda I),\\
+q(\lambda,t)=b_{n-1}(t)\lambda^{n-1}+\cdots+b_1(t)\lambda+b_0(t)</script><p>有 Hamilton-Catley 定理可知 $\psi(A)=0$，从而</p>
+<script type="math/tex; mode=display">
+f(At)=q(A,t)</script><p><strong>关键：确定含参系数</strong> $b_{n-1}(t),\cdots,b_1(t),b_0(t)$</p>
+<p>显然，A 的特征多项式</p>
+<script type="math/tex; mode=display">
+\psi(\lambda)=\det(A-\lambda I)=\prod\limits^s_{i=1}(\lambda-\lambda_i)^{m_i}\Rightarrow\psi^{(j)}(\lambda_i)=0,\; j=0,\cdots,m_j-1,\; i=1,\cdots,s</script><p>故将 $f(\lambda t)=p(\lambda,t)\psi(\lambda)+q(\lambda,t)$ 两端对 $\lambda$ 求导，得到</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+f(\lambda t)&=p(\lambda,t)\psi(\lambda)+q(\lambda,t)\\
+&\Rightarrow \left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}f(\lambda t)\right|_{\lambda=\lambda_i}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}\\
+&\Rightarrow \left . t^j\frac{\mathrm{d}^j}{\mathrm{d}u^j}f(u)\right|_{u=\lambda_it}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}
+\end{aligned}</script><p>n 个方程，n 个变量的线性方程组</p>
+<p>待定系数法的步骤：</p>
+<ol>
+<li><p>计算 A 的特征多项式 $\psi(\lambda)=\det(A-\lambda I)$</p>
+</li>
+<li><p>定义 $q(\lambda,t)=b_{n-1}(t)\lambda^{n-1}+\cdots+b_1(t)\lambda+b_0(t)$</p>
+<p>  利用(可假设 t=1)</p>
+<script type="math/tex; mode=display">
+  \left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}f(\lambda t)\right|_{\lambda=\lambda_i}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}
+  \quad或\quad
+  \left . t^j\frac{\mathrm{d}^j}{\mathrm{d}u^j}f(u)\right|_{u=\lambda_it}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}</script><p>  确定含参系数 $b_{n-1}(t),\cdots,b_1(t),b_0(t)$</p>
+</li>
+<li><p>计算(假设 t=1，f(A)=q(A)) $f(At)=q(A,t)$</p>
+</li>
+</ol>
+<h5 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230520145819049.png" alt="image-20230520145819049"></p>
+<p><img src="T:/typoraPic/image-20230520145835875.png" alt="image-20230520145835875"></p>
+<h4 id="矩阵函数等式"><a href="#矩阵函数等式" class="headerlink" title="矩阵函数等式"></a>矩阵函数等式</h4><p>若 $\forall A \in C^{n\times n}$，总有：</p>
+<ul>
+<li>$\sin(-A)=-\sin A,\cos(-A)=\cos A$</li>
+<li>$e^{iA}=\cos A+i\sin A,\, \cos A=\frac{1}{2}(e^{iA}+e^{-iA}),\,\sin A=\frac{1}{2i}(e^{iA}-e^{-iA})$</li>
+</ul>
+<p>若 $A,B\in C^{n\times n}$，且 <strong>AB=BA</strong>，则</p>
+<ul>
+<li>$e^Ae^B=e^Be^A=e^{A+B}$</li>
+<li>$\sin(A+B)=\sin A\cos B+\cos A\sin B$</li>
+<li>$\cos(A+B)=\cos A\cos B-\sin A\sin B$</li>
+</ul>
+<p>若 A=B，则 $cos2A=\cos^2A-\sin^2A,\,\sin2A=2\sin A\cos A$</p>
+<p>对任何 n 阶方阵 A，$e^A$ 总是可逆矩阵</p>
+<script type="math/tex; mode=display">
+e^Ae^{-A}=e^{-A}e^A=e^0=I</script><p>sinA 和 cosA 不一定可逆，例如：</p>
+<script type="math/tex; mode=display">
+A=\begin{pmatrix}
+\pi&0\\0&\frac{\pi}{2}
+\end{pmatrix}
+\\
+\sin A=\begin{pmatrix}\sin\pi&0\\0&\sin\frac{\pi}{2}\end{pmatrix}=\begin{pmatrix}0&0\\0&1\end{pmatrix}
+\\\cos A=\begin{pmatrix}\cos\pi&0\\0&\cos\frac{\pi}{2}\end{pmatrix}=\begin{pmatrix}-1&0\\0&0\end{pmatrix}</script><p>其他若干结论：</p>
+<ul>
+<li>$f(A^T)=f(A)^T$</li>
+<li>$\det(e^A)=e^{trA}$</li>
+<li>$(e^{A})^{-1}=e^{-A}$</li>
+<li>$||e^A||\leq e^{||A||}$</li>
+<li>若 A 为 Hermite 阵，则 $e^{iA}$ 是酉阵</li>
+</ul>
+<h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230520150027753.png" alt="image-20230520150027753"></p>
+<h3 id="3-3-矩阵的微积分"><a href="#3-3-矩阵的微积分" class="headerlink" title="3.3 矩阵的微积分"></a>3.3 矩阵的微积分</h3><h4 id="含参矩阵微分"><a href="#含参矩阵微分" class="headerlink" title="含参矩阵微分"></a>含参矩阵微分</h4><p>元素为函数的矩阵微分：如果矩阵 $A(t)=(a_{ij}(t))_{m\times n}$ 的每一个元素 $a_{ij}(t),i=1,2,\cdots,m;j=1,2,\cdots,n$，在[a,b] 上均为变量 t 的可微函数，则称 A(t) 可微，且导数定义为(也就是针对每个矩阵元素对 t 求导):</p>
+<script type="math/tex; mode=display">
+A'(t)=\frac{d}{dt}A(t)=(\frac{d}{dt}a_{ij}(t))_{m\times n}</script><p>求导法则：</p>
+<p>设 A(t), B(t) 是可进行运算的两个可微矩阵，则</p>
+<ul>
+<li>$(A(t)+B(t))’=A’(t)+B’(t)$</li>
+<li>$(A(t)B(t))’=A’(t)B(t)+A(t)B’(t)$</li>
+<li>$(\alpha A(t))’=\alpha\cdot A’(t)$，其中 $\alpha$ 为任意常数</li>
+<li>当 $A^{-1}(t)$  为可微矩阵时，有 $(A^{-1}(t))’=-A^{-1}(t)A’(t)A^{-1}(t)$</li>
+<li>当 $u=f(t)$ 关于 t 可微时，有  $(A(u))’=f’(t)\frac{d}{du}A(u)$</li>
+</ul>
+<p>函数矩阵的高阶导数定义为：</p>
+<script type="math/tex; mode=display">
+\frac{d^k}{dt^k}(A(t))=\frac{d}{dt}(\frac{d^{k-1}}{dt^{k-1}}(A(t)))</script><p>注：$(A^m(t))’=mA^{m-1}(t)(A(t))’$ 不一定成立, $A(t)(A(t))’\neq(A(t))’A(t)$,  事实上 $(A^2(t))’=(A(t)A(t))’=A’(t)A(t)+A(t)A’(t)\neq2A’(t)A(t)$</p>
+<p>特殊矩阵函数导数</p>
+<p>设 n 阶方阵 A 与 t 无关，则有：</p>
+<ul>
+<li>$(e^{tA})’=Ae^{tA}=e^{tA}A$</li>
+<li>$(\sin(tA))’=A\cdot\cos(tA)=\cos(tA)\cdot A$</li>
+<li>$(\cos(tA))’=-A\cdot\sin(tA)=-\sin(tA)\cdot A$</li>
+</ul>
+<h5 id="重要的例题"><a href="#重要的例题" class="headerlink" title="重要的例题"></a>重要的例题</h5><p><strong>可利用特殊点的导数值求相应矩阵</strong></p>
+<p><img src="T:/typoraPic/image-20230523001050871.png" alt="image-20230523001050871"></p>
+<h5 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230523000932923.png" alt="image-20230523000932923"></p>
+<p><img src="T:/typoraPic/image-20230523001011524.png" alt="image-20230523001011524"></p>
+<h4 id="矩阵函数积分"><a href="#矩阵函数积分" class="headerlink" title="矩阵函数积分"></a>矩阵函数积分</h4><p>如果矩阵 $A(t)=(a_ij(t))_{m\times n}$ 的每一个元素 $a_ij(t)$ 都是区间 $[t_0,t_1]$ 上的可积函数，则定义 A(t) 在区间 $[t_0,t_1]$ 上的积分为（对矩阵积分也就是对矩阵中每个元素积分）：</p>
+<script type="math/tex; mode=display">
+\int^{t_1}_{t_0}A(t)dt=(\int^{t_1}_{t_0}a_{ij}(t)dt)_{m\times n}</script><p>性质（与函数的积分类似）</p>
+<ul>
+<li><p>$\int^{t_1}_{t_0}(\alpha A(t)+\beta B(t))dt=\alpha\int^{t_1}_{t_0}A(t)dt+\beta\int^{t_1}_{t_0} B(t))dt,\;\forall\alpha,\beta\in C$</p>
+</li>
+<li><p>$\int^{t_1}_{t_0}(A(t)B)dt=\int^{t_1}_{t_0}A(t)dtB$ 其中 B 为常数矩阵</p>
+<p>  $\int^{t_1}_{t_0}(AB(t))dt=A\int^{t_1}_{t_0}B(t)dt$ 其中 A 为常数矩阵</p>
+</li>
+<li><p>当 A(t) 在 [a,b] 上连续可微时，对任意 $t\in(a,b)$ ，有 $\frac{d}{dt}(\int^{t}_{a}A(\tau)d\tau)=A(t)$</p>
+</li>
+<li><p>当 A(t) 在 [a,b] 上连续可微时，对任意 $t\in(a,b)$ ，有 $\int^{b}_{a}\frac{dA(t)}{dt}dt=A(b)-A(a)$</p>
+</li>
+</ul>
+<h4 id="相对于矩阵变量的微分"><a href="#相对于矩阵变量的微分" class="headerlink" title="* 相对于矩阵变量的微分"></a>* 相对于矩阵变量的微分</h4><blockquote>
+<p>应该不会考 :)</p>
+</blockquote>
+<p>函数对矩阵求导：设 $X=(x_{ij})_{m\times n}$，函数 $f(X)=f(x_{11},x_{12},\cdots,x_{1n},x_{21},\cdots,x_{mn})$ 为 mn 元的多元函数，且 $\frac{\partial{f}}{\partial{x_{ij}}}(i=1,2,\cdots,m;j=1,2,\dots,n)$ 都存在，定义 f(X) 对矩阵 X 的导数为：</p>
+<script type="math/tex; mode=display">
+\frac{d}{dX}f(X)=(\frac{\partial{f}}{\partial{x_{ij}}})_{m\times n}=
+\begin{pmatrix}
+\frac{\partial{f}}{\partial{x_{ij}}}&\cdots&\frac{\partial{f}}{\partial{x_{ij}}}\\
+\cdots&\ddots&\cdots\\
+\frac{\partial{f}}{\partial{x_{ij}}}&\cdots&\frac{\partial{f}}{\partial{x_{ij}}}
+\end{pmatrix}</script><h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230523001246960.png" alt="image-20230523001246960"></p>
+<p><img src="T:/typoraPic/image-20230523001308189.png" alt="image-20230523001308189"></p>
+<p><img src="T:/typoraPic/image-20230523001322053.png" alt="image-20230523001322053"></p>
+<p><img src="T:/typoraPic/image-20230523001342322.png" alt="image-20230523001342322"></p>
+<p><img src="T:/typoraPic/image-20230523001408023.png" alt="image-20230523001408023"></p>
+<h4 id="微分方程组相关内容"><a href="#微分方程组相关内容" class="headerlink" title="* 微分方程组相关内容"></a>* 微分方程组相关内容</h4><blockquote>
+<p>应该不会考 :)</p>
+<p>可参考第七章的内容</p>
+</blockquote>
+<p>一阶线性常系数齐次微分方程组</p>
+<p>问题描述</p>
+<p><img src="T:/typoraPic/image-20230523001446117.png" alt="image-20230523001446117"></p>
+<p>解的存在性</p>
+<p><img src="T:/typoraPic/image-20230523001459677.png" alt="image-20230523001459677"></p>
+<p>解的唯一性</p>
+<p><img src="T:/typoraPic/image-20230523001512861.png" alt="image-20230523001512861"></p>
+<p>一阶线性常系数<strong>非</strong>齐次微分方程组</p>
+<p>问题描述</p>
+<p><img src="T:/typoraPic/image-20230523001524648.png" alt="image-20230523001524648"></p>
+<p>解的存在性</p>
+<p><img src="T:/typoraPic/image-20230523001536719.png" alt="image-20230523001536719"></p>
+<h5 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h5><p><img src="T:/typoraPic/image-20230523001554662.png" alt="image-20230523001554662"></p>
+<p><img src="T:/typoraPic/image-20230523001625341.png" alt="image-20230523001625341"></p>
+<p><img src="T:/typoraPic/image-20230523001639426.png" alt="image-20230523001639426"></p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <!--<li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@mainnull"></li>-->
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/custom/donate/WechanSQ2.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2023/05/17/2022-2023-春学期-矩阵与数值分析-C2-矩阵的变换和计算/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                2022-2023 春学期 矩阵与数值分析 C2 矩阵的变换和计算</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+
+
+
+
+
+    <div id="tcomment"></div>
+	<style>
+	.el-textarea__inner{
+		height: 130px;
+	}
+	</style>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js"></script>
+    <script>
+    window.onload = function () {
+      var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+      document.getElementById("page_loading_time").innerHTML = "It took me " + loadTime + "ms to meet you this time";
+      console.log('Page load time is ' + loadTime);
+      // var valine = new Valine();
+      // valine.init({
+      //   el: '#vcomments',
+      //   avatar: 'monsterid',
+      //   appId: "",
+      //   appKey: "",
+      //   path: window.location.pathname,
+      //   serverURL: "",
+      //   placeholder: "你是我一生只会遇见一次的惊喜"
+      // })
+        twikoo.init({
+          envId: 'https://vercel-for-blog.vercel.app/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+          el: '#tcomment', // 容器元素
+          // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+          // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+          // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+        })
+    }
+    </script>
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="https://owuiviuwo.github.io/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg" itemprop="image" alt="owuiviuwo" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://owuiviuwo.github.io/" itemprop="url" rel="author">owuiviuwo</a>
+            </h3>
+          </div>
+        </div>
+        <hr>
+        <p><i class="iconfont icon-write"></i>Learn and Live</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
+</div>
+
+
+
+    </div>    
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+    <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2023 owuiviuwo<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;" id="blog_running_year">&copy 2022-2023 owuiviuwo</p>
+	  <p style="color: #999; font-size:10px;" id="page_loading_time"></p>
+      <!--<p style="color: #666666;" id="blog_running_year">&copy <span id="blog_running_year_cal"></span> owuiviuwo</p>-->
+      <p style="color: #aaa; font-size: 13px;" id="blog_running_time" ></p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> 
+		<i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by 
+		<a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&
+		<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a><!--, Powered by Hexo, Hosted by Coding Pages</a>-->
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<script src="/js/botui.js"></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"0","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+//var startDay = new Date("2022-12-15");
+//var nowDay = new Date();
+//var dayDiff = Math.floor((nowDay-startDay)/24/60/60/1000);
+//console.log("网站已运行 " + dayDiff + "天！");
+//document.getElementById("blog_running_time").innerHTML = "&copy 2022-"+ nowDay.getFullYear() +" owuiviuwo";
+
+function siteTime() {
+	var seconds = 1000;
+	var minutes = seconds * 60;
+	var hours = minutes * 60;
+	var days = hours * 24;
+	var years = days * 365;
+	var today = new Date();
+	var startYear = "2022";
+	var startMonth = "12";
+	var startDate = "15";
+	var startHour = "0";
+	var startMinute = "0";
+	var startSecond = "0";
+	var todayYear = today.getFullYear();
+	var todayMonth = today.getMonth() + 1;
+	var todayDate = today.getDate();
+	var todayHour = today.getHours();
+	var todayMinute = today.getMinutes();
+	var todaySecond = today.getSeconds();
+	var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+	var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+	var diff = t2 - t1;
+	var diffYears = Math.floor(diff / years);
+	var diffDays = Math.floor((diff / days) - diffYears * 365);
+	var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+	var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+		minutes);
+	var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+		diffMinutes * minutes) / seconds);
+		
+	diffDays = diffDays < 10 ? '0' + diffDays : diffDays;
+	diffHours = diffHours < 10 ? '0' + diffHours : diffHours;
+	diffMinutes = diffMinutes < 10 ? '0' + diffMinutes : diffMinutes;
+	diffSeconds = diffSeconds < 10 ? '0' + diffSeconds : diffSeconds;
+		
+//	if (startYear == todayYear) {
+//		document.getElementById("blog_running_year_cal").innerHTML = todayYear;
+//	} else {
+//		document.getElementById("blog_running_year_cal").innerHTML = startYear + " - " + todayYear;
+//	}
+	if (diffYears == 0) {
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+			" 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	} else{
+		document.getElementById("blog_running_time").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+			" 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+	}
+}
+setInterval(siteTime, 1000);
+            
+</script>
+
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+      <!-- 实现换肤功能 -->
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed">
+ <div class="theme-controls row-container">
+  <ul class="menu-list">
+   <li id="white-bg"> <i class="fa fa-television" aria-hidden="true"></i></li>
+   <li id="sakura-bg"> <i class="iconfont icon-sakura"></i></li>
+   <li id="gribs-bg"> <i class="fa fa-slack" aria-hidden="true"></i></li>
+   <li id="KAdots-bg"> <i class="iconfont icon-dots"></i></li>
+   <li id="totem-bg"> <i class="fa fa-optin-monster" aria-hidden="true"></i></li>
+   <li id="pixiv-bg"> <i class="iconfont icon-pixiv"></i></li>
+   <li id="bing-bg"> <i class="iconfont icon-bing"></i></li>
+   <li id="dark-bg"> <i class="fa fa-moon-o" aria-hidden="true"></i></li>
+  </ul>
+ </div>
+</div>
+<canvas id="night-mode-cover"></canvas> 
+  <div class="changeSkin-gear no-select" >
+  <div class="keys" id="setbtn"> 
+   <span id="open-skinMenu"> 切换主题 | SCHEME TOOL  
+     <i class="iconfont icon-gear inline-block rotating"></i> 
+   </span>
+  </div>
+</div>
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">owuiviuwo</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="http://github.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.cnblogs.com/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="https://www.zhihu.com/people/owuiviuwo" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+        <a href="mailto:owuiviuwo@163.com" class="fa " target="_blank" style="color: #; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/技术/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  技术
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/生活/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  生活
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/资源/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  资源
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随想/">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                  随想
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/转载/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  转载
+                </a>
+              </li>
+            
+              <li>
+                <a href="/random.html">
+                  <i class="fa fa-random" aria-hidden="true"></i>
+                  随机
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="javascript:;">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            数据
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/statistics/">
+                  <i class="fa fa-line-chart" aria-hidden="true"></i>
+                  统计
+                </a>
+              </li>
+            
+              <li>
+                <a href="/postcategory/">
+                  <i class="fa fa-list-ul faa-vertical" aria-hidden="true"></i>
+                  分类
+                </a>
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <i class="fa fa-tags" aria-hidden="true"></i>
+                  标签
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/comment/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-pencil-square-o faa-tada" aria-hidden="true"></i>
+            留言板
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/shuoshuo/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-clock-o" aria-hidden="true"></i>
+            说说
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友人帐
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/donate/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-heart faa-pulse" aria-hidden="true"></i>
+            赞赏
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-list-ul faa-vertical" aria-hidden="true"></i>
+            其他
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/about/">
+                  <i class="fa fa-meetup" aria-hidden="true"></i>
+                  我？
+                </a>
+              </li>
+            
+              <li>
+                <a href="/theme-sakura/">
+                  <i class="fa iconfont icon-sakura" aria-hidden="true"></i>
+                  主题
+                </a>
+              </li>
+            
+              <li>
+                <a href="/lab/">
+                  <i class="fa fa-cogs" aria-hidden="true"></i>
+                  Lab
+                </a>
+              </li>
+            
+              <li>
+                <a href="/atom.xml">
+                  <i class="fa fa-rss faa-pulse" aria-hidden="true"></i>
+                  RSS
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  
+ 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+</html>
