@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础 | owuiviuwo&#39;s blog!</title>
+  <title itemprop="name">2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法 | owuiviuwo&#39;s blog!</title>
   
     <link rel="shortcut icon" href="/images/hamster.png">
   
@@ -383,7 +383,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础</h1>
+      2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法</h1>
       <p class="entry-census">
         <span>
           <a href="https://owuiviuwo.github.io/">
@@ -395,7 +395,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2023-5-23<span class="bull">
+        2023-5-26<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -474,13 +474,13 @@
 				  S = S < 10 ? '0' + S : S;
 				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
 			  }
-			  // var pdate = new Date("1684772305000");
-			  var pdate = new Date(1684772305000);
+			  // var pdate = new Date("1685106649000");
+			  var pdate = new Date(1685106649000);
 			  console.log("pdate="+pdate);
-			  console.log("1684772305000");
-			  //var update = new Date("1684773993763");
-			  var update = new Date(1684773993763);
-			  console.log("1684773993763");
+			  console.log("1685106649000");
+			  //var update = new Date("1685107206680");
+			  var update = new Date(1685107206680);
+			  console.log("1685107206680");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -502,327 +502,291 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础"><a href="#2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C3 矩阵分析基础"></a>2022-2023 春学期 矩阵与数值分析 C3 矩阵分析基础</h1><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>本文内容来自于对矩阵与数值分析课程资料的整理；</p>
-<p>本文所涉及的课程指东北某沿海高校，计算机学院硕士生必修课“矩阵与数值分析”，课程资料包括课程PPT、教材《计算机科学计算 第二版》<sup><a href="#fn_1" id="reffn_1">1</a></sup>，以及网络资料，师兄的笔记等。</p>
-<blockquote id="fn_1">
-<sup>1</sup>. 《计算机科学计算 第二版》 作者: 张宏伟 金光日 施吉林；出版社: 高等教育出版社；页数: 379；定价: 38.1元；装帧: 平装-胶订；ISBN: 9787040365955 出版年：2013；学科主题: 电子计算机 教材 科学计算-高等学校；中图法分类号: TP301.6； 一般附注: 高等学校教材<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
-</blockquote>
-<h2 id="C3-矩阵分析基础"><a href="#C3-矩阵分析基础" class="headerlink" title="C3 矩阵分析基础"></a>C3 矩阵分析基础</h2><h3 id="3-1-矩阵序列与级数"><a href="#3-1-矩阵序列与级数" class="headerlink" title="3.1 矩阵序列与级数"></a>3.1 矩阵序列与级数</h3><h4 id="矩阵序列相关定义与特性"><a href="#矩阵序列相关定义与特性" class="headerlink" title="矩阵序列相关定义与特性"></a>矩阵序列相关定义与特性</h4><p>矩阵序列：按整数 k 的序列，将 $C^{m\times n}$ 中的矩阵排成一列 $A_1,A_2,A_3,\cdots,A_k,\cdots$，称这列有序的矩阵为矩阵为矩阵序列，称 $A_k$ 为矩阵序列的一般项。</p>
-<p>矩阵序列的发散与收敛：$\{A_k\}^\infty_{k=1}$ 为 $C^{m\times n}$ 中的矩阵序列，其中 $A_k=(a_{ij}^{(k)})$，又 $A=a_{ij}\in C^{m\times n}$，如果 $\lim\limits_{k\rightarrow\infty}a^{(k)}_{ij}=a_{ij}$，对 $i=1,2,\cdots,m;j=1,2,\cdots,n$ 均成立，则称矩阵序列 $\{A_k\}^\infty_{k=1}$ 收敛，而 A 称为矩阵序列 $\{A_k\}^\infty_{k=1}$ 的极限，记为 $\lim\limits_{k\rightarrow\infty}A_k=A$；不收敛的矩阵序列称为发散的。</p>
-<p>可见矩阵序列收敛和矩阵中的元素都收敛的是相互充要的。</p>
-<p>矩阵序列收敛性与范数：设 $\{A_k\}^\infty_{k=1}$ 为 $C^{m\times n}$ 中的矩阵序列，$||\cdot||$ 为 $C ^{m\times n}$  中的一种矩阵范数，则矩阵序列 $\{A_k\}^\infty_{k=1}$ 收敛于 A 的充要条件是 $||A_k-A||$ 收敛于零。</p>
-<p>相关结论：设 $\{A_k\}^\infty_{k=1},A\in C ^{m\times n}$ ，并且 $\lim\limits_{k\rightarrow\infty}A_k=A$，则 $\lim\limits_{k\rightarrow\infty}||A_k||=||A||$；此结论只是充分条件，反过来不一定成立。</p>
-<p>对于矩阵序列的四则运算，有：</p>
-<p>设 $\{A_k\}^\infty_{k=1}$, 和 $\{B_k\}^\infty_{k=1}$，分别为$ C ^{m\times n}$ 和 $ C ^{n\times l}$，并且 $\lim\limits_{k\rightarrow\infty}A_k=A,\lim\limits_{k\rightarrow\infty}B_k=B$，则</p>
-<ul>
-<li>$\lim\limits_{k\rightarrow\infty}(\alpha A_k+\beta B_k)=\alpha A+\beta B,\forall\alpha,\beta\in C$</li>
-<li>$\lim\limits_{k\rightarrow\infty}A_kB_k=AB$</li>
-<li>设 $\{A_k\}^\infty_{k=1},A\in C ^{n\times n}$ 中的矩阵序列，并且 $\lim\limits_{k\rightarrow\infty}A_k=A,A_k(k=1,2,\cdots)$，和 $A\in C ^{n\times n}$ 均为可逆矩阵，则 $\lim\limits_{k\rightarrow\infty}A^{-1}=A^{-1}$；注意矩阵序列可逆不能保证极限一定可逆</li>
-<li>可逆矩阵极限可能奇异，非零矩阵极限可能为零</li>
-</ul>
-<p>收敛矩阵：$A\in C^{n\times n},\lim\limits_{k\rightarrow\infty}A^k=0$</p>
-<p>定理：$\rho(A)&lt;1$ 的充要条件是：存在 $C^{n\times n}$ 上的某种范数 $||\cdot||$ ，使得 $||A||&lt;1$</p>
-<p>定理：设 $C^{n\times n}$，$\lim\limits_{k\rightarrow\infty}A^k=0$ 的充分必要条件是存在 $C^{n\times n}$ 上的某种范数 $||\cdot||$ ，使得 $||A||&lt;1$</p>
-<p>所以有：</p>
-<p>$\rho(A)&lt;1\Leftrightarrow\lim\limits_{k\rightarrow\infty}A^k=0\Leftrightarrow任意  ||A||&lt;1$</p>
-<p>判断一个矩阵是否为收敛矩阵：</p>
-<ul>
-<li>若 $A^k$ 容易计算，则利用其判断收敛性</li>
-<li>判断矩阵的某种范数是否小于 1</li>
-<li>计算矩阵的谱半径</li>
-</ul>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/fcb01dec5e1017bc53853687f0803e62-20230523002958922-91291c.png" alt="image-20230518201307908"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/8be1db14f4c9e8fbeff9f23e6c66f3f4-20230523003005792-773551.png" alt="image-20230518201334394"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/c9638bd784d7ea53f355dc36adb30941-20230523003012625-0f4953.png" alt="image-20230518201354238"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/7af70b3404d59c23773abe19a22d273d-20230523003020022-cca3c9.png" alt="image-20230518201420008"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/6c19274cd86096777a5803f523f31195-20230523003244144-75d840.png" alt="image-20230518201451473"></p>
-<h4 id="矩阵级数相关定义与结论"><a href="#矩阵级数相关定义与结论" class="headerlink" title="矩阵级数相关定义与结论"></a>矩阵级数相关定义与结论</h4><p>定义：设 $\{A_k\}^\infty_{k=1}$ 为 $C ^{m\times n}$ 中的矩阵序列，称</p>
+          <h1 id="2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法"><a href="#2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C4 逐次逼近法"></a>2022-2023 春学期 矩阵与数值分析 C4 逐次逼近法</h1><h2 id="C4-逐次逼近法"><a href="#C4-逐次逼近法" class="headerlink" title="C4 逐次逼近法"></a>C4 逐次逼近法</h2><h3 id="4-1-解线性方程组的迭代法"><a href="#4-1-解线性方程组的迭代法" class="headerlink" title="4.1 解线性方程组的迭代法"></a>4.1 解线性方程组的迭代法</h3><h4 id="简单迭代法迭代格式"><a href="#简单迭代法迭代格式" class="headerlink" title="简单迭代法迭代格式"></a>简单迭代法迭代格式</h4><p>可将线性方程组变形</p>
 <script type="math/tex; mode=display">
-A_1+A_2+\cdots+A_k+\cdots</script><p> 为由矩阵序列 $\{A_k\}^\infty_{k=1}$ 构成的矩阵级数，记为 $\sum\limits^\infty_{k=1}A_k$</p>
-<p>定义：记 $S_k=\sum\limits^k_{i=1}A_i$，称之为矩阵级数 $\sum\limits^\infty_{k=1}A_k$ 的前 k 项部分和，若矩阵序列 $\{S_k\}^\infty_{k=1}$ 收敛且 $\lim\limits_{k\rightarrow\infty}S_k=S$，则称矩阵级数 $\sum\limits^\infty_{k=1}A_k$ 收敛；矩阵 S 称为矩阵级数的和函数，记为 $S=\sum\limits^\infty_{k=1}A_k$。不收敛的矩阵级数称为发散的。矩阵级数收敛即 $m\times n$ 个数项级数 $\sum\limits^\infty_{k=1}a_{ij}^{(k)}$ 均收敛。</p>
-<p>定理：设 A 为 n 阶方阵，则 $\sum\limits_{k=0}^\infty A^k=I+A+A^2+\cdots+A^k+\cdots$ 收敛（$A^0=I$）的充要条件是 $\rho(A)&lt;1$</p>
-<p>定理：设 A 为 n 阶方阵，当 $\sum\limits_{k=0}^\infty A^k$ 收敛时，有 $\sum\limits_{k=0}^\infty A^k=(I-A)^{-1}$，而且存在 $C^{n\times n}$ 上的算子范数 $||\cdot||$，使得 $||(I-A)^{-1}-\sum\limits^m_{k=0}A^k||\leq\frac{||A||^{m+1}}{1-||A||}$</p>
-<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/ef5d3dd04cd8852ac14565f401738df6-20230523003251395-41f928.png" alt="image-20230519185032341"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/c9265c6a36179fedf3b5a39dc14f3bb0-20230523003256673-b7ed1f.png" alt="image-20230519190036391"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/0a0e327cad3fbdaf7c709ef2623a3af3-20230523003302513-16181b.png" alt="image-20230519190119894"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/6e6ea47e3c07a5700e941cdfdcaefb69-20230523003307332-b06664.png" alt="image-20230519190143789"></p>
-<h4 id="矩阵级数绝对收敛相关结论"><a href="#矩阵级数绝对收敛相关结论" class="headerlink" title="矩阵级数绝对收敛相关结论"></a>矩阵级数绝对收敛相关结论</h4><p>定义：设 $\sum\limits_{k=1}^\infty A_k$ 为 $C^{m\times n}$ 中的矩阵级数，其中 $A_k=(a^{(k)}_{ij})$。如果$\sum\limits_{k=1}^\infty a_{ij}^{(k)}$ 对任意的 $1\leq i\leq m,\, 1\leq j\leq n$ 均为绝对收敛的，则称矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 绝对收敛。</p>
-<p>定理：矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 为绝对收敛的充要条件是正项级数 $\sum\limits_{k=1}^\infty ||A_k||$收敛</p>
-<p>定理：若矩阵级数 $\sum\limits_{k=1}^\infty A_k$ 是绝对收敛的，则它一定是收敛的，并且任意调换各项的顺序所得到的级数还是收敛的，且级数和不变；显然，收敛的级数不一定绝对收敛，而绝对收敛的级数一定是收敛的。</p>
-<p>定理：设 $\sum\limits_{k=1}^\infty A_k$ 为 $C^{m\times n}$ 中的绝对收敛的矩阵级数，$A=\sum\limits_{k=1}^\infty A_k$，设 $\sum\limits_{k=1}^\infty B_k$ 为 $C^{n\times l}$ 中的绝对收敛的矩阵级数，$B=\sum\limits_{k=1}^\infty B_k$，则 $\sum\limits_{k=1}^\infty A_k\cdot\sum\limits_{k=1}^\infty B_k$ 按任何方式排列得到的级数绝对收敛，且和为 AB。</p>
-<p>定理，设 $P\in C^{p\times m}$ 和 $Q\in C^{n\times q}$ 为给定矩阵，则 $\sum\limits_{k=0}^\infty A_k$ 收敛可以得到 $\sum\limits_{k=0}^\infty PA_kQ$ 收敛； $\sum\limits_{k=0}^\infty A_k$ 绝对收敛可以得到 $\sum\limits_{k=0}^\infty PA_kQ$ 绝对收敛；且有等式 $P(\sum\limits_{k=0}^\infty A_k)Q$</p>
-<h3 id="3-2-幂级数"><a href="#3-2-幂级数" class="headerlink" title="3.2 幂级数"></a>3.2 幂级数</h3><h4 id="收敛与发散"><a href="#收敛与发散" class="headerlink" title="收敛与发散"></a>收敛与发散</h4><p>矩阵幂级数的一般形式：$\sum\limits_{k=0}^\infty a_kA^k$</p>
-<p>定理：设 $\sum\limits^\infty_{k=0}a_kt^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，则</p>
-<ul>
-<li>$\rho(A)&lt;r$ 时，矩阵幂级数 $\sum\limits_{k=0}^\infty a_kA^k$ 绝对收敛</li>
-<li>$\rho(A)&gt;r$ 时，矩阵幂级数 $\sum\limits_{k=0}^\infty a_kA^k$ 发散</li>
-</ul>
-<p>定理：设 $\sum\limits_{k=0}^\infty a_k(z-z_0)^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，</p>
-<ul>
-<li>如果 A 的特征值均落在收敛圆内，即 $|\lambda-z_0|&lt;r$，其中 $\lambda$ 为任意特征值，则矩阵幂级数 $\sum\limits_{k=0}^\infty a_k(A-z_0I)^k$ 绝对收敛</li>
-<li>若有某个 $\lambda_{i_0}$ 使得 $|\lambda_{i_0}-z_0|&gt;r$，则幂级数 $\sum\limits_{k=0}^\infty a_k(A-z_0I)^k$ 发散</li>
-</ul>
-<h4 id="幂级数与解析函数的关系"><a href="#幂级数与解析函数的关系" class="headerlink" title="幂级数与解析函数的关系"></a>幂级数与解析函数的关系</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/7915d2975e7281d6ab5509fe48b8aa41-20230523003314345-d15436.png" alt="image-20230519192403417"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/cfd753b0d46a2f5efac802e62c7c062c-20230523003319231-0a9839.png" alt="image-20230519192415341"></p>
-<p>利用 Jordan 分解计算矩阵函数</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/48f0cdb7b15e9e8ee02eed8cdfdc8eb0-20230523003325394-9a3a4e.png" alt="image-20230519193102336"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/ff7f4e05b8b6f9fff9a67c97c8c76037-20230523003329840-4bbb87.png" alt="image-20230519193110897"></p>
-<p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_kz^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|\lambda|&lt;r$，则</p>
+Ax=b \Leftrightarrow x=Bx+f</script><p>其中 B 为迭代矩阵，且</p>
 <script type="math/tex; mode=display">
-f(J)=
-\begin{pmatrix}
-f(\lambda)&f'(\lambda)&\cdots&\frac{f^{(n-1)}(\lambda)}{(n-1)!}\\
-&f(\lambda)&\ddots&\vdots\\
-&&\ddots&f'(\lambda)\\
-&&&f(\lambda)
-\end{pmatrix}</script><p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|\lambda-z_0|&lt;r$，则</p>
+B\in R^{n\times n},f\in R^n,x\in R^n</script><p>迭代法：称使用</p>
 <script type="math/tex; mode=display">
-f(J)=
-\begin{pmatrix}
-f(\lambda)&f'(\lambda)&\cdots&\frac{f^{(n-1)}(\lambda)}{(n-1)!}\\
-&f(\lambda)&\ddots&\vdots\\
-&&\ddots&f'(\lambda)\\
-&&&f(\lambda)
-\end{pmatrix}</script><p>定理：设 $f(z)=\sum\limits^\infty_{k=0}a_kz^k$ 是收敛半径为 r 的幂级数，J 是特征值为 $\lambda$ 的 n 阶 Jordan 块阵，且 $|t\lambda|&lt;r$，则</p>
+x^{(k+1)}=Bx^{k}+f\;(k=0,1,2,\cdots)</script><p>求解的方法为迭代法，也称迭代过程或迭代格式.</p>
+<p>迭代法收敛、发散：如果对任意 $x^{(0)}$ ，都有 $\lim\limits_{k\to\infty}x^{(k)}=x^*$。即</p>
 <script type="math/tex; mode=display">
-f(tJ)=
-\begin{pmatrix}
-f(t\lambda)&tf'(\lambda)&\cdots&\frac{t^{(n-1)}f^{(n-1)}(t\lambda)}{(n-1)!}\\
-&f(t\lambda)&\ddots&\vdots\\
-&&\ddots&tf'(\lambda)\\
-&&&f(t\lambda)
-\end{pmatrix}</script><p>定理（利用矩阵的 Jordan 分解求矩阵函数 f(A) 的具体表达式）：设 $f(z)=\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 为收敛半径为 r 的幂级数，A 为 n 阶方阵，$A=TJT^{-1}$ 为其 Jordan 分解， $J=\mathrm{diag}(J_1,J_2,\cdots,J_s)$；当 A 的特征值均落在收敛圆内时，即 $|\lambda-z_0|&lt;r$，其中 $\lambda$ 为 A 的任意特征值，则矩阵幂级数 $\sum\limits^\infty_{k=0}a_k(z-z_0)^k$ 绝对收敛，并且和矩阵为:</p>
+\lim\limits_{k\to\infty}x_i^{(k)}=x_i^*,\;i=1,2,\cdots,n</script><p>称该迭代法收敛，否则称迭代法发散。</p>
+<h4 id="Jacobi，Gauss-seidel-迭代法等"><a href="#Jacobi，Gauss-seidel-迭代法等" class="headerlink" title="Jacobi，Gauss-seidel 迭代法等"></a>Jacobi，Gauss-seidel 迭代法等</h4><p>简单迭代法-方程组变形</p>
+<p>线性方程组：</p>
 <script type="math/tex; mode=display">
-f(A)=T\mathrm{diag}(f(J_1),f(J_2),\cdots,f(J_s))T^{-1}</script><p>其中 $f(J_i)$ 的定义如前表达式。</p>
-<p>注意，若 A 的特征值为 $\lambda_1,\lambda_2,\cdots,\lambda_n$，则 f(A) 的特征值应为 $f(\lambda_1),f(\lambda_2),\cdots,f(\lambda_n)$</p>
-<p>计算矩阵函数值的基本步骤：</p>
-<ol>
-<li>计算 Jordan 分解 $A=TJT^{-1}=T\mathrm{diag}(J_1,\cdots,J_s)T^{-1}$</li>
-<li>求 $f(A)=T\mathrm{diag}(f(J_1),\cdots,f(J_s))T^{-1}$</li>
-</ol>
-<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/3a398cdcebcb86d419ed00021c0efaf0-20230523003336967-46b4fc.png" alt="image-20230520141258088"></p>
-<p>已知 $J_i=\begin{pmatrix}-1&amp;1&amp;&amp;\ &amp;-1&amp;1\\&amp;&amp;-1&amp;1\\&amp;&amp;&amp;-1\end{pmatrix}$，求 $e^{J_i},\;e^{tJ_i}$</p>
-<p>解：</p>
-<script type="math/tex; mode=display">
-e^{J_i}=
-\begin{pmatrix}
-e^{-1}&e^{-1}&\frac{e^{-1}}{2}&\frac{e^{-1}}{6}\\
-&e^{-1}&e^{-1}&\frac{e^{-1}}{2}\\
-&&e^{-1}&e^{-1}\\
-&&&e^{-1}
-\end{pmatrix}\\
-e^{tJ_i}=
-\begin{pmatrix}
-e^{-t}&te^{-t}&\frac{t^2e^{-t}}{2}&\frac{t^3e^{-t}}{6}\\
-&e^{-t}&te^{-t}&\frac{t^2e^{-t}}{2}\\
-&&e^{-t}&te^{-t}\\
-&&&e^{-t}
-\end{pmatrix}</script><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/87d5b422d5284fee2d5a4de9b33a246d-20230523003342451-e6a2c6.png" alt="image-20230520142211513"></p>
-<p>求 sinA，sinAt，其中</p>
-<script type="math/tex; mode=display">
-A=
-\begin{pmatrix}
-1&&&\\
-&2&&\\
-&&3&\\
-&&&4\\
-\end{pmatrix},\;
-\sin A=
-\begin{pmatrix}
-\sin1&&&\\
-&\sin2&&\\
-&&\sin3&\\
-&&&\sin4\\
-\end{pmatrix},\;
-\sin At=
-\begin{pmatrix}
-\sin t&&&\\
-&\sin2t&&\\
-&&\sin3t&\\
-&&&\sin4t\\
-\end{pmatrix};\\
+\left\{
+\begin{array}{c}
 
-A=
-\begin{pmatrix}
-1&&&\\
-&1&&\\
-&&1&\\
-&&&1\\
-\end{pmatrix},\;
-\sin A=
-\begin{pmatrix}
-\sin1&&&\\
-&\sin1&&\\
-&&\sin1&\\
-&&&\sin1\\
-\end{pmatrix},\;
-\sin At=
-\begin{pmatrix}
-\sin t&&&\\
-&\sin t&&\\
-&&\sin t&\\
-&&&\sin t\\
-\end{pmatrix};\\
+a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+\vdots\\
+a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=b_n
 
+\end{array}
+\right.</script><p>等价方程组：$a_{ii}\neq0$</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+
+x_1=\frac{1}{a_{11}}(b_1-a_{12}x_2-\cdots-a_{1n}x_n)\\
+\qquad\qquad\qquad\qquad\qquad\vdots\\
+x_i=\frac{1}{a_{ii}}(b_i-a_{i1}x_1-\cdots-a_{ii-1}x_{i-1}-a_{ii+1}x_{i+1}-\cdots-a_{in}x_n)\\
+\qquad\qquad\qquad\qquad\qquad\vdots\\
+x_n=\frac{1}{a_{nn}}(b_a-a_{n1}x_1-\cdots-a_{nn-1}x_{n-1})
+\end{array}
+\right.</script><p><strong>Jacobi 迭代法</strong>：</p>
+<script type="math/tex; mode=display">
+x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k)}-\sum\limits^n_{j=i+1}a_{ij}x_j^{(k)})\;(i=1,2,\cdots,n)</script><p>在 Jacobi 迭代过程中，对已经算出来的信息未加以充分利用，比如在计算 $x^{k+1}_2$ 时 $x^{k+1}_1$ 已经算出，可是使用 Seidel 技巧加以改进，得到 Gauss-Seidel 迭代法：</p>
+<script type="math/tex; mode=display">
+x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k+1)}-\sum\limits^n_{j=i+1}a_{ij}x_j^{(k)})\;(i=1,2,\cdots,n)</script><p>矩阵分裂：可以将系数矩阵 A 分裂为 A=D-L-U 的形式，具体如下所示：</p>
+<script type="math/tex; mode=display">
+A=D-L-U\\
 A=
 \begin{pmatrix}
-1&&&\\
-&1&1&\\
-&&1&1\\
-&&&1\\
-\end{pmatrix},\;
-\sin A=
-\begin{pmatrix}
-\sin1&&&\\
-&\sin1&\cos1&-\frac{\sin1}{2}\\
-&&\sin1&\cos1\\
-&&&\sin1\\
-\end{pmatrix},\;
-\sin At=
-\begin{pmatrix}
-\sin t&&&\\
-&\sin t&t\cos t&-\frac{t^2\sin t}{2}\\
-&&\sin t&t\cos t\\
-&&&\sin t\\
-\end{pmatrix};\\</script><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/76c9ee261f79d8cf430e02ef7de12cf3-20230523003347671-298445.png" alt="image-20230520145644818"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/0128419bc54538ca604c9c1de9099df2-20230523003352161-853081.png" alt="image-20230520145653998"></p>
-<h4 id="有限待定系数法"><a href="#有限待定系数法" class="headerlink" title="有限待定系数法"></a>有限待定系数法</h4><p>问题：给定函数 f(x)，计算 f(Ax)</p>
-<p>挑战：<strong>为避免计算矩阵的 Jordan 分解</strong></p>
-<script type="math/tex; mode=display">
-f(\lambda t)=p(\lambda,t)\psi(\lambda)+q(\lambda,t)</script><p>$\psi(\lambda)$ 为特征多项式，$q(\lambda,t)$ 为次数不超过 n-1 的含参多项式</p>
-<script type="math/tex; mode=display">
-\psi(\lambda)=\det(A-\lambda I),\\
-q(\lambda,t)=b_{n-1}(t)\lambda^{n-1}+\cdots+b_1(t)\lambda+b_0(t)</script><p>有 Hamilton-Catley 定理可知 $\psi(A)=0$，从而</p>
-<script type="math/tex; mode=display">
-f(At)=q(A,t)</script><p><strong>关键：确定含参系数</strong> $b_{n-1}(t),\cdots,b_1(t),b_0(t)$</p>
-<p>显然，A 的特征多项式</p>
-<script type="math/tex; mode=display">
-\psi(\lambda)=\det(A-\lambda I)=\prod\limits^s_{i=1}(\lambda-\lambda_i)^{m_i}\Rightarrow\psi^{(j)}(\lambda_i)=0,\; j=0,\cdots,m_j-1,\; i=1,\cdots,s</script><p>故将 $f(\lambda t)=p(\lambda,t)\psi(\lambda)+q(\lambda,t)$ 两端对 $\lambda$ 求导，得到</p>
-<script type="math/tex; mode=display">
-\begin{aligned}
-f(\lambda t)&=p(\lambda,t)\psi(\lambda)+q(\lambda,t)\\
-&\Rightarrow \left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}f(\lambda t)\right|_{\lambda=\lambda_i}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}\\
-&\Rightarrow \left . t^j\frac{\mathrm{d}^j}{\mathrm{d}u^j}f(u)\right|_{u=\lambda_it}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}
-\end{aligned}</script><p>n 个方程，n 个变量的线性方程组</p>
-<p>待定系数法的步骤：</p>
-<ol>
-<li><p>计算 A 的特征多项式 $\psi(\lambda)=\det(A-\lambda I)$</p>
-</li>
-<li><p>定义 $q(\lambda,t)=b_{n-1}(t)\lambda^{n-1}+\cdots+b_1(t)\lambda+b_0(t)$</p>
-<p>  利用(可假设 t=1)</p>
-<script type="math/tex; mode=display">
-  \left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}f(\lambda t)\right|_{\lambda=\lambda_i}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}
-  \quad或\quad
-  \left . t^j\frac{\mathrm{d}^j}{\mathrm{d}u^j}f(u)\right|_{u=\lambda_it}=\left . \frac{\mathrm{d}^j}{\mathrm{d}\lambda^j}q(\lambda,t)\right|_{\lambda=\lambda_i}</script><p>  确定含参系数 $b_{n-1}(t),\cdots,b_1(t),b_0(t)$</p>
-</li>
-<li><p>计算(假设 t=1，f(A)=q(A)) $f(At)=q(A,t)$</p>
-</li>
-</ol>
-<h5 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/dcd8c4c49b9f3050f769f75046a0e4cd-20230523003406399-dcf339.png" alt="image-20230520145819049"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/10252a93bfc4a73a0c1af70533f64795-20230523003521688-aab3f7.png" alt="image-20230520145835875"></p>
-<h4 id="矩阵函数等式"><a href="#矩阵函数等式" class="headerlink" title="矩阵函数等式"></a>矩阵函数等式</h4><p>若 $\forall A \in C^{n\times n}$，总有：</p>
-<ul>
-<li>$\sin(-A)=-\sin A,\cos(-A)=\cos A$</li>
-<li>$e^{iA}=\cos A+i\sin A,\, \cos A=\frac{1}{2}(e^{iA}+e^{-iA}),\,\sin A=\frac{1}{2i}(e^{iA}-e^{-iA})$</li>
-</ul>
-<p>若 $A,B\in C^{n\times n}$，且 <strong>AB=BA</strong>，则</p>
-<ul>
-<li>$e^Ae^B=e^Be^A=e^{A+B}$</li>
-<li>$\sin(A+B)=\sin A\cos B+\cos A\sin B$</li>
-<li>$\cos(A+B)=\cos A\cos B-\sin A\sin B$</li>
-</ul>
-<p>若 A=B，则 $cos2A=\cos^2A-\sin^2A,\,\sin2A=2\sin A\cos A$</p>
-<p>对任何 n 阶方阵 A，$e^A$ 总是可逆矩阵</p>
-<script type="math/tex; mode=display">
-e^Ae^{-A}=e^{-A}e^A=e^0=I</script><p>sinA 和 cosA 不一定可逆，例如：</p>
-<script type="math/tex; mode=display">
-A=\begin{pmatrix}
-\pi&0\\0&\frac{\pi}{2}
-\end{pmatrix}
+a_{1,1}&a_{1,2}&\cdots&a_{i,j}&\cdots&a_{1,n}\\
+a_{2,1}&a_{2,2}&\cdots&\cdots&\cdots&a_{2,n}\\
+\vdots&\ddots&\ddots&\vdots&\vdots&\vdots
 \\
-\sin A=\begin{pmatrix}\sin\pi&0\\0&\sin\frac{\pi}{2}\end{pmatrix}=\begin{pmatrix}0&0\\0&1\end{pmatrix}
-\\\cos A=\begin{pmatrix}\cos\pi&0\\0&\cos\frac{\pi}{2}\end{pmatrix}=\begin{pmatrix}-1&0\\0&0\end{pmatrix}</script><p>其他若干结论：</p>
-<ul>
-<li>$f(A^T)=f(A)^T$</li>
-<li>$\det(e^A)=e^{trA}$</li>
-<li>$(e^{A})^{-1}=e^{-A}$</li>
-<li>$||e^A||\leq e^{||A||}$</li>
-<li>若 A 为 Hermite 阵，则 $e^{iA}$ 是酉阵</li>
-</ul>
-<h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/c506d467bf60cb5f0b253804b982e893-20230523003529525-f1446f.png" alt="image-20230520150027753"></p>
-<h3 id="3-3-矩阵的微积分"><a href="#3-3-矩阵的微积分" class="headerlink" title="3.3 矩阵的微积分"></a>3.3 矩阵的微积分</h3><h4 id="含参矩阵微分"><a href="#含参矩阵微分" class="headerlink" title="含参矩阵微分"></a>含参矩阵微分</h4><p>元素为函数的矩阵微分：如果矩阵 $A(t)=(a_{ij}(t))_{m\times n}$ 的每一个元素 $a_{ij}(t),i=1,2,\cdots,m;j=1,2,\cdots,n$，在[a,b] 上均为变量 t 的可微函数，则称 A(t) 可微，且导数定义为(也就是针对每个矩阵元素对 t 求导):</p>
-<script type="math/tex; mode=display">
-A'(t)=\frac{d}{dt}A(t)=(\frac{d}{dt}a_{ij}(t))_{m\times n}</script><p>求导法则：</p>
-<p>设 A(t), B(t) 是可进行运算的两个可微矩阵，则</p>
-<ul>
-<li>$(A(t)+B(t))’=A’(t)+B’(t)$</li>
-<li>$(A(t)B(t))’=A’(t)B(t)+A(t)B’(t)$</li>
-<li>$(\alpha A(t))’=\alpha\cdot A’(t)$，其中 $\alpha$ 为任意常数</li>
-<li>当 $A^{-1}(t)$  为可微矩阵时，有 $(A^{-1}(t))’=-A^{-1}(t)A’(t)A^{-1}(t)$</li>
-<li>当 $u=f(t)$ 关于 t 可微时，有  $(A(u))’=f’(t)\frac{d}{du}A(u)$</li>
-</ul>
-<p>函数矩阵的高阶导数定义为：</p>
-<script type="math/tex; mode=display">
-\frac{d^k}{dt^k}(A(t))=\frac{d}{dt}(\frac{d^{k-1}}{dt^{k-1}}(A(t)))</script><p>注：$(A^m(t))’=mA^{m-1}(t)(A(t))’$ 不一定成立, $A(t)(A(t))’\neq(A(t))’A(t)$,  事实上 $(A^2(t))’=(A(t)A(t))’=A’(t)A(t)+A(t)A’(t)\neq2A’(t)A(t)$</p>
-<p>特殊矩阵函数导数</p>
-<p>设 n 阶方阵 A 与 t 无关，则有：</p>
-<ul>
-<li>$(e^{tA})’=Ae^{tA}=e^{tA}A$</li>
-<li>$(\sin(tA))’=A\cdot\cos(tA)=\cos(tA)\cdot A$</li>
-<li>$(\cos(tA))’=-A\cdot\sin(tA)=-\sin(tA)\cdot A$</li>
-</ul>
-<h5 id="重要的例题"><a href="#重要的例题" class="headerlink" title="重要的例题"></a>重要的例题</h5><p><strong>可利用特殊点的导数值求相应矩阵</strong></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/b7237159ea6a3fe585507aeaeeb4139a-20230523003535252-dadadf.png" alt="image-20230523001050871"></p>
-<h5 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/2ac26fdaf51eb62d2f86e773ec5671f4-20230523003543198-5ff9ad.png" alt="image-20230523000932923"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/62d2c188a4d84fec5d81cb9aca6e181d-20230523003548063-b52197.png" alt="image-20230523001011524"></p>
-<h4 id="矩阵函数积分"><a href="#矩阵函数积分" class="headerlink" title="矩阵函数积分"></a>矩阵函数积分</h4><p>如果矩阵 $A(t)=(a_ij(t))_{m\times n}$ 的每一个元素 $a_ij(t)$ 都是区间 $[t_0,t_1]$ 上的可积函数，则定义 A(t) 在区间 $[t_0,t_1]$ 上的积分为（对矩阵积分也就是对矩阵中每个元素积分）：</p>
-<script type="math/tex; mode=display">
-\int^{t_1}_{t_0}A(t)dt=(\int^{t_1}_{t_0}a_{ij}(t)dt)_{m\times n}</script><p>性质（与函数的积分类似）</p>
-<ul>
-<li><p>$\int^{t_1}_{t_0}(\alpha A(t)+\beta B(t))dt=\alpha\int^{t_1}_{t_0}A(t)dt+\beta\int^{t_1}_{t_0} B(t))dt,\;\forall\alpha,\beta\in C$</p>
-</li>
-<li><p>$\int^{t_1}_{t_0}(A(t)B)dt=\int^{t_1}_{t_0}A(t)dtB$ 其中 B 为常数矩阵</p>
-<p>  $\int^{t_1}_{t_0}(AB(t))dt=A\int^{t_1}_{t_0}B(t)dt$ 其中 A 为常数矩阵</p>
-</li>
-<li><p>当 A(t) 在 [a,b] 上连续可微时，对任意 $t\in(a,b)$ ，有 $\frac{d}{dt}(\int^{t}_{a}A(\tau)d\tau)=A(t)$</p>
-</li>
-<li><p>当 A(t) 在 [a,b] 上连续可微时，对任意 $t\in(a,b)$ ，有 $\int^{b}_{a}\frac{dA(t)}{dt}dt=A(b)-A(a)$</p>
-</li>
-</ul>
-<h4 id="相对于矩阵变量的微分"><a href="#相对于矩阵变量的微分" class="headerlink" title="* 相对于矩阵变量的微分"></a>* 相对于矩阵变量的微分</h4><blockquote>
-<p>应该不会考 :)</p>
-</blockquote>
-<p>函数对矩阵求导：设 $X=(x_{ij})_{m\times n}$，函数 $f(X)=f(x_{11},x_{12},\cdots,x_{1n},x_{21},\cdots,x_{mn})$ 为 mn 元的多元函数，且 $\frac{\partial{f}}{\partial{x_{ij}}}(i=1,2,\cdots,m;j=1,2,\dots,n)$ 都存在，定义 f(X) 对矩阵 X 的导数为：</p>
-<script type="math/tex; mode=display">
-\frac{d}{dX}f(X)=(\frac{\partial{f}}{\partial{x_{ij}}})_{m\times n}=
+a_{i,1}&\cdots&a_{i,j-1}&a_{i,j}&\cdots&a_{i,n}
+\\
+\vdots&&\vdots&\ddots&\ddots&\vdots
+\\
+a_{n,1}&\cdots&a_{n,j-1}&\cdots&a_{n,n-1}&a_{n,n}
+\end{pmatrix}\\
+
+D=\mathrm{diag(a_{1,1},a_{2,2},\cdots,a_{n,n})}\\
+L=
 \begin{pmatrix}
-\frac{\partial{f}}{\partial{x_{ij}}}&\cdots&\frac{\partial{f}}{\partial{x_{ij}}}\\
-\cdots&\ddots&\cdots\\
-\frac{\partial{f}}{\partial{x_{ij}}}&\cdots&\frac{\partial{f}}{\partial{x_{ij}}}
-\end{pmatrix}</script><h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/bb27a1f58ff01b8f38ddd7c1d3222d8f-20230523003553830-97c466.png" alt="image-20230523001246960"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/e4629949b1cb51ac404c4e8117fbc817-20230523003600266-26c331.png" alt="image-20230523001308189"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/8c15e7096a9513dcee1f796e7b10f64c-20230523003604771-12f1a0.png" alt="image-20230523001322053"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/5c1a44356dd454b1e100e92b3ed806b1-20230523003613307-257dbb.png" alt="image-20230523001342322"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/2f374c6900c85a718c742068cbd10d60-20230523003619131-156f05.png" alt="image-20230523001408023"></p>
-<h4 id="微分方程组相关内容"><a href="#微分方程组相关内容" class="headerlink" title="* 微分方程组相关内容"></a>* 微分方程组相关内容</h4><blockquote>
-<p>应该不会考 :)</p>
-<p>可参考第七章的内容</p>
+0&&&&&0\\
+-a_{2,1}&0\\
+\vdots&\ddots&\ddots\\
+-a_{j,1}&\cdots&-a_{j,j-1}&0\\
+\vdots&&\vdots&\ddots&\ddots\\
+-a_{n,1}&\cdots&-a_{n,j-1}&\cdots&-a_{n,n-1}&0
+\end{pmatrix}\\
+U=
+\begin{pmatrix}
+0&-a_{1,2}&\cdots&-a_{1,j}&\cdots&-a_{1,n}\\
+&\ddots&\ddots&\vdots&&\vdots\\
+&&0&-a_{j-1,j}&\cdots&-a_{j-1,n}\\
+&&&\ddots&\ddots&\vdots\\
+&&&&0&-a_{n-1,n}\\
+0&&&&&0\\
+\end{pmatrix}\\</script><p><strong>Jacobi、Gauss-Seidel 迭代法矩阵格式</strong></p>
+<p>由 A=D-L-U，得 Dx=(L+U)x+b 从而有：</p>
+<script type="math/tex; mode=display">
+x=D^{-1}(L+U)x+D^{-1}b</script><p>则 Jacobi 迭代法可写成：</p>
+<script type="math/tex; mode=display">
+x^{(k+1)}=D^{-1}(L+U)x^{(k)}+D^{-1}b;\;k=0,1,2,\cdots</script><p>由 A=D-L-U，得 (D-L)x=Ux+b 从而</p>
+<script type="math/tex; mode=display">
+x=(D-L)^{-1}Ux+(D-L)^{-1}b</script><p>则 Gauss-Seidel 迭代法可以写成：</p>
+<script type="math/tex; mode=display">
+x^{(k+1)}=(D-L)^{-1}Ux^{(k)}+(D-L)^{-1}b;\;k=0,1,2,\cdots</script><p><strong>并不是对任何情况，G-S 迭代都比 Jacobi 迭代收敛速度快</strong></p>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/0b17e2063949a6b027c0f2f37bf0837e-20230526211420558-40fbeb.png" alt="image-20230523195032796"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/9c9fbe9bb1fff645102458067d4f8529-20230526211432765-c6cb21.png" alt="image-20230523195122845"></p>
+<h4 id="迭代改善法（应该不会考）"><a href="#迭代改善法（应该不会考）" class="headerlink" title="*迭代改善法（应该不会考）"></a>*迭代改善法（应该不会考）</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/783565c965861c271c4107ee7f96f7b1-20230526211437831-1ddd28.png" alt="image-20230523194951118"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/86eb4d1a19d9fe86213c9b8ce28973c9-20230526211444697-29c8ae.png" alt="image-20230523195004683"></p>
+<h4 id="迭代法的收敛性"><a href="#迭代法的收敛性" class="headerlink" title="迭代法的收敛性"></a>迭代法的收敛性</h4><p>迭代法收敛性定理（谱半径）：迭代法 $x^{(k+1)}=Bx^{(k)}+f$ 对任意 $x^{(0)}$ 和 $f$ 均收敛的充要条件为：</p>
+<script type="math/tex; mode=display">
+\rho(B)<1</script><p>迭代法收敛性定理（范数）：若迭代矩阵任意范数 $||B||&lt;1$，则迭代法收敛，且有</p>
+<script type="math/tex; mode=display">
+||x^{(k)}-x^*||\leq\frac{||B||^k}{1-||B||}||x^{(1)}-x^{(0)}||</script><p>定理： $\lim\limits_{k\to\infty}\epsilon^{(k)}=0$（即迭代收敛 $x_i^{(k)}\to x_i^*,i=1,2,\cdots,n$）的充分必要条件是 $\lim\limits_{k\to\infty}B^k=0_{n\times n}\Leftrightarrow \rho(B)&lt;1$</p>
+<p>迭代法收敛性-特殊线性方程组</p>
+<p>针对某些特殊方程组，从方程组本身就可以判定其收敛性，不必求迭代矩阵的特征值或范数</p>
+<ul>
+<li><p>严格（不可约）对角占优矩阵</p>
+<ul>
+<li><p>定义：如果矩阵 $A=(a_{ij})_{n\times n}$ 的元素满足不等式 $|a_{ii}|\geq\sum\limits_{j=1,j!=i}^n|a_{ij}|,\;(i=1,2,\cdots,n)$，则称 A 为对角占优阵；如果所有严格不等式（即不等式不取等号）均成立，称 A 为严格对角占优矩阵。</p>
+</li>
+<li><p>定理：严格对角占优阵 A 为非奇异矩阵，即 $\det(A)\neq0$</p>
+</li>
+<li><p>定理：若线性方程组 Ax=b 中的 A 为严格对角占优矩阵，则 Jacobi 法和 Gauss-Seidel 法均收敛。</p>
+</li>
+</ul>
+</li>
+<li><p>对称正定矩阵</p>
+<p>   若 A 为对称正定矩阵：</p>
+<ul>
+<li>若 2D-A 为正定矩阵，则 Jacobi 迭代法收敛</li>
+<li>Gauss-Seidel 迭代法收敛</li>
+</ul>
+</li>
+</ul>
+<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/eee2884d2c0b305d32d7dda53ecb49a4-20230526211452205-512a09.png" alt="image-20230523203200667"></p>
+<h3 id="4-2-非线性方程迭代解法"><a href="#4-2-非线性方程迭代解法" class="headerlink" title="4.2 非线性方程迭代解法"></a>4.2 非线性方程迭代解法</h3><h4 id="相关的概念"><a href="#相关的概念" class="headerlink" title="相关的概念"></a>相关的概念</h4><p>根、零点：对于非线性方程 f(x)=0 ，若数 a 满足 f(a)=0，则称 a 为<strong>方程</strong>的<strong>根</strong>，或称<strong>函数</strong> f(x) 的<strong>零点</strong></p>
+<p>有根区间：如果 f(x)=0 在区间 [a,b] 上仅有一个根，则称 [a,b] 为方程的单根区间；若方程在 [a,b] 上有多个根，则称 [a,b] 为方程的多根区间。方程的单根区间和多根区间统称为方程的有根区间；这里主要研究方程在单根区间上的求解方法。</p>
+<blockquote>
+<p>将方程 f(x)=0 化为一个与它同解的方程 $x=\varphi(x)$，其中 $\varphi(x)$ 为 x 的连续函数；就代入初值可以进行迭代求解</p>
 </blockquote>
-<p>一阶线性常系数齐次微分方程组</p>
-<p>问题描述</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/642d3c9b21e1cc814cf2db73d7bb979a-20230523003626882-26488f.png" alt="image-20230523001446117"></p>
-<p>解的存在性</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/a4fffb16630bc9d729270864c6f90b97-20230523003631801-276489.png" alt="image-20230523001459677"></p>
-<p>解的唯一性</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/609b6868870151d4b4ae49f1a7d4b870-20230523003641931-645d43.png" alt="image-20230523001512861"></p>
-<p>一阶线性常系数<strong>非</strong>齐次微分方程组</p>
-<p>问题描述</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/08bebf952dcec11bee9967da99ac4df9-20230523003647372-aaacf7.png" alt="image-20230523001524648"></p>
-<p>解的存在性</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/b41a242add66b04d4dced9d003dfd8be-20230523003651747-545345.png" alt="image-20230523001536719"></p>
-<h5 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/93edc4792f0f28fb1bf980e08798ec8b-20230523003656734-06ff95.png" alt="image-20230523001554662"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/1e14daedb2e1288bf07e811f81a41243-20230523003701645-0edb75.png" alt="image-20230523001625341"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/23/6a31632e0944abd1056f42580f8e393e-20230523003722924-cf790f.png" alt="image-20230523001639426"></p>
+<p>简单迭代法：称 $x_{k+1}=\varphi(x)$ 为求解非线性方程的简单迭代法，也称迭代法或迭代过程或迭代格，$\varphi(x)$ 称为迭代函数，$x_k$ 称第 k 步的迭代之或简称迭代值。</p>
+<p>迭代法收敛：如果由迭代格式缠身的数列收敛，即 $\lim\limits_{k\to\infty}x_k=a$，则称迭代法收敛，否则称迭代法发散；若迭代法收敛于 a，则有 $a=\varphi(a)\Leftrightarrow f(a)\equiv a$，则 a 就是方程的根。</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f9f73c9f60fe9111145bad476f9cc9b7-20230526211458409-595cbd.png" alt="image-20230523205628424"></p>
+<h4 id="迭代法收敛"><a href="#迭代法收敛" class="headerlink" title="迭代法收敛"></a>迭代法收敛</h4><p>几何表示</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/b697c0a4bbfe75ea1533f59593692eaa-20230526211502300-163f45.png" alt="image-20230523205709751"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/bf0132a2228bed17da822b069b29bc17-20230526211506093-a4c3c6.png" alt="image-20230523205721626"></p>
+<p><strong><em>收敛性定理</em></strong>：设迭代函数 $\varphi(x)$ 满足</p>
+<ol>
+<li>当 $x\in[a,b]$ 时，$a\leq\varphi(x)\leq b$</li>
+<li>存在正数 $0&lt;L&lt;1$，对任意 $x\in[a,b]$ 均有 $|\varphi’(x)|\leq L$（难以验证）</li>
+</ol>
+<p>则 $x=\varphi(x)$ 在 $[a,b]$ 内存在唯一根 $a$，且对任意初始值 $x_0\in[a,b]$ ，迭代法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=\varphi(x_k)\;(k=0,1,2,\cdots)</script><p>收敛于 $a$，且</p>
+<script type="math/tex; mode=display">
+|x_k-a|\leq\frac{L}{1-L}|x_k-x_{k-1}|\leq\frac{L^k}{1-L}|x_1-x_0|</script><p>L 较小，相邻两次计算值的偏差 $|x_k-x_{k-1}|\leq\delta$ （事先给定的精度），迭代过程就可以终止，$x_k$ 就可以作为 a 的近似值</p>
+<p>L 的大小可作出估计时，估计所需要的迭代次数</p>
+<script type="math/tex; mode=display">
+|x_k-a|\leq\frac{L^k}{1-L}|x_1-x_0|<\delta\rightarrow k\geq \log_L\frac{\delta(1-L)}{|x_1-x_0|}</script><p>使用迭代法时往往在根 a 的附近进行，假定 $\varphi’(x)$ 在 a 的附近连续且满足 $|\varphi’(a)|&lt;1$，则一定存在 a 的某个领域 $S:|x-a|\leq\delta$ ，$\varphi(x)$ 在 S 上满足<strong><em>收敛性定理</em></strong>中的条件，所以在 S 中任取初始值 $x_0$，迭代格式</p>
+<script type="math/tex; mode=display">
+x_k=\varphi(x_{k-1})</script><p>收敛于方程的根 a，即 $f(a)\equiv0$，称此收敛为<strong>局部收敛</strong>。</p>
+<blockquote>
+<p>误差估计式：</p>
+<script type="math/tex; mode=display">
+|x_k-a|\leq\frac{L^k}{1-L}|x_1-x_0|</script><p>中 L 或 $|\varphi’(x)|$ 在 $[a,b]$ 上的值越小，迭代的收敛速度就越快。L &lt; 1 且接近于 1 时，迭代法虽然收敛，但收敛速度很慢。</p>
+<p>为了使收敛速度有定量的判断， 特介绍收敛速度的阶的概念，作为判断迭代法收敛速度的重要标准。</p>
+</blockquote>
+<p>设迭代格式 $x_{k+1}=\varphi(x_k)$，当 $k\to\infty$ 时，$x_{k+1}\to a$ 记 $e_k=x_k-a$</p>
+<p>迭代法收敛阶：若存在实数 $p\geq1$ 和 $c&gt;1$ 满足</p>
+<script type="math/tex; mode=display">
+\lim\limits_{k\to\infty}\frac{|e_{k+1}|}{|e_k|^p}=c</script><p>则称迭代法是 p 阶收敛，当 p=1 时，称线性收敛，当 p&gt;1 时称超线性收敛，当 p=2 时称平方收敛。</p>
+<p>显然：</p>
+<ul>
+<li>收敛阶越大迭代法的收敛速度也越快</li>
+<li>收敛阶难以直接确定，课采用一些其他方法来确定收敛阶（Taylor 展开式）</li>
+</ul>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/c83800dc6baaa176de3df6a3c0204e82-20230526211512247-8ec447.png" alt="image-20230524000456344"></p>
+<p>收敛阶判定定理</p>
+<p>p 阶收敛：如果 $x=\varphi(x)$ 中的迭代函数 $\varphi(x)$ 在根 a 附近满足：</p>
+<ol>
+<li><p>$\varphi(x)$ 存在 p 阶导数且连续</p>
+</li>
+<li><script type="math/tex; mode=display">
+  \varphi'(a)=\varphi''(a)=\cdots=\varphi^{(p-1)}(a)=0,\;\varphi^{(p)}(a)\neq0</script></li>
+</ol>
+<p>则迭代法 $x_{k+1}=\varphi(x_k)$ 是 p 阶收敛的</p>
+<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f688904f829cb9871d53a3c71545d651-20230526211515025-b6b147.png" alt="image-20230523205638425"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/1f331968cc027c5891ddb112760f57ff-20230526211541428-d4c476.png" alt="image-20230523235233242"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/9adee93fd60abf5c4f956dadf02d9fb1-20230526211546268-99c1c6.png" alt="image-20230523235244027"></p>
+<p>2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/522fa3d8dba6155159972a0aaac69206-20230526211553495-884378.png" alt="image-20230524001512839"></p>
+<p>牛顿（Newton）法：</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/665db155b5a59d816fc751e7e76f279f-20230526211600705-f8c895.png" alt="image-20230524001533971"></p>
+<h4 id="Newton-迭代法"><a href="#Newton-迭代法" class="headerlink" title="Newton 迭代法"></a>Newton 迭代法</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/606824a8ba865176a3f09a0c1c83fdfb-20230526211606311-bb5d8b.png" alt="image-20230524001732112"></p>
+<p>Newton 迭代格式：设方程 $f(x)=0$ 的根为 $a$，且 $f’(a)\neq0$，则迭代法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}\;(k=0,1,2,\cdots)</script><p>至少是平方收敛，并称该迭代格式为 Newton 迭代法。</p>
+<p>类似的，可以使用导数的近似式 $f’(x)\approx\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}$ 替代 $f’(x)$，可将其代入 Newton 迭代格式，得到割线法（弦截法）。</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\frac{(x_k-x_{k-1})f(x_k)}{f(x_k)-f(x_{k-1})}</script><p>割线法是超线性收敛的（$p=\frac{1+\sqrt{5}}{2}\approx1.618$），低于 Newton 法</p>
+<p>此外，还有单步弦截法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\frac{(x_k-x_{0})f(x_k)}{f(x_k)-f(x_{0})}</script><p>平行线法</p>
+<script type="math/tex; mode=display">
+x_{k+1}=x_k-\frac{f(x_k)}{f'(x_0)}</script><h5 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/4c732e298146ea6ff6cca8ffcff4724e-20230526211611850-fd8f4e.png" alt="image-20230524232109195"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/6d537a6d7ad857c7080d34359d2721b3-20230526211618999-8132c3.png" alt="image-20230524232120869"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/fbef07a93ac3ec10bd7fad5f9388bb47-20230526211625516-2f7a62.png" alt="image-20230524232136776"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/0483d1ecfba386db345374531b09959d-20230526211631574-8e05f9.png" alt="image-20230524232155102"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/33bf35ce3b9978b5bfef49c6f9f84cea-20230526211636202-1cf749.png" alt="image-20230524232231363"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/462cf69b040cd1a66dd2b023cb27d039-20230526211640704-45a402.png" alt="image-20230524232245431"></p>
+<p>2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/aaeacc2eb90ce898acf1d0b19fecbb56-20230526211646607-61664d.png" alt="image-20230524232309063"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/ba9e2592c661b3f15673a1c9973fa639-20230526211652795-ced0ca.png" alt="image-20230524232320162"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/7d69252dc99c2c8e1a8602e74765e934-20230526211658410-6c3d20.png" alt="image-20230524232332707"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/d04989657fbade14ed866a1c05ac3fb0-20230526211706096-ac4f0c.png" alt="image-20230524232344540"></p>
+<h4 id="针对重根改进的-Newton-法："><a href="#针对重根改进的-Newton-法：" class="headerlink" title="针对重根改进的 Newton 法："></a>针对重根改进的 Newton 法：</h4><p>设 $a$ 是 $f(x)=0$ 的 $m$ 重根（满足 $f(a)=f’(a)=f’’(a)=\cdots=f^{(m-1)}(a)=0,\;f^{(m)}\neq0$ ），其中 $m\geq2$ 是整数，则有 $f(x)=(x-a)^mg(x)$，且 $g(a)\neq0$</p>
+<p>此时，直接使用 Newton 法是线性收敛而不是平方收敛的</p>
+<script type="math/tex; mode=display">
+\varphi(x)=x-\frac{f(x)}{f'(x)}=x-\frac{(x-a)^mg(x)}{m(x-a)^{(m-1)}g(x)+(x-a)^mg'(x)}
+\\
+\varphi'(x)=1-\frac{g(x)}{mg(x)+(x-a)g'(x)}-(x-a)
+[\frac{g(x)}{m\cdot g(x)+(x-a)g'(x)}]'
+\\
+\varphi'(a)=1-\frac{g(a)}{m\cdot g(a)+0}-0=1-\frac{1}{m}\neq0</script><p>为了提高收敛的阶，可取 $\varphi(x)=x-m\frac{f(x)}{f’(x)}$，从而 $\varphi(a)=1-\frac{m}{m}=0$，则新迭代法至少是平方收敛的</p>
+<h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f856a9d7c9401bbb957313d4b33caa9b-20230526211710750-27759d.png" alt="image-20230524234008473"></p>
+<h4 id="多根区间上的逐次逼近法-应该不会考"><a href="#多根区间上的逐次逼近法-应该不会考" class="headerlink" title="*多根区间上的逐次逼近法(应该不会考)"></a>*多根区间上的逐次逼近法(应该不会考)</h4><p>这里主要使用二分法</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/98e322d4accb1452a0fadf23727d5894-20230526211718334-3b2b31.png" alt="image-20230524234057056"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/02f3ae00d2e42d04289fce30a9a06a67-20230526211724558-ab488b.png" alt="image-20230524234108939"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/fbeb31460cd45b7805d091955e3af790-20230526211729159-cd23c8.png" alt="image-20230524234120250"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/dbd114feaf71b6d3c77a5a951979e29e-20230526211734289-14bd17.png" alt="image-20230524234138584"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/ef84c9e9a246eb4dbbff029b7e500645-20230526211739238-43df24.png" alt="image-20230524234158124"></p>
+<h3 id="4-3-幂法"><a href="#4-3-幂法" class="headerlink" title="4.3 幂法"></a>4.3 幂法</h3><blockquote>
+<p>参考 <a href="https://zhuanlan.zhihu.com/p/447691558" target="_blank" rel="noopener">幂法与反幂法 - 知乎 (zhihu.com)</a></p>
+</blockquote>
+<h4 id="幂法（用于求绝对值最大的特征值）"><a href="#幂法（用于求绝对值最大的特征值）" class="headerlink" title="幂法（用于求绝对值最大的特征值）"></a>幂法（用于求绝对值最大的特征值）</h4><p>幂法用于计算绝对值最大的特征值和对应的特征向量，对于单根和重根情形均有效。</p>
+<p>概念：假定 n 阶方阵 A 具有 n 个线性无关的特征向量 $x_1,x_2,\cdots,x_n$，且对应的特征值满足 $|\lambda_1|&gt;|\lambda_2|\geq\cdots\geq|\lambda_n|$，则对任一 n 维非零向量 $v_0$ 经使用迭代过程 </p>
+<script type="math/tex; mode=display">
+v_k=A^kv_0</script><p>计算可得</p>
+<script type="math/tex; mode=display">
+v_k=\alpha_1\lambda_1^kx_1,\quad \alpha_1\neq0,\quad \frac{v_k}{v_{k-1}}=\lambda_1</script><p>实际使用上，对幂法进行了改进，添加了规范化操作</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f4a09cfe1d14f086ffd3cf760c14f7fe-20230526211746917-e1e7f4.png" alt="image-20230526001148824"></p>
+<p>算法过程</p>
+<ol>
+<li>输入矩阵 $A=(a_{ij})$，初始向量 $v_0$，允许的误差 $\epsilon$，最大迭代次数 $N$</li>
+<li>置 $k=1,\quad \mu=0$</li>
+<li>求 $\max\{v_k\},\quad\max\{v_k\}\Rightarrow a$</li>
+<li>计算 $u=v/a,\quad v=Au$，置 $\max\{v_k\}=\lambda$</li>
+<li>若 $|\lambda-\mu|&lt;\epsilon$，输出 $\lambda,u$，停机，否则跳转至 6</li>
+<li>若 $k&lt;N$，置 $k+1\Rightarrow k,\lambda\Rightarrow\mu$，转到 3，否则输出失败信息，停机</li>
+</ol>
+<h5 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h5><p>利用幂法计算矩阵 A 的主（最大）特征值和相应的特征向量，其中 $A=\begin{pmatrix}2&amp;3&amp;2\\10&amp;3&amp;4\\3&amp;6&amp;1\end{pmatrix}$，取 $v_0=(0,0,1)^T$，迭代2次</p>
+<p>解：</p>
+<p>取 $u_0=v_0=(0,0,1)^T$，则 $u_1=Av_0=(2,4,1)^T$，且 $\max\{u_1\}=-4$</p>
+<p>即 $a=4$，于是 $v_1=u_1/a=(0.5,1,0.25)^T$</p>
+<p>$u_2=Av_1=(4.5,9,7.75)^T$ 且 $\max\{u_2\}=9$</p>
+<p>即 $a=9$，于是 $v_2=u_2/a\approx(0.5,1,0.8611)$，可得 $\lambda_1\approx9,x_1\approx(0.5,1.0,0.8611)^T$</p>
+<p>注：经过 8 次迭代可得 $\lambda_1=11,x_1=(0.5,1.0,0.75)^T$</p>
+<h4 id="反幂法"><a href="#反幂法" class="headerlink" title="反幂法"></a>反幂法</h4><p>反幂法用于计算矩阵 A 按模最小的特征值及对应的特征向量</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/bb62afa77fd35b6f5c76a5f9239a2a4b-20230526211752668-0dd12d.png" alt="image-20230526003011498"></p>
+<p>算法流程：</p>
+<ol>
+<li>任取初始向量 $v_0=u_0\neq0$</li>
+<li>计算 $v_k=A^{-1}u_{k-1},\;(k=1,2,\cdots)$</li>
+<li>$\max\{v_k\}\Rightarrow m_k;\quad u_k=v_k/m_k$</li>
+<li>如果 $k$ 从某时以后有 $\frac{(v_k)_j}{(v_{k-1})_j}\approx c \;\;(常数)(j=1,2,\cdots,n)$，则取 $\lambda_n\approx\frac{1}{c}$；而 $u_k$ 就是与 $\lambda_k$ 对应的特征向量</li>
+</ol>
+<h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p>用反幂法求矩阵 $A=\begin{pmatrix}3&amp;2\\4&amp;5\end{pmatrix}$ 的按模最小的特征值和特征向量，精确至 6 位小数，迭代 1 次</p>
+<p>解：</p>
+<p>取 $v_0=u_0=(1,1)^T$，由 $v_1=A^{-1}u_0$，即 $Av_1=u_0$</p>
+<p>得 $v_1=(0.428571,-0.142857)^T\\m_1=\max\{v_1\}=0.428571$</p>
+<p>归一化得 $u_1=(1.000000,-0.333333)^T$</p>
+<p>所以迭代 1 次得到的按模最小的特征值为 $1/0.428571$，对应的特征向量为 $u_1=(1.000000,-0.333333)^T$</p>
+<p>2</p>
+<p>用反幂法求矩阵 $A=\begin{pmatrix}3&amp;2\\4&amp;5\end{pmatrix}$ 的过程中，得到 $u^{(8)}=\begin{pmatrix}1.000000\-0.999999\end{pmatrix}$，则 A 的模最小的特征值的近似值为：</p>
+<p>解：</p>
+<p>由于 $c=\max(u^{(8)}=1)$，则按模最小的特征值的近似值为 $\lambda_1=\frac{1}{c}=1.000000$</p>
+<p>或者</p>
+<p>依据特征值的概念与性质，可知有 $Ax=\lambda x$，则</p>
+<script type="math/tex; mode=display">
+Au^{(8)}=\lambda_nu^{(8)}\approx
+\begin{pmatrix}
+1\\-1
+\end{pmatrix}</script><p>则，可认为按模最小的特征值的近似值为 1。</p>
+<h3 id="4-4-共轭梯度法"><a href="#4-4-共轭梯度法" class="headerlink" title="4.4 共轭梯度法"></a>4.4 共轭梯度法</h3><blockquote>
+<p>共轭梯度法是以共轭方向作为搜索方向的一类算法，最初用于求解线性方程组，后来用于求解无约束最优化问题，是一种重要的数学优化方法。</p>
+</blockquote>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/b05cf37074c08d7e111185747a2db68f-20230526211802295-e360da.png" alt="image-20230526205952013"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/807764a7c0d2509dab952c2c5d1d3ceb-20230526211808581-bd38ae.png" alt="image-20230526210003733"></p>
+<h4 id="最速下降法（应该不会考）"><a href="#最速下降法（应该不会考）" class="headerlink" title="*最速下降法（应该不会考）"></a>*最速下降法（应该不会考）</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/5650f65224409cf090915c432998568d-20230526211813085-bf2edc.png" alt="image-20230526210124918"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/08ea6b6d843c23680433e28251d59f81-20230526211819878-7e4838.png" alt="image-20230526210136201"></p>
+<h4 id="共轭梯度法"><a href="#共轭梯度法" class="headerlink" title="共轭梯度法"></a>共轭梯度法</h4><blockquote>
+<p>下降方向 p 为上步下降方向与当前残量的线性组合，与 $\beta$ 有关，步长为 $\alpha$</p>
+</blockquote>
+<p><strong>共轭梯度法最多迭代 n 步即可求得问题的精确解</strong></p>
+<p>算法的流程：</p>
+<p>对于所给的初始向量 $x_0$，$r_0=p_0=b-Ax_0$</p>
+<script type="math/tex; mode=display">
+\alpha_k=(r_k,r_k)/(Ap_k,p_k)\\
+x_{k+1}=x_k+\alpha_kp_k\\
+r_{k+1}=r_k-\alpha_kAp_k\\
+\beta_k=(r_{k+1},r_{k+1})/(r_k,r_k)\\
+p_{k+1}=r_{k+1}+\beta_kp_k\\
+(k=0,1,2,\cdots)</script><p>$(r_k,r_k)$ 表示内积运算。</p>
+<h5 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/63541c9e0ae74f4a1b22b88e9e05ad34-20230526211824555-821fcd.png" alt="image-20230526210834071"></p>
+<p>可见，迭代 2 步即可得到精确解</p>
 <h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
         </div>
         <!-- .entry-content -->
@@ -851,28 +815,11 @@ A'(t)=\frac{d}{dt}A(t)=(\frac{d}{dt}a_{ij}(t))_{m\times n}</script><p>求导法�
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2023/05/26/2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2023/05/17/2022-2023-春学期-矩阵与数值分析-C2-矩阵的变换和计算/" rel="next">
+            <a href="/2023/05/23/2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
               </div>
@@ -880,7 +827,7 @@ A'(t)=\frac{d}{dt}A(t)=(\frac{d}{dt}a_{ij}(t))_{m\times n}</script><p>求导法�
               Next Post</span>
               <div class="info">
                 <h3>
-                2022-2023 春学期 矩阵与数值分析 C2 矩阵的变换和计算</h3>
+                2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础</h3>
                 <hr>
               </div>
             </a>
