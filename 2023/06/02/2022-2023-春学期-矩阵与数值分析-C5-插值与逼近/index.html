@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法 | owuiviuwo&#39;s blog!</title>
+  <title itemprop="name">2022-2023 春学期 矩阵与数值分析 C5 插值与逼近 | owuiviuwo&#39;s blog!</title>
   
     <link rel="shortcut icon" href="/images/hamster.png">
   
@@ -383,7 +383,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法</h1>
+      2022-2023 春学期 矩阵与数值分析 C5 插值与逼近</h1>
       <p class="entry-census">
         <span>
           <a href="https://owuiviuwo.github.io/">
@@ -395,7 +395,7 @@
         </span>
         <span class="bull">
         ·</span>
-        2023-5-26<span class="bull">
+        2023-6-2<span class="bull">
         ·</span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
     </header>
@@ -474,13 +474,13 @@
 				  S = S < 10 ? '0' + S : S;
 				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
 			  }
-			  // var pdate = new Date("1685106649000");
-			  var pdate = new Date(1685106649000);
+			  // var pdate = new Date("1685672967000");
+			  var pdate = new Date(1685672967000);
 			  console.log("pdate="+pdate);
-			  console.log("1685106649000");
-			  //var update = new Date("1685110477878");
-			  var update = new Date(1685110477878);
-			  console.log("1685110477878");
+			  console.log("1685672967000");
+			  //var update = new Date("1685673732569");
+			  var update = new Date(1685673732569);
+			  console.log("1685673732569");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -502,292 +502,527 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法"><a href="#2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C4 逐次逼近法"></a>2022-2023 春学期 矩阵与数值分析 C4 逐次逼近法</h1><h2 id="C4-逐次逼近法"><a href="#C4-逐次逼近法" class="headerlink" title="C4 逐次逼近法"></a>C4 逐次逼近法</h2><h3 id="4-1-解线性方程组的迭代法"><a href="#4-1-解线性方程组的迭代法" class="headerlink" title="4.1 解线性方程组的迭代法"></a>4.1 解线性方程组的迭代法</h3><h4 id="简单迭代法迭代格式"><a href="#简单迭代法迭代格式" class="headerlink" title="简单迭代法迭代格式"></a>简单迭代法迭代格式</h4><p>可将线性方程组变形</p>
+          <h2 id="C5-插值与逼近"><a href="#C5-插值与逼近" class="headerlink" title="C5 插值与逼近"></a>C5 插值与逼近</h2><h3 id="5-1-引言"><a href="#5-1-引言" class="headerlink" title="5.1 引言"></a>5.1 引言</h3><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/28550097de777e63da3843c3e3c87d4d-20230602103243067-64de1d.png" alt="image-20230526212330802"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/e64712d8c979900f105eaf98d6c855f1-20230602103252665-2947da.png" alt="image-20230526212528699"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/b1a76053df5bc67345aafe10307f4412-20230602103255837-7d95fc.png" alt="image-20230526212350076"></p>
+<p><strong>有 n 个插值节点，就有 n 插值条件，可以构造至多 n-1 次的插值函数</strong></p>
+<p>需要考虑简单函数类的选取问题： 如代数多项式， 三角多项式，分段多项式，有理函数，样条函数等；存在唯一性问题；余项估计问题；收敛性问题等</p>
+<p>思想是：简单函数类的基底需满足条件；给出具体的基底；给出系数</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/bdbb99314abb05cb90f3454da7bb7ba3-20230602103302920-183cc8.png" alt="image-20230526212606480"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/4637b2041d516240ce6f8580a9cac9f3-20230602103307233-e0903c.png" alt="image-20230526212619016"></p>
+<p><strong>解存在条件-Harr 条件</strong>：设 $\varphi_1(x),\varphi_2(x),\cdots,\varphi_n(x)$ 是 $[a,b]$ 上的函数，且对 上的任意 n 个互异点 $x_1,x_2,\cdots,x_n$，有行列式</p>
 <script type="math/tex; mode=display">
-Ax=b \Leftrightarrow x=Bx+f</script><p>其中 B 为迭代矩阵，且</p>
+\begin{vmatrix}
+\varphi_1(x_1)&\varphi_2(x_1)&\cdots&\varphi_n(x_1)\\
+\varphi_1(x_2)&\varphi_2(x_2)&\cdots&\varphi_n(x_2)\\
+\vdots&\vdots&\ddots&\vdots\\
+\varphi_1(x_n)&\varphi_2(x_n)&\cdots&\varphi_n(x_n)\\
+\end{vmatrix}</script><p>则称 $\varphi_1(x),\varphi_2(x),\cdots,\varphi_n(x)$ 在 $[a,b]$ 上满足 Haar 条件</p>
+<p><strong>解存在唯一性定理</strong>：设已知函数 $f(x)$ 在 n 个互异点 $x_1,x_2,\cdots,x_n$ 处的函数值 $y_i=f(x_i)\quad(i=1,\cdots,n)$，简单函数类 S 的基函数 $\varphi_1(x),\varphi_2(x),\cdots,\varphi_n(x)$ 在 $[a,b]$ 上满足 Haar 条件，则存在唯一的 $p(x)=\sum\limits^n_{k=1}c_k\varphi_k(x)\in S$ 满足插值条件 $p(x_i)=y_i,\quad i=1,\cdots,n$</p>
+<p><strong>插值基函数</strong>：函数 $l_1(x),l_2(x),\cdots,l_n(x)$ 满足 </p>
 <script type="math/tex; mode=display">
-B\in R^{n\times n},f\in R^n,x\in R^n</script><p>迭代法：称使用</p>
-<script type="math/tex; mode=display">
-x^{(k+1)}=Bx^{k}+f\;(k=0,1,2,\cdots)</script><p>求解的方法为迭代法，也称迭代过程或迭代格式.</p>
-<p>迭代法收敛、发散：如果对任意 $x^{(0)}$ ，都有 $\lim\limits_{k\to\infty}x^{(k)}=x^*$。即</p>
-<script type="math/tex; mode=display">
-\lim\limits_{k\to\infty}x_i^{(k)}=x_i^*,\;i=1,2,\cdots,n</script><p>称该迭代法收敛，否则称迭代法发散。</p>
-<h4 id="Jacobi，Gauss-seidel-迭代法等"><a href="#Jacobi，Gauss-seidel-迭代法等" class="headerlink" title="Jacobi，Gauss-seidel 迭代法等"></a>Jacobi，Gauss-seidel 迭代法等</h4><p>简单迭代法-方程组变形</p>
-<p>线性方程组：</p>
-<script type="math/tex; mode=display">
+l_k(x_i)=\delta_{i,k}=
+
 \left\{
-\begin{array}{c}
-
-a_{11}x_1+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
-\vdots\\
-a_{n1}x_1+a_{n2}x_2+\cdots+a_{nn}x_n=b_n
-
+\begin{array}{l}
+1,i=k,\\0,i\neq k,
 \end{array}
-\right.</script><p>等价方程组：$a_{ii}\neq0$</p>
+\right.
+\quad
+k=1,\cdots,n;\;i=1,\cdots,n</script><p> 则 $l_k(x)(k=1,2,\cdots,n)$ 称为插值基函数</p>
+<p><strong>插值函数存在唯一性定理</strong>：在上述定理的假设下，函数 $p(x)=\sum\limits^n_{k=1}y_kl_k(x)$ 是 S 中满足插值条件 $p(x_i)=y_i,\;i=1,2,\cdots,n$ 的唯一函数。</p>
+<h3 id="5-2-多项式插值"><a href="#5-2-多项式插值" class="headerlink" title="5.2 多项式插值"></a>5.2 多项式插值</h3><p>Lagrange 插值和 Newton 插值的构造过程有区别，但最后得到的插值函数是一样的</p>
+<h4 id="Lagrange-插值"><a href="#Lagrange-插值" class="headerlink" title="Lagrange 插值"></a>Lagrange 插值</h4><blockquote>
+<p>先给系数，再确定基底</p>
+</blockquote>
+<p>系数为给定的函数值</p>
+<p>假定构造的 n 次插值多项式为：</p>
+<script type="math/tex; mode=display">
+p(x)=y_0l_0(x)+y_1l_1(x)+\cdots+y_nl_n(x)</script><p>由插值条件 $p(x_i)=f(x_i)=y_i$ 知，基函数 $l_i(x)$ 需满足</p>
+<script type="math/tex; mode=display">
+l_i(x_k)=
+
+\left\{
+\begin{array}{l}
+1,\;k=i\\
+0,\;k\neq i
+\end{array}
+\right.
+\quad i,k=0,1,\cdots,n</script><p>$l_i(x),\;(i=0,1,\cdots,n)$ 称为 n 次 Lagrange 插值基函数.</p>
+<p>Lagrange 插值基函数 为：</p>
+<script type="math/tex; mode=display">
+l_i(x)=
+\frac{(x-x_0)\cdots(x-x_{i-1})(x-x_{i+1})\cdots(x-x_n)}
+{(x_i-x_0)\cdots(x_i-x_{i-1})(x_i-x_{i+1})\cdots(x_i-x_n)}
+=
+\frac{w_{n+1}(x)}
+{(x-x_i)w'_{n+1}(x_i)}</script><p>其中</p>
+<script type="math/tex; mode=display">
+w_{n+1}(x)=(x-x_0)(x-x_1)\cdots(x-x_n)</script><p>多项式 $p_n(x)=\sum\limits^n_{i=1}y_il_i(x)$，就是多项式空间 $P_n(x)$ 中满足插值条件 $p_n(x_i)=y_i\quad (i=0,1,\cdots,n)$ 的唯一多项式，$p_n(x)$ 称为 n 次 Lagrange 插值多项式</p>
+<p>注意：</p>
+<ul>
+<li>插值基函数的个数 = 插值节点的个数</li>
+<li>插值基函数的次数 = 插值节点的个数 - 1</li>
+<li>插值基函数与插值节点的次序无关</li>
+</ul>
+<p>并且，Lagrange 插值基函数具有如下性质：</p>
+<ul>
+<li><p>设 $x_0,\cdots,x_n$ 是互异的插值节点组，$l_i(x)$ 是 Lagrange 插值基函数，则对于次数不超过 n 的多项式 $f(x)$，插值多项式 $p_n(x)=\sum\limits^n_{i=0}f(x_i)l_u(x)$ 精确成立，即 $p_n(x)=f(x)$，且 $p_n(x_0)=\sum\limits^n_{i=0}f(x_i)l_u(x_0)=f(x_0)$，特别的 ，$\sum\limits^n_{i=0}x^k_il_i(x)=x^k,\quad 0\leq k\leq n$。</p>
+</li>
+<li><p>n+1 个节点的拉格朗日插值基函数之和为 1</p>
+</li>
+<li><script type="math/tex; mode=display">
+   \sum_{i=0}^n\int_a^bl^2_i(x)dx=
+   \sum_{i=0}^n\int_a^bl_i(x)dx=
+   \int_a^b\sum_{i=0}^nl_i(x)dx=\int^b_a1dx=b-a</script></li>
+</ul>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/afa70e91b8510f946a6f938c99da8311-20230602103316270-b67953.png" alt="image-20230526230059638"></p>
+<h4 id="Newton-插值"><a href="#Newton-插值" class="headerlink" title="Newton 插值"></a>Newton 插值</h4><blockquote>
+<p>先给基底，再确定系数</p>
+<p>克服了 Lagrange 插值难以灵活增加插值节点的缺点</p>
+</blockquote>
+<p>设已知函数 $f(x)$ 在 $[a,b]$ 上的 $n+1$ 个互异插值节点 $x_0,x_1,\cdots,x_n$ 上的函数值  $f_0,f_1,\cdots,f_n$，将基函数取作：</p>
 <script type="math/tex; mode=display">
 \left\{
 \begin{array}{l}
-
-x_1=\frac{1}{a_{11}}(b_1-a_{12}x_2-\cdots-a_{1n}x_n)\\
-\qquad\qquad\qquad\qquad\qquad\vdots\\
-x_i=\frac{1}{a_{ii}}(b_i-a_{i1}x_1-\cdots-a_{ii-1}x_{i-1}-a_{ii+1}x_{i+1}-\cdots-a_{in}x_n)\\
-\qquad\qquad\qquad\qquad\qquad\vdots\\
-x_n=\frac{1}{a_{nn}}(b_a-a_{n1}x_1-\cdots-a_{nn-1}x_{n-1})
+\varphi_0(x)=1,
+\\
+\varphi_j(x)=(x-x_0)(x-x_1)\cdots(x-x_{j-1})=\prod\limits^{j-1}_{i=0}(x-x_j),\; j=1,2,\cdots,n
 \end{array}
-\right.</script><p><strong>Jacobi 迭代法</strong>：</p>
+\right.</script><p>则可将 n 次插值多项式写成如下形式</p>
 <script type="math/tex; mode=display">
-x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k)}-\sum\limits^n_{j=i+1}a_{ij}x_j^{(k)})\;(i=1,2,\cdots,n)</script><p>在 Jacobi 迭代过程中，对已经算出来的信息未加以充分利用，比如在计算 $x^{k+1}_2$ 时 $x^{k+1}_1$ 已经算出，可是使用 Seidel 技巧加以改进，得到 Gauss-Seidel 迭代法：</p>
+\begin{aligned}
+p_n(x)&=\sum\limits^n_{j=0}a_j\varphi_j(x)
+\\&=a_0+a_1(x-x_0)+\cdots+a_n(x-x_0)(x-x_1)\cdots(x-x_{n-1})
+\end{aligned}</script><p>其中待定系数 $a_0,a_1,\cdots,a_n$ 由插值条件</p>
 <script type="math/tex; mode=display">
-x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k+1)}-\sum\limits^n_{j=i+1}a_{ij}x_j^{(k)})\;(i=1,2,\cdots,n)</script><p>矩阵分裂：可以将系数矩阵 A 分裂为 A=D-L-U 的形式，具体如下所示：</p>
+p(x_i)=f_i,i=0,1,\;\dots,n</script><p>来确定；这些系数通过差商（均差）计算得到。</p>
+<p><strong>差商（均差）定义</strong>：设函数 $f(x)$ 在互异节点 $x_0,x_1,\cdots,x_n$ 上的函数值为 $f_0,f_1,\cdots,f_n$，称</p>
 <script type="math/tex; mode=display">
-A=D-L-U\\
-A=
-\begin{pmatrix}
-a_{1,1}&a_{1,2}&\cdots&a_{i,j}&\cdots&a_{1,n}\\
-a_{2,1}&a_{2,2}&\cdots&\cdots&\cdots&a_{2,n}\\
-\vdots&\ddots&\ddots&\vdots&\vdots&\vdots
-\\
-a_{i,1}&\cdots&a_{i,j-1}&a_{i,j}&\cdots&a_{i,n}
-\\
-\vdots&&\vdots&\ddots&\ddots&\vdots
-\\
-a_{n,1}&\cdots&a_{n,j-1}&\cdots&a_{n,n-1}&a_{n,n}
-\end{pmatrix}\\
+f[x_i,x_k]=\frac{f_k-f_i}{x_k-x_i}\quad k\neq i</script><p>为 $f(x)$ 关于 $x_i,x_k$ 的一阶均差（差商），称</p>
+<script type="math/tex; mode=display">
+f[x_i,x_j,x_k]=\frac{f[x_j,x_k]-f[x_i,x_j]}{x_k-x_i}\quad i\neq j\neq k</script><p>为 $f(x)$ 关于 $x_i,x_j,x_k$ 的二阶均差（差商），称</p>
+<script type="math/tex; mode=display">
+f[x_0,x_1,\cdots,x_k]=\frac{f[x_1,\cdots,x_{k-1},x_k]-f[x_0,x_1,\cdots,x_{k-1}]}{x_k-x_0}</script><p>为 $f(x)$ 关于 $x_0,x_1,\cdots,x_k$ 的 k 阶均差（差商）.</p>
+<p><strong>运用均差表计算均差</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>f(x)</th>
+<th>一阶均差（1）</th>
+<th>二阶均差（2）</th>
+<th>三阶均差（3）$\cdots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_0$</td>
+<td>$f(x_0)$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>$f(x_1)$</td>
+<td>$f[x_0,x_1]$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$x_2$</td>
+<td>$f(x_2)$</td>
+<td>$f[x_1,x_2]$</td>
+<td>$f[x_0,x_1,x_2]$</td>
+<td></td>
+</tr>
+<tr>
+<td>$x_3$</td>
+<td>$f(x_3)$</td>
+<td>$f[x_2,x_3]$</td>
+<td>$f[x_1,x_2,x_3]$</td>
+<td>$f[x_0,x_1,x_2,x_3]$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>例如，当 $f(0)=2,f(1)=-3,f(2)=-6,f(3)=11$ 时</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>f(x)</th>
+<th>一阶均差（1）</th>
+<th>二阶均差（2）</th>
+<th>三阶均差（3）$\cdots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$0$</td>
+<td>$2$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$1$</td>
+<td>$-3$</td>
+<td>$\frac{-3-2}{1-0}=-5$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$2$</td>
+<td>$-6$</td>
+<td>$\frac{-6+3}{2-1}=-3$</td>
+<td>$\frac{-3+5}{2-0}=1$</td>
+<td></td>
+</tr>
+<tr>
+<td>$3$</td>
+<td>$11$</td>
+<td>$\frac{11+6}{3-2}=17$</td>
+<td>$\frac{17+3}{3-1}=10$</td>
+<td>$\frac{10-1}{3-0}=3$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>则有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p_n(x)&=f(x_0)+f[x_0,x_1](x-x_0)+f[x_0,x_1,x_2](x-x_0)(x-x_1)\\
+&\;\;\;\;\;+\cdots+f[x_0,x_1,\cdots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})\\
+\end{aligned}</script><p>若 </p>
+<script type="math/tex; mode=display">
+\lim_\limits{x_0=x_1=\cdots=x_k}f[x_0,x_1,\cdots,x_k]=\lim\limits_{\xi\to x_0}\frac{f^{(k)}(\xi)}{k!}=\frac{f^{(k)}(x_0)}{k!}</script><p>均差可以表示为 Taylor 多项式</p>
+<p><strong>均差的性质</strong>：</p>
+<ul>
+<li><p>k 阶均差计算公式：</p>
+<script type="math/tex; mode=display">
+   f[x_0,x_1,\cdots,x_k]=\sum\limits_{j=0}^k\frac{f(x_j)}{w'_{k+1}(x_j)}</script><p>   其中 $w_{k+1}(x)=(x-x_0)(x-x_1)\cdots(x-x_k)$</p>
+</li>
+<li><p>对称性，即在 $f[x_0,x_1,\cdots,x_k]$ 中任意调换 $x_0,x_1,\cdots,x_k$ 的位置时，均差的值不变</p>
+<script type="math/tex; mode=display">
+   f[x_0,x_1,\cdots,x_k]=f[x_1,x_0,\cdots,x_k]=\cdots=f[x_k,x_0,x_1,\cdots,x_{k-1}]</script></li>
+<li><p>若 $f(x)=x^m$，m为自然数，则</p>
+<script type="math/tex; mode=display">
+   f[x_0,x_1,\cdots,x_k]=
+   \left\{
+   \begin{array}{l}
+   0,\;k>m\\
+   1,\;k=m\\
+   诸 x_i 的 m-k 次齐次函数 ,k<m
+   \end{array}
+   \right.</script></li>
+<li><p>设 $f(x)$ 在包含 $x_0,x_1,\cdots,x_k$ 的区间 $(a,b)$ 内 k 次可微，则 </p>
+<script type="math/tex; mode=display">
+   f[x_0,x_1,\cdots,x_k]=\frac{f^{(k)}(\xi)}{k!}</script><p>   ，此处 $\min(x_0,x_1,\cdots,x_k)&lt;\xi&lt;\max(x_0,x_1,\cdots,x_k)$</p>
+</li>
+</ul>
+<p><strong>Newton 插值多项式：</strong>n 次 Newton 插值多项式公式可以表示为：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+p_n(x)&=f(x_0)+f[x_0,x_1](x-x_0)+f[x_0,x_1,x_2](x-x_0)(x-x_1)\\
+&\;\;\;\;\;+\cdots+f[x_0,x_1,\cdots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})\\
+&=p_{n-1}(x)+f[x_0,x_1,\cdots,x_n](x-x_0)(x-x_1)\cdots(x-x_{n-1})
 
-D=\mathrm{diag(a_{1,1},a_{2,2},\cdots,a_{n,n})}\\
-L=
-\begin{pmatrix}
-0&&&&&0\\
--a_{2,1}&0\\
-\vdots&\ddots&\ddots\\
--a_{j,1}&\cdots&-a_{j,j-1}&0\\
-\vdots&&\vdots&\ddots&\ddots\\
--a_{n,1}&\cdots&-a_{n,j-1}&\cdots&-a_{n,n-1}&0
-\end{pmatrix}\\
-U=
-\begin{pmatrix}
-0&-a_{1,2}&\cdots&-a_{1,j}&\cdots&-a_{1,n}\\
-&\ddots&\ddots&\vdots&&\vdots\\
-&&0&-a_{j-1,j}&\cdots&-a_{j-1,n}\\
-&&&\ddots&\ddots&\vdots\\
-&&&&0&-a_{n-1,n}\\
-0&&&&&0\\
-\end{pmatrix}\\</script><p><strong>Jacobi、Gauss-Seidel 迭代法矩阵格式</strong></p>
-<p>由 A=D-L-U，得 Dx=(L+U)x+b 从而有：</p>
+\end{aligned}</script><p>插值多项式具有唯一性，Newton 插值多项式和 Lagrange 插值多项式的表现形式不同，最后可以化为相同的表达式</p>
+<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/8360ae6744b668de899b56d62fb1281d-20230602103327895-ebe083.png" alt="image-20230527234631084"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/b3a869abc0225c3c45f329e8334b2ac3-20230602103339756-d581b5.png" alt="image-20230527234722945"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/44673766510b7185ee780474573ece7c-20230602103331567-08655e.png" alt="image-20230527234735628"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/d3788b444a3c284ff1d91506e04260ec-20230602103344421-e344a6.png" alt="image-20230527234814801"></p>
+<h4 id="插值余项"><a href="#插值余项" class="headerlink" title="插值余项"></a>插值余项</h4><p>定义：若 $f(x)$ 在包含着插值节点 $x_0,x_1,\cdots,x_n$ 的区间 $[a,b]$ 上 n+1 次可微，则对任意 $x\in[a,b]$，存在与 x 有关的 $\xi\;(a&lt;\xi&lt;b)$，使得</p>
 <script type="math/tex; mode=display">
-x=D^{-1}(L+U)x+D^{-1}b</script><p>则 Jacobi 迭代法可写成：</p>
-<script type="math/tex; mode=display">
-x^{(k+1)}=D^{-1}(L+U)x^{(k)}+D^{-1}b;\;k=0,1,2,\cdots</script><p>由 A=D-L-U，得 (D-L)x=Ux+b 从而</p>
-<script type="math/tex; mode=display">
-x=(D-L)^{-1}Ux+(D-L)^{-1}b</script><p>则 Gauss-Seidel 迭代法可以写成：</p>
-<script type="math/tex; mode=display">
-x^{(k+1)}=(D-L)^{-1}Ux^{(k)}+(D-L)^{-1}b;\;k=0,1,2,\cdots</script><p><strong>并不是对任何情况，G-S 迭代都比 Jacobi 迭代收敛速度快</strong></p>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/0b17e2063949a6b027c0f2f37bf0837e-20230526211420558-40fbeb.png" alt="image-20230523195032796"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/9c9fbe9bb1fff645102458067d4f8529-20230526211432765-c6cb21.png" alt="image-20230523195122845"></p>
-<h4 id="迭代改善法（应该不会考）"><a href="#迭代改善法（应该不会考）" class="headerlink" title="*迭代改善法（应该不会考）"></a>*迭代改善法（应该不会考）</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/783565c965861c271c4107ee7f96f7b1-20230526211437831-1ddd28.png" alt="image-20230523194951118"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/86eb4d1a19d9fe86213c9b8ce28973c9-20230526211444697-29c8ae.png" alt="image-20230523195004683"></p>
-<h4 id="迭代法的收敛性"><a href="#迭代法的收敛性" class="headerlink" title="迭代法的收敛性"></a>迭代法的收敛性</h4><p>迭代法收敛性定理（谱半径）：迭代法 $x^{(k+1)}=Bx^{(k)}+f$ 对任意 $x^{(0)}$ 和 $f$ 均收敛的充要条件为：</p>
-<script type="math/tex; mode=display">
-\rho(B)<1</script><p>迭代法收敛性定理（范数）：若迭代矩阵任意范数 $||B||&lt;1$，则迭代法收敛，且有</p>
-<script type="math/tex; mode=display">
-||x^{(k)}-x^*||\leq\frac{||B||^k}{1-||B||}||x^{(1)}-x^{(0)}||</script><p>定理： $\lim\limits_{k\to\infty}\epsilon^{(k)}=0$（即迭代收敛 $x_i^{(k)}\to x_i^*,i=1,2,\cdots,n$）的充分必要条件是 $\lim\limits_{k\to\infty}B^k=0_{n\times n}\Leftrightarrow \rho(B)&lt;1$</p>
-<p>迭代法收敛性-特殊线性方程组</p>
-<p>针对某些特殊方程组，从方程组本身就可以判定其收敛性，不必求迭代矩阵的特征值或范数</p>
-<ul>
-<li><p>严格（不可约）对角占优矩阵</p>
-<ul>
-<li><p>定义：如果矩阵 $A=(a_{ij})_{n\times n}$ 的元素满足不等式 $|a_{ii}|\geq\sum\limits_{j=1,j!=i}^n|a_{ij}|,\;(i=1,2,\cdots,n)$，则称 A 为对角占优阵；如果所有严格不等式（即不等式不取等号）均成立，称 A 为严格对角占优矩阵。</p>
-</li>
-<li><p>定理：严格对角占优阵 A 为非奇异矩阵，即 $\det(A)\neq0$</p>
-</li>
-<li><p>定理：若线性方程组 Ax=b 中的 A 为严格对角占优矩阵，则 Jacobi 法和 Gauss-Seidel 法均收敛。</p>
-</li>
-</ul>
-</li>
-<li><p>对称正定矩阵</p>
-<p>   若 A 为对称正定矩阵：</p>
-<ul>
-<li>若 2D-A 为正定矩阵，则 Jacobi 迭代法收敛</li>
-<li>Gauss-Seidel 迭代法收敛</li>
-</ul>
-</li>
-</ul>
-<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/eee2884d2c0b305d32d7dda53ecb49a4-20230526211452205-512a09.png" alt="image-20230523203200667"></p>
-<h3 id="4-2-非线性方程迭代解法"><a href="#4-2-非线性方程迭代解法" class="headerlink" title="4.2 非线性方程迭代解法"></a>4.2 非线性方程迭代解法</h3><h4 id="相关的概念"><a href="#相关的概念" class="headerlink" title="相关的概念"></a>相关的概念</h4><p>根、零点：对于非线性方程 f(x)=0 ，若数 a 满足 f(a)=0，则称 a 为<strong>方程</strong>的<strong>根</strong>，或称<strong>函数</strong> f(x) 的<strong>零点</strong></p>
-<p>有根区间：如果 f(x)=0 在区间 [a,b] 上仅有一个根，则称 [a,b] 为方程的单根区间；若方程在 [a,b] 上有多个根，则称 [a,b] 为方程的多根区间。方程的单根区间和多根区间统称为方程的有根区间；这里主要研究方程在单根区间上的求解方法。</p>
-<blockquote>
-<p>将方程 f(x)=0 化为一个与它同解的方程 $x=\varphi(x)$，其中 $\varphi(x)$ 为 x 的连续函数；就代入初值可以进行迭代求解</p>
+r_n(x)=f(x)-p_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}w_{n+1}(x)</script><p>其中 $w_{k+1}(x)=(x-x_0)(x-x_1)\cdots(x-x_k)$</p>
+<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/52e1eca4a9b0fdc43be849fbe8f3ccf3-20230602103348044-23cce4.png" alt="image-20230528000305948"></p>
+<h4 id="Hermite-插值"><a href="#Hermite-插值" class="headerlink" title="Hermite 插值"></a>Hermite 插值</h4><blockquote>
+<p>要求插值函数具有一定的光滑度，在插值节点处满足一定的导数条件，这类插值问题称为 Hermite 问题</p>
+<p>考试时，可通过待定系数法或均差表构造</p>
 </blockquote>
-<p>简单迭代法：称 $x_{k+1}=\varphi(x)$ 为求解非线性方程的简单迭代法，也称迭代法或迭代过程或迭代格，$\varphi(x)$ 称为迭代函数，$x_k$ 称第 k 步的迭代之或简称迭代值。</p>
-<p>迭代法收敛：如果由迭代格式缠身的数列收敛，即 $\lim\limits_{k\to\infty}x_k=a$，则称迭代法收敛，否则称迭代法发散；若迭代法收敛于 a，则有 $a=\varphi(a)\Leftrightarrow f(a)\equiv a$，则 a 就是方程的根。</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f9f73c9f60fe9111145bad476f9cc9b7-20230526211458409-595cbd.png" alt="image-20230523205628424"></p>
-<h4 id="迭代法收敛"><a href="#迭代法收敛" class="headerlink" title="迭代法收敛"></a>迭代法收敛</h4><p>几何表示</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/b697c0a4bbfe75ea1533f59593692eaa-20230526211502300-163f45.png" alt="image-20230523205709751"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/bf0132a2228bed17da822b069b29bc17-20230526211506093-a4c3c6.png" alt="image-20230523205721626"></p>
-<p><strong><em>收敛性定理</em></strong>：设迭代函数 $\varphi(x)$ 满足</p>
-<ol>
-<li>当 $x\in[a,b]$ 时，$a\leq\varphi(x)\leq b$</li>
-<li>存在正数 $0&lt;L&lt;1$，对任意 $x\in[a,b]$ 均有 $|\varphi’(x)|\leq L$（难以验证）</li>
+<p>设已知函数 f(x) 在 s 个互异点 $x_1,\cdots,x_s$ 处的函数值和导数值:</p>
+<script type="math/tex; mode=display">
+f(x_1),f'(x_1),\cdots,f^{(a_1-1)}(x_1);\\
+f(x_2),f'(x_2),\cdots,f^{(a_2-1)}(x_2);\\
+\cdots\cdots\\
+f(x_s),f'(x_s),\cdots,f^{(a_s-1)}(x_s);\\</script><p>其中 $a_1,a_2,\cdots,a_s$ 为正整数，有 $a_1+a_2+\cdots+a_s=n+1$，构造一个 n 次多项式 $p_n(x)$，使其满足插值条件:</p>
+<script type="math/tex; mode=display">
+p_n^{(\mu_i)}(x_i)=f^{(\mu_i)}(x_i)=y_i^{(\mu_i)},\;i=1,2,\cdots,s;\;\mu_i=0,1,\cdots,a_i-1</script><p>可采用类似于构造 Largrange 插值基函数的方法解决 Hermite 插值问题，构造一批 n 次多项式 $L_{i,k}(x),i=1,2,\cdots,s;k=0,1,\cdots,a_i-1$，使这些多项式满足条件:</p>
+<script type="math/tex; mode=display">
+L_{i,k}^{(h)}(x_m)=0,m\neq i,h=0,1,\cdots,a_m-1;\\
+L^{(h)}_{i,k}(x_i)=
+\left\{
+\begin{array}{l}
+0,h\neq k\\
+1,h=k
+\end{array}
+\right.</script><p>只要解决上述问题，则 n 次多项式</p>
+<script type="math/tex; mode=display">
+p_n(x)=
+\sum\limits^s_{i=1}\sum\limits^{a_i-1}_{k=0}y_i^{(k)}L_{i,k}(x)=\sum\limits^s_{i=1}[y_iL_{i,0}(x)+y_i^{(1)}L_{i,1}(x)+\cdots+y_i^{(a_i-1)}L_{i,a_i-1}(x)]</script><p>必满足插值条件</p>
+<p><strong>运用均差计算三次 Hermite 插值</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>x</th>
+<th>f(x)</th>
+<th>一阶均差（1）</th>
+<th>二阶均差（2）</th>
+<th>三阶均差（3）$\cdots$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$x_0$</td>
+<td>$f(x_0)$</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$x_0$</td>
+<td>$f(x_0)$</td>
+<td>$f[x_0,x_0]=f’(x_0)$</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>$f(x_1)$</td>
+<td>$f[x_0,x_1]$</td>
+<td>$f[x_0,x_0,x_1]$</td>
+<td></td>
+</tr>
+<tr>
+<td>$x_1$</td>
+<td>$f(x_1)$</td>
+<td>$f[x_1,x_1]=f’(x_1)$</td>
+<td>$f[x_0,x_1,x_1]$</td>
+<td>$f[x_0,x_0,x_1,x_1]$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>则所求的三次插值多项式为：</p>
+<script type="math/tex; mode=display">
+H_3(x)=f(x_0)+f'(x_0)(x-x_0)+f[x_0,x_1,x_1](x-x_0)^2+f[x_0,x_0,x_1,x_1](x-x_0)^2(x-x_1)</script><h5 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h5><p>已知 $f(x)=a_0+a_1x+a_2x^2+a_3x^3$ 满足插值条件 $f(0)=1,f’(0)=2,f(1)=10,f’(1)=20$，求 $a_0,a_1,a_2,a_3$</p>
+<p>解：这里可以通过两点三次的 Hermite 插值公式求得（此处例 3），也可以完全不需要利用公式，可以使用待定系数法求解如下方程，得到所需答案</p>
+<script type="math/tex; mode=display">
+f(x)=a_0+a_1x+a_2x^2+a_3x^3\\
+f'(x)=a_1+2a_2x+3a_3x^2\\
+f(0)=a_0=1\\
+f(1)=a_0+a_1+a_2+a_3=10\\
+f'(0)=a_1=2\\
+f'(1)=a_1+2a_2+3a_3=20</script><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/1a7ede55473743136d7b5515487c1eca-20230602104047618-8aacc7.png" alt="image-20230529235022919"></p>
+<p>2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/370bf46a401a7a5728bac39dba38536d-20230602103353017-b8f6aa.png" alt="image-20230529235033864"></p>
+<p>3 两点三次的 Hermite 插值公式以及余项和误差估计</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/5c11c4d45f1a59ced6d2b4fdefae5ff1-20230602103355767-66b23c.png" alt="image-20230529235048338"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/5134331e80d0c529dd470042adb525e5-20230602103400594-53bbb3.png" alt="image-20230529235109573"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/77aa9ce30953c6e6d337d01e994e3297-20230602103404993-243ebf.png" alt="image-20230529235117832"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/ad0563e8c34e5b7d16b0aa593b270c4b-20230602103409082-3b231f.png" alt="image-20230529235937847"></p>
+<h4 id="分段低次插值（应该不会考"><a href="#分段低次插值（应该不会考" class="headerlink" title="分段低次插值（应该不会考"></a>分段低次插值（应该不会考</h4><p>插值节点越密集，插值函数的误差不一定越小，可能出现大幅的震荡。分段低次插值可避免高次插值可能出现的 Runge 现象</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/03fd9ff867a9fc5b0e874d0962064649-20230602103415621-628a0d.png" alt="image-20230530000158678"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/f1974f37fc696f2dbc9d749ad305577e-20230602103423630-15bbe8.png" alt="image-20230530000210456"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/aa6eb40d897a25ff698b2bda0a3d3538-20230602103430068-c0a7e7.png" alt="image-20230530000222768"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/f4b2d948ae0981e1491b40af579888f0-20230602103437582-1833bf.png" alt="image-20230530000233581"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/003317602a913a93ae8d4b92776cf550-20230602103442031-714cda.png" alt="image-20230530000244236"></p>
+<h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/caaec7f6c55de68de1efcc89a8ab086f-20230602103447056-1a0c93.png" alt="image-20230530000035345"></p>
+<h3 id="5-3-三次样条插值（只考是样条函数的判定）"><a href="#5-3-三次样条插值（只考是样条函数的判定）" class="headerlink" title="5.3 三次样条插值（只考是样条函数的判定）"></a>5.3 三次样条插值（只考是样条函数的判定）</h3><p>样条函数是满足一定光滑性的分段多项式，局部性好，满足一定光滑性，收敛性保证，只需函数值信息。</p>
+<p>概念：对区间 $(-\infty,+\infty)$ 的一个分割：</p>
+<script type="math/tex; mode=display">
+\Delta:-\infty<x_1<x_2<\cdots<x_n<+\infty</script><p> 若分段函数 $s(x)$ 满足条件 </p>
+<ul>
+<li>在每个区间 $(-\infty,x_1],<a href="j+1,\cdots,n-1">x_j,x_j+1</a>$ 和 $[x_n,+\infty)$ 上，$s(x)$ 是一个次数不超过 m 的实系数代数多项式</li>
+<li>$s(x)$ 在区间 $(-\infty,+\infty)$ 上具有直至 m-1 阶的连续微商，则称 y=s(x) 为对应于分割 $\Delta$ 的 m 次样条函数，$x_1,x_2,\cdots,x_n$ 为样条节点；以 为节点的 m 次样条函数的全体记为：$s_m(x_1,x_2,\cdots,x_n)$</li>
+</ul>
+<h4 id="样条函数判定定理"><a href="#样条函数判定定理" class="headerlink" title="样条函数判定定理"></a>样条函数判定定理</h4><script type="math/tex; mode=display">
+s(x)=\left\{
+\begin{array}{l}
+p_0(x),\;x\leq x_1\\
+p_1(x),x_1\leq x\leq x_2\\
+\qquad\qquad\vdots\\
+p_j(x),\;x_j\leq x\leq x_j+1\quad p_j(x)\in P_m(j)(j=0,1,\cdots,n)\\
+\qquad\qquad\vdots\\
+p_n(x),\; x_n\leq x
+\end{array}
+\right.</script><p>于是 s(x) 是 m 次样条的充要条件为：</p>
+<script type="math/tex; mode=display">
+p_0(x)=a_0+a_1x+\cdots+a_mx^m,\\
+p_1(x)=p_0+c_1(x-x_1)^m,\\
+p_2(x)=p_1(x)+c_2(x-x_2)^m=p_0+c_1(x-x_1)^m+c_2(x-x_2)^m\\
+\cdots\\
+p_n(x)=p_{n-1}+c_n(x-x_n)^m=p_0(x)+\sum\limits^n_{j=1}c_j(x-x_j)^m</script><p>其中，$c_i,\;i=1,\cdots,n$ 表示光滑因子，为常数</p>
+<p>显然，针对三次样条函数的判定，m = 3</p>
+<h5 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/4e77cc32446e1c3a89b8880e734253b4-20230602103456870-a0c88c.png" alt="image-20230530214025677"></p>
+<h4 id="截断多项式"><a href="#截断多项式" class="headerlink" title="*截断多项式"></a>*截断多项式</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/c2eb90d49aef60663fd561a043c63b93-20230602103502842-12d096.png" alt="image-20230530213945625"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/01766f89cf19058d016b4756969c74b7-20230602103508652-a6a3a9.png" alt="image-20230530214006739"></p>
+<h4 id="三次样条插值构造及其收敛性"><a href="#三次样条插值构造及其收敛性" class="headerlink" title="*三次样条插值构造及其收敛性"></a>*三次样条插值构造及其收敛性</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/d91ccc1dd7fad6feecf26cb11b4aa52a-20230602103513964-18f268.png" alt="image-20230530214227524"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/29bcba4aaa9abd1d02aee5bdf0fb964d-20230602103519194-76d52a.png" alt="image-20230530214247798"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/0ebd9c1daa534abcba3bca06e5aae1cb-20230602103525419-589972.png" alt="image-20230530214318038"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/cf24a052d1543c0ea9de92e6a4994fb2-20230602103531690-e3e3b3.png" alt="image-20230530214326874"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/6e148541169c4d31a5ebe469eddbab9b-20230602103538475-9f27bf.png" alt="image-20230530214341683"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/cefc8e049582f7bd1346d6693cc6e89d-20230602103542771-55e2dc.png" alt="image-20230530214353517"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/02d3ade57f30fa8ded8254923f99880f-20230602103547502-15a141.png" alt="image-20230530214406207"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/009897acf2bf6c59c954329611437d13-20230602103551776-1d0ff6.png" alt="image-20230530214426085"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/4abc5f1d0191a2818ed1163e8bd13fc7-20230602103556267-143490.png" alt="image-20230530214437486"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/a800ae80bb992c84197b585194e43edd-20230602103600596-60c54c.png" alt="image-20230530214457359"></p>
+<h4 id="三次样条函数的三种构造算法"><a href="#三次样条函数的三种构造算法" class="headerlink" title="*三次样条函数的三种构造算法"></a>*三次样条函数的三种构造算法</h4><ol>
+<li><p>满足第一类边界条件（固定边界，Clamped Cubic Spline）</p>
+<blockquote>
+<p>p155-p156; algorithm 3.5; Numerical Analysis 9th Autor: Richard L.Burden and J.Douglas Faires</p>
+</blockquote>
+<p>  <img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/9be162dccf37057dc76a8a3cbc235673-20230602103730222-4bc035.png" alt="image-20230530215321316"></p>
+<p>  <img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/888b2497c80083a713fd52240660418f-20230602103735904-5bcc62.png" alt="image-20230530215334371"></p>
+</li>
+<li><p>满足第二类边界条件 （自然边界，Natural Cubic Spline）</p>
+<blockquote>
+<p>p149-p150; algorithm 3.4; Numerical Analysis 9th Autor: Richard L.Burden and J.Douglas Faires</p>
+</blockquote>
+<p>  给出首尾两点的二阶导数值为 0，即 $S’’(x_0)=S’’(x_n)=0$</p>
+<p>  <img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/69bb087de742b91593e2dbe89a5b95c1-20230602103743050-d0be56.png" alt="image-20230530214943837"></p>
+<p>  <img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/71292fa7720acea0fd0148d4919704c8-20230602103748121-f9aa14.png" alt="image-20230530214957328"></p>
+</li>
+<li><p>满足第三类边界条件</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/BJMzheng/article/details/117017335" target="_blank" rel="noopener">https://blog.csdn.net/BJMzheng/article/details/117017335</a></p>
+</blockquote>
+</li>
 </ol>
-<p>则 $x=\varphi(x)$ 在 $[a,b]$ 内存在唯一根 $a$，且对任意初始值 $x_0\in[a,b]$ ，迭代法</p>
+<h3 id="5-4-正交函数族应用"><a href="#5-4-正交函数族应用" class="headerlink" title="5.4 正交函数族应用"></a>5.4 正交函数族应用</h3><h4 id="连续型函数内积"><a href="#连续型函数内积" class="headerlink" title="连续型函数内积"></a>连续型函数内积</h4><p>连续型内积：对于 $[a,b]$ 上的连续函数 $f(x),g(x)$，定义连续型内积：</p>
 <script type="math/tex; mode=display">
-x_{k+1}=\varphi(x_k)\;(k=0,1,2,\cdots)</script><p>收敛于 $a$，且</p>
-<script type="math/tex; mode=display">
-|x_k-a|\leq\frac{L}{1-L}|x_k-x_{k-1}|\leq\frac{L^k}{1-L}|x_1-x_0|</script><p>L 较小，相邻两次计算值的偏差 $|x_k-x_{k-1}|\leq\delta$ （事先给定的精度），迭代过程就可以终止，$x_k$ 就可以作为 a 的近似值</p>
-<p>L 的大小可作出估计时，估计所需要的迭代次数</p>
-<script type="math/tex; mode=display">
-|x_k-a|\leq\frac{L^k}{1-L}|x_1-x_0|<\delta\rightarrow k\geq \log_L\frac{\delta(1-L)}{|x_1-x_0|}</script><p>使用迭代法时往往在根 a 的附近进行，假定 $\varphi’(x)$ 在 a 的附近连续且满足 $|\varphi’(a)|&lt;1$，则一定存在 a 的某个领域 $S:|x-a|\leq\delta$ ，$\varphi(x)$ 在 S 上满足<strong><em>收敛性定理</em></strong>中的条件，所以在 S 中任取初始值 $x_0$，迭代格式</p>
-<script type="math/tex; mode=display">
-x_k=\varphi(x_{k-1})</script><p>收敛于方程的根 a，即 $f(a)\equiv0$，称此收敛为<strong>局部收敛</strong>。</p>
-<blockquote>
-<p>误差估计式：</p>
-<script type="math/tex; mode=display">
-|x_k-a|\leq\frac{L^k}{1-L}|x_1-x_0|</script><p>中 L 或 $|\varphi’(x)|$ 在 $[a,b]$ 上的值越小，迭代的收敛速度就越快。L &lt; 1 且接近于 1 时，迭代法虽然收敛，但收敛速度很慢。</p>
-<p>为了使收敛速度有定量的判断， 特介绍收敛速度的阶的概念，作为判断迭代法收敛速度的重要标准。</p>
-</blockquote>
-<p>设迭代格式 $x_{k+1}=\varphi(x_k)$，当 $k\to\infty$ 时，$x_{k+1}\to a$ 记 $e_k=x_k-a$</p>
-<p>迭代法收敛阶：若存在实数 $p\geq1$ 和 $c&gt;1$ 满足</p>
-<script type="math/tex; mode=display">
-\lim\limits_{k\to\infty}\frac{|e_{k+1}|}{|e_k|^p}=c</script><p>则称迭代法是 p 阶收敛，当 p=1 时，称线性收敛，当 p&gt;1 时称超线性收敛，当 p=2 时称平方收敛。</p>
-<p>显然：</p>
+(f,g)=\int_a^b\rho(x)f(x)g(x)dx</script><p> 其中可积函数 $\rho(x)\geq0\;\;(x\in[a,b])$ 是权函数.</p>
+<p>类似于向量内积，连续型函数内积具有如下性质：</p>
 <ul>
-<li>收敛阶越大迭代法的收敛速度也越快</li>
-<li>收敛阶难以直接确定，课采用一些其他方法来确定收敛阶（Taylor 展开式）</li>
-</ul>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/c83800dc6baaa176de3df6a3c0204e82-20230526211512247-8ec447.png" alt="image-20230524000456344"></p>
-<p>收敛阶判定定理</p>
-<p>p 阶收敛：如果 $x=\varphi(x)$ 中的迭代函数 $\varphi(x)$ 在根 a 附近满足：</p>
-<ol>
-<li><p>$\varphi(x)$ 存在 p 阶导数且连续</p>
-</li>
 <li><script type="math/tex; mode=display">
-  \varphi'(a)=\varphi''(a)=\cdots=\varphi^{(p-1)}(a)=0,\;\varphi^{(p)}(a)\neq0</script></li>
-</ol>
-<p>则迭代法 $x_{k+1}=\varphi(x_k)$ 是 p 阶收敛的</p>
-<h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f688904f829cb9871d53a3c71545d651-20230526211515025-b6b147.png" alt="image-20230523205638425"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/1f331968cc027c5891ddb112760f57ff-20230526211541428-d4c476.png" alt="image-20230523235233242"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/9adee93fd60abf5c4f956dadf02d9fb1-20230526211546268-99c1c6.png" alt="image-20230523235244027"></p>
-<p>2</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/522fa3d8dba6155159972a0aaac69206-20230526211553495-884378.png" alt="image-20230524001512839"></p>
-<p>牛顿（Newton）法：</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/665db155b5a59d816fc751e7e76f279f-20230526211600705-f8c895.png" alt="image-20230524001533971"></p>
-<h4 id="Newton-迭代法"><a href="#Newton-迭代法" class="headerlink" title="Newton 迭代法"></a>Newton 迭代法</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/606824a8ba865176a3f09a0c1c83fdfb-20230526211606311-bb5d8b.png" alt="image-20230524001732112"></p>
-<p>Newton 迭代格式：设方程 $f(x)=0$ 的根为 $a$，且 $f’(a)\neq0$，则迭代法</p>
+   (f,f)\geq0,(f,f)=0\Leftrightarrow f\equiv0</script></li>
+</ul>
+<ul>
+<li><script type="math/tex; mode=display">
+   (f,g)=(g,f)</script></li>
+<li><script type="math/tex; mode=display">
+   (\lambda f,g)=\lambda\cdot(f,g)</script></li>
+<li><script type="math/tex; mode=display">
+   (f+g,h)=(f,h)+(g,h)</script></li>
+<li><p>$f(x)$ 和 $g(x)$ 在 $[a,b]$ 上关于权函数 $\rho(x)$ 正交，则 $(f,g)=0$</p>
+</li>
+</ul>
+<h4 id="正交多项式系"><a href="#正交多项式系" class="headerlink" title="正交多项式系"></a>正交多项式系</h4><p>正交多项式系：利用 Schmidt 正交化构造正交多项式，特别取多项式系 $1,x,\cdots,x^n,\cdots$ 进行正交化即得正交多项式系；令 </p>
 <script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac{f(x_k)}{f'(x_k)}\;(k=0,1,2,\cdots)</script><p>至少是平方收敛，并称该迭代格式为 Newton 迭代法。</p>
-<p>类似的，可以使用导数的近似式 $f’(x)\approx\frac{f(x_k)-f(x_{k-1})}{x_k-x_{k-1}}$ 替代 $f’(x)$，可将其代入 Newton 迭代格式，得到割线法（弦截法）。</p>
+\mu_m=\int_a^b=\rho(x)\cdot x^mdx,\;\;m=0,1,\cdots</script><p> 取 </p>
 <script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac{(x_k-x_{k-1})f(x_k)}{f(x_k)-f(x_{k-1})}</script><p>割线法是超线性收敛的（$p=\frac{1+\sqrt{5}}{2}\approx1.618$），低于 Newton 法</p>
-<p>此外，还有单步弦截法</p>
+\phi_0(x)=1,\phi_i(x)=
+\begin{vmatrix}
+\mu_0&\mu_1&\cdots&\mu_{i-1}&1\\
+\mu_1&\mu_2&\cdots&\mu_{i}&x\\
+\cdots&\cdots&\cdots&\cdots&\cdots\\
+\mu_i&\mu_{i+1}&\cdots&\mu_{2i-1}&x^i\\
+\end{vmatrix}</script><p>  则 $\phi_0(x),\phi_i(x),\;i=1,2,\cdots$ 构成正交多项式系。</p>
+<p>标准正交多项式系：令 </p>
 <script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac{(x_k-x_{0})f(x_k)}{f(x_k)-f(x_{0})}</script><p>平行线法</p>
-<script type="math/tex; mode=display">
-x_{k+1}=x_k-\frac{f(x_k)}{f'(x_0)}</script><h5 id="例题-3"><a href="#例题-3" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/4c732e298146ea6ff6cca8ffcff4724e-20230526211611850-fd8f4e.png" alt="image-20230524232109195"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/6d537a6d7ad857c7080d34359d2721b3-20230526211618999-8132c3.png" alt="image-20230524232120869"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/fbef07a93ac3ec10bd7fad5f9388bb47-20230526211625516-2f7a62.png" alt="image-20230524232136776"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/0483d1ecfba386db345374531b09959d-20230526211631574-8e05f9.png" alt="image-20230524232155102"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/33bf35ce3b9978b5bfef49c6f9f84cea-20230526211636202-1cf749.png" alt="image-20230524232231363"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/462cf69b040cd1a66dd2b023cb27d039-20230526211640704-45a402.png" alt="image-20230524232245431"></p>
-<p>2</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/aaeacc2eb90ce898acf1d0b19fecbb56-20230526211646607-61664d.png" alt="image-20230524232309063"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/ba9e2592c661b3f15673a1c9973fa639-20230526211652795-ced0ca.png" alt="image-20230524232320162"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/7d69252dc99c2c8e1a8602e74765e934-20230526211658410-6c3d20.png" alt="image-20230524232332707"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/d04989657fbade14ed866a1c05ac3fb0-20230526211706096-ac4f0c.png" alt="image-20230524232344540"></p>
-<h4 id="针对重根改进的-Newton-法："><a href="#针对重根改进的-Newton-法：" class="headerlink" title="针对重根改进的 Newton 法："></a>针对重根改进的 Newton 法：</h4><p>设 $a$ 是 $f(x)=0$ 的 $m$ 重根（满足 $f(a)=f’(a)=f’’(a)=\cdots=f^{(m-1)}(a)=0,\;f^{(m)}\neq0$ ），其中 $m\geq2$ 是整数，则有 $f(x)=(x-a)^mg(x)$，且 $g(a)\neq0$</p>
-<p>此时，直接使用 Newton 法是线性收敛而不是平方收敛的</p>
-<script type="math/tex; mode=display">
-\varphi(x)=x-\frac{f(x)}{f'(x)}=x-\frac{(x-a)^mg(x)}{m(x-a)^{(m-1)}g(x)+(x-a)^mg'(x)}
+\Delta=
+\begin{vmatrix}
+\mu_0&\mu_1&\cdots&\mu_i\\
+\mu_1&\mu_2&\cdots&\mu_{i+1}\\
+\vdots&\vdots&\ddots&\vdots\\
+\mu_i&\mu_{i+1}&\cdots&\mu_{2i}\\
+\end{vmatrix}
+,\quad 
+i=0,1,\cdots
 \\
-\varphi'(x)=1-\frac{g(x)}{mg(x)+(x-a)g'(x)}-(x-a)
-[\frac{g(x)}{m\cdot g(x)+(x-a)g'(x)}]'
-\\
-\varphi'(a)=1-\frac{g(a)}{m\cdot g(a)+0}-0=1-\frac{1}{m}\neq0</script><p>为了提高收敛的阶，可取 $\varphi(x)=x-m\frac{f(x)}{f’(x)}$，从而 $\varphi(a)=1-\frac{m}{m}=0$，则新迭代法至少是平方收敛的</p>
-<h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f856a9d7c9401bbb957313d4b33caa9b-20230526211710750-27759d.png" alt="image-20230524234008473"></p>
-<h4 id="多根区间上的逐次逼近法-应该不会考"><a href="#多根区间上的逐次逼近法-应该不会考" class="headerlink" title="*多根区间上的逐次逼近法(应该不会考)"></a>*多根区间上的逐次逼近法(应该不会考)</h4><p>这里主要使用二分法</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/98e322d4accb1452a0fadf23727d5894-20230526211718334-3b2b31.png" alt="image-20230524234057056"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/02f3ae00d2e42d04289fce30a9a06a67-20230526211724558-ab488b.png" alt="image-20230524234108939"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/fbeb31460cd45b7805d091955e3af790-20230526211729159-cd23c8.png" alt="image-20230524234120250"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/dbd114feaf71b6d3c77a5a951979e29e-20230526211734289-14bd17.png" alt="image-20230524234138584"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/ef84c9e9a246eb4dbbff029b7e500645-20230526211739238-43df24.png" alt="image-20230524234158124"></p>
-<h3 id="4-3-幂法"><a href="#4-3-幂法" class="headerlink" title="4.3 幂法"></a>4.3 幂法</h3><blockquote>
-<p>参考 <a href="https://zhuanlan.zhihu.com/p/447691558" target="_blank" rel="noopener">幂法与反幂法 - 知乎 (zhihu.com)</a></p>
-</blockquote>
-<h4 id="幂法（用于求绝对值最大的特征值）"><a href="#幂法（用于求绝对值最大的特征值）" class="headerlink" title="幂法（用于求绝对值最大的特征值）"></a>幂法（用于求绝对值最大的特征值）</h4><p>幂法用于计算绝对值最大的特征值和对应的特征向量，对于单根和重根情形均有效。</p>
-<p>概念：假定 n 阶方阵 A 具有 n 个线性无关的特征向量 $x_1,x_2,\cdots,x_n$，且对应的特征值满足 $|\lambda_1|&gt;|\lambda_2|\geq\cdots\geq|\lambda_n|$，则对任一 n 维非零向量 $v_0$ 经使用迭代过程 </p>
-<script type="math/tex; mode=display">
-v_k=A^kv_0</script><p>计算可得</p>
-<script type="math/tex; mode=display">
-v_k=\alpha_1\lambda_1^kx_1,\quad \alpha_1\neq0,\quad \frac{v_k}{v_{k-1}}=\lambda_1</script><p>实际使用上，对幂法进行了改进，添加了规范化操作</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f4a09cfe1d14f086ffd3cf760c14f7fe-20230526211746917-e1e7f4.png" alt="image-20230526001148824"></p>
-<p>算法过程</p>
+\left\{
+\begin{array}{l}
+\psi_0(x)=\frac{\phi_0(x)}{\sqrt{(\phi_0,\phi_0)}}=\frac{1}{\sqrt{\Delta_0}}\\
+\psi_i(x)=\frac{\phi_i(x)}{\sqrt{(\phi_i,\phi_i)}}=\frac{\phi_i(x)}{\sqrt{\Delta_{i-1}\Delta_i}}
+\end{array}
+\right.
+,\;i=0,1,\cdots</script><p> 则 $\psi_0(x),\psi_1(x),\cdots,\psi_n(x)$ 成为标准正交多项式系。</p>
+<p>正交多项式的一些性质：</p>
 <ol>
-<li>输入矩阵 $A=(a_{ij})$，初始向量 $v_0$，允许的误差 $\epsilon$，最大迭代次数 $N$</li>
-<li>置 $k=1,\quad \mu=0$</li>
-<li>求 $\max\{v_k\},\quad\max\{v_k\}\Rightarrow a$</li>
-<li>计算 $u=v/a,\quad v=Au$，置 $\max\{v_k\}=\lambda$</li>
-<li>若 $|\lambda-\mu|&lt;\epsilon$，输出 $\lambda,u$，停机，否则跳转至 6</li>
-<li>若 $k&lt;N$，置 $k+1\Rightarrow k,\lambda\Rightarrow\mu$，转到 3，否则输出失败信息，停机</li>
-</ol>
-<h5 id="例题-5"><a href="#例题-5" class="headerlink" title="例题"></a>例题</h5><p>利用幂法计算矩阵 A 的主（最大）特征值和相应的特征向量，其中 $A=\begin{pmatrix}2&amp;3&amp;2\\10&amp;3&amp;4\\3&amp;6&amp;1\end{pmatrix}$，取 $v_0=(0,0,1)^T$，迭代2次</p>
-<p>解：</p>
-<p>取 $u_0=v_0=(0,0,1)^T$，则 $u_1=Av_0=(2,4,1)^T$，且 $\max\{u_1\}=-4$</p>
-<p>即 $a=4$，于是 $v_1=u_1/a=(0.5,1,0.25)^T$</p>
-<p>$u_2=Av_1=(4.5,9,7.75)^T$ 且 $\max\{u_2\}=9$</p>
-<p>即 $a=9$，于是 $v_2=u_2/a\approx(0.5,1,0.8611)$，可得 $\lambda_1\approx9,x_1\approx(0.5,1.0,0.8611)^T$</p>
-<p>注：经过 8 次迭代可得 $\lambda_1=11,x_1=(0.5,1.0,0.75)^T$</p>
-<h4 id="反幂法"><a href="#反幂法" class="headerlink" title="反幂法"></a>反幂法</h4><p>反幂法用于计算矩阵 A 按模最小的特征值及对应的特征向量</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/bb62afa77fd35b6f5c76a5f9239a2a4b-20230526211752668-0dd12d.png" alt="image-20230526003011498"></p>
-<p>算法流程：</p>
-<ol>
-<li>任取初始向量 $v_0=u_0\neq0$</li>
-<li>计算 $v_k=A^{-1}u_{k-1},\;(k=1,2,\cdots)$</li>
-<li>$\max\{v_k\}\Rightarrow m_k;\quad u_k=v_k/m_k$</li>
-<li>如果 $k$ 从某时以后有 $\frac{(v_k)_j}{(v_{k-1})_j}\approx c \;\;(常数)(j=1,2,\cdots,n)$，则取 $\lambda_n\approx\frac{1}{c}$；而 $u_k$ 就是与 $\lambda_k$ 对应的特征向量</li>
-</ol>
-<h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p>用反幂法求矩阵 $A=\begin{pmatrix}3&amp;2\\4&amp;5\end{pmatrix}$ 的按模最小的特征值和特征向量，精确至 6 位小数，迭代 1 次</p>
-<p>解：</p>
-<p>取 $v_0=u_0=(1,1)^T$，由 $v_1=A^{-1}u_0$，即 $Av_1=u_0$</p>
-<p>得 $v_1=(0.428571,-0.142857)^T\\m_1=\max\{v_1\}=0.428571$</p>
-<p>归一化得 $u_1=(1.000000,-0.333333)^T$</p>
-<p>所以迭代 1 次得到的按模最小的特征值为 $1/0.428571$，对应的特征向量为 $u_1=(1.000000,-0.333333)^T$</p>
-<p>2</p>
-<p>用反幂法求矩阵 $A=\begin{pmatrix}3&amp;2\\4&amp;5\end{pmatrix}$ 的过程中，得到 $u^{(8)}=\begin{pmatrix}1.000000\-0.999999\end{pmatrix}$，则 A 的模最小的特征值的近似值为：</p>
-<p>解：</p>
-<p>由于 $c=\max(u^{(8)}=1)$，则按模最小的特征值的近似值为 $\lambda_1=\frac{1}{c}=1.000000$</p>
-<p>或者</p>
-<p>依据特征值的概念与性质，可知有 $Ax=\lambda x$，则</p>
+<li><p>$\phi_n(x)$ 恰好是 n 次多项式，$\phi_0(x),\phi_1(x),\cdots,\phi_n(x)$ 是 $P_n$ 的一组基底函数</p>
+</li>
+<li><p>$\phi_n(x)$ 与次数低于 n 次的所有多项式正交</p>
+</li>
+<li><p>$\phi_n(x)$ 在 $(a,b)$ 内恰有 n 个互异零点</p>
+</li>
+<li><p>设 $p_k$ 为首项系数为 1 的 k 次正交多项式，则有如下三角递推关系式成立</p>
 <script type="math/tex; mode=display">
-Au^{(8)}=\lambda_nu^{(8)}\approx
+  p_{k+1}=(x-\alpha_k)p_k-\beta_{k-1}p_{k-1}</script><p>   其中 $\alpha_k=\frac{(xp_k,p_k)}{(p_k,p_k)},\beta_k=\frac{(p_k,p_k)}{(p_{k-1},p_{k-1})}$</p>
+</li>
+</ol>
+<p>性质 2,3 是 C6 中构造 Gauss 型求积公式的重要依据</p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><p><strong>Legendre 多项式：</strong> 在 $[-1,1]$ 上以 $\rho(x)=1$ 为权函数的正交多项式系为 Legendre 多项式系</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/bc976ce4640b7936008e1c6e9e775f39-20230602103906220-150520.png" alt="image-20230601230634268"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/e98fcdc8d11ef29ecaf0030aabf5228e-20230602103917700-70fbaa.png" alt="image-20230601230646512"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/ce1e3fc2868945b017dfee37236a18c2-20230602103923239-a374c6.png" alt="image-20230601230558382"></p>
+<p><strong>Chebyshev 多项式</strong></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/7e810ed786bceb6e67fbdc6ef3c4b89f-20230602103929315-27e17a.png" alt="image-20230601230522395"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/b420622a5acd32c5bbf5bc07a7a22d6f-20230602103936428-c83b84.png" alt="image-20230601230536778"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/774c24c77d92d2f580ec946e5851850b-20230602103940964-3d442d.png" alt="image-20230601230547539"></p>
+<p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/e35f2c954397a5a027a8d583795510d0-20230602103951779-ea54bf.png" alt="image-20230601230718865"></p>
+<h4 id="数据拟合的最小二乘法"><a href="#数据拟合的最小二乘法" class="headerlink" title="数据拟合的最小二乘法"></a>数据拟合的最小二乘法</h4><p>几何的意义</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/7f74e9288df265422483bf3e2a0ba654-20230602103957604-f4d1be.png" alt="image-20230601232008683"></p>
+<p>概念：设 $(x_i,y_i)(i=0,1,\cdots,m)$ 为给定的一组数据求一个函数 </p>
+<script type="math/tex; mode=display">
+\hat{y}=a+bx</script><p>使其满足</p>
+<script type="math/tex; mode=display">
+\min=\sum\limits^m_{i=0}(\hat{y}(x_i)-y_i)^2</script><p> 则称按上述条件求 $\hat{y}(x)$ 的方法为离散数据拟合 $\{x_i,y_i\}^m_{i=0}$ 的最小二乘法，简称最小二乘法，并称 $\hat{y}(x)$ 为最小二乘解</p>
+<p>求解 $\hat{y}(x)$ 等价于求多元数</p>
+<script type="math/tex; mode=display">
+E(a,b)=\sum\limits^m_{i=0}(\hat{y}(x_i)-y_i)^2=\sum\limits^m_{i=0}((a+bx_i)-y_i)^2</script><p>的最小值点 $(a^<em>,b^</em>)$</p>
+<p>最后可以写成矩阵形式，可通过所给点构造并求解<strong>法方程组</strong></p>
+<p>针对一次函数求解(注意这里 a 是常数，b 是一次项系数) $y=a+bx$ 的法方程组为</p>
+<script type="math/tex; mode=display">
 \begin{pmatrix}
-1\\-1
-\end{pmatrix}</script><p>则，可认为按模最小的特征值的近似值为 1。</p>
-<h3 id="4-4-共轭梯度法"><a href="#4-4-共轭梯度法" class="headerlink" title="4.4 共轭梯度法"></a>4.4 共轭梯度法</h3><blockquote>
-<p>共轭梯度法是以共轭方向作为搜索方向的一类算法，最初用于求解线性方程组，后来用于求解无约束最优化问题，是一种重要的数学优化方法。</p>
-</blockquote>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/b05cf37074c08d7e111185747a2db68f-20230526211802295-e360da.png" alt="image-20230526205952013"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/807764a7c0d2509dab952c2c5d1d3ceb-20230526211808581-bd38ae.png" alt="image-20230526210003733"></p>
-<h4 id="最速下降法（应该不会考）"><a href="#最速下降法（应该不会考）" class="headerlink" title="*最速下降法（应该不会考）"></a>*最速下降法（应该不会考）</h4><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/5650f65224409cf090915c432998568d-20230526211813085-bf2edc.png" alt="image-20230526210124918"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/08ea6b6d843c23680433e28251d59f81-20230526211819878-7e4838.png" alt="image-20230526210136201"></p>
-<h4 id="共轭梯度法"><a href="#共轭梯度法" class="headerlink" title="共轭梯度法"></a>共轭梯度法</h4><blockquote>
-<p>下降方向 p 为上步下降方向与当前残量的线性组合，与 $\beta$ 有关，步长为 $\alpha$</p>
-</blockquote>
-<p><strong>共轭梯度法最多迭代 n 步即可求得问题的精确解</strong></p>
-<p>算法的流程：</p>
-<p>对于所给的初始向量 $x_0$，$r_0=p_0=b-Ax_0$</p>
+\sum\limits^m_{i=0}x_i^0=m+1&\sum\limits^m_{i=0}x_i\\
+\sum\limits^m_{i=0}x_i&\sum\limits^m_{i=0}x_i^2
+\end{pmatrix}
+\begin{pmatrix}
+a\\b
+\end{pmatrix}
+=
+\begin{pmatrix}
+\sum\limits^m_{i=0}y_i\\
+\sum\limits^m_{i=0}x_i\cdot y_i
+\end{pmatrix}</script><p>类似的，针对二次函数求解 $y=a+bx+cx^2$ 的法方程组为</p>
 <script type="math/tex; mode=display">
-\alpha_k=(r_k,r_k)/(Ap_k,p_k)\\
-x_{k+1}=x_k+\alpha_kp_k\\
-r_{k+1}=r_k-\alpha_kAp_k\\
-\beta_k=(r_{k+1},r_{k+1})/(r_k,r_k)\\
-p_{k+1}=r_{k+1}+\beta_kp_k\\
-(k=0,1,2,\cdots)</script><p>$(r_k,r_k)$ 表示内积运算。</p>
-<h5 id="例题-7"><a href="#例题-7" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/63541c9e0ae74f4a1b22b88e9e05ad34-20230526211824555-821fcd.png" alt="image-20230526210834071"></p>
-<p>可见，迭代 2 步即可得到精确解</p>
-<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
+\begin{pmatrix}
+\sum\limits^m_{i=0}x_i^0=m+1&\sum\limits^m_{i=0}x_i&\sum\limits^m_{i=0}x_i^2\\
+\sum\limits^m_{i=0}x_i&\sum\limits^m_{i=0}x_i^2&\sum\limits^m_{i=0}x_i^3\\
+\sum\limits^m_{i=0}x_i^2&\sum\limits^m_{i=0}x_i^3&\sum\limits^m_{i=0}x_i^4
+\end{pmatrix}
+\begin{pmatrix}
+a\\b\\c
+\end{pmatrix}
+=
+\begin{pmatrix}
+\sum\limits^m_{i=0}y_i\\
+\sum\limits^m_{i=0}x_i\cdot y_i\\
+\sum\limits^m_{i=0}x_i^2\cdot y_i
+\end{pmatrix}</script><p>更高次的构造方法也与之类似</p>
+<p>推导过程如下</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/7cc4ce0d9a5e3c7a0557bb1b14356a0e-20230602104006348-a0be92.png" alt="image-20230602001216189"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/bc7a6729b2e3813eaacee43869c82dfb-20230602104011286-f9c55a.png" alt="image-20230602001922790"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/76a939d181f56c3d800f72ba4b3eaf05-20230602104016745-6bb021.png" alt="image-20230602001933941"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/b06d8163185d1d9a1685772563f078ff-20230602104022054-7feee3.png" alt="image-20230602001944099"></p>
+<h5 id="例题-6"><a href="#例题-6" class="headerlink" title="例题"></a>例题</h5><p>正常考试题的流程为：依据所给数据，构造法方程组求解即可，可能会涉及到线性函数与非线性函数的转换，这一过程包括所给的数据与系数，例如</p>
+<script type="math/tex; mode=display">
+y=x^b\Rightarrow \ln y=\ln c + b\cdot\ln x\Rightarrow z=a+bt\qquad z=\ln y,t=\ln x,a=\ln c\\
+y=ce^{bx}\Rightarrow \ln y=\ln c + b x\Rightarrow z=a+bt\qquad z=\ln y,a=\ln c\\
+y=\frac{1}{a+bx}\Rightarrow \frac{1}{y}=a+bx\Rightarrow z=a+bx\qquad z=\frac{1}{y}\\
+y=a+\frac{b}{x}\Rightarrow y=a+bt\qquad t=\frac{1}{x}</script><p>线性的情况</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/15dd8bde4b22734e4194ede2b86b002f-20230602104027519-0a05a3.png" alt="image-20230602002114254"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/6e413bab88ef9a74fe67ca96505ad6fd-20230602104032720-6172da.png" alt="image-20230602002128626"></p>
+<p>非线性的情况</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/02/ffa0be7d7abbc559d914b9f20e07d230-20230602104037924-4ee91f.png" alt="image-20230602002216857"></p>
+
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -815,28 +1050,11 @@ p_{k+1}=r_{k+1}+\beta_kp_k\\
       <div class="toc" style="background: none;"></div>
       <section class="post-squares nextprev">
         
-          
-            <div class="post-nepre half previous">
-          
-            <a href="/2023/06/02/2022-2023-春学期-矩阵与数值分析-C5-插值与逼近/" rel="prev">
-              <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-              </div>
-              <span class="label">
-              Previous Post</span>
-              <div class="info">
-                <h3>
-                2022-2023 春学期 矩阵与数值分析 C5 插值与逼近</h3>
-                <hr>
-              </div>
-            </a>
-          </div>
-        
         
           
-            <div class="post-nepre half next">
+            <div class="post-nepre full next">
           
-            <a href="/2023/05/23/2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础/" rel="next">
+            <a href="/2023/05/26/2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
               </div>
@@ -844,7 +1062,7 @@ p_{k+1}=r_{k+1}+\beta_kp_k\\
               Next Post</span>
               <div class="info">
                 <h3>
-                2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础</h3>
+                2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法</h3>
                 <hr>
               </div>
             </a>
