@@ -478,9 +478,9 @@
 			  var pdate = new Date(1685106649000);
 			  console.log("pdate="+pdate);
 			  console.log("1685106649000");
-			  //var update = new Date("1685110477878");
-			  var update = new Date(1685110477878);
-			  console.log("1685110477878");
+			  //var update = new Date("1685947071247");
+			  var update = new Date(1685947071247);
+			  console.log("1685947071247");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -540,7 +540,7 @@ x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k)}-\sum\lim
 <script type="math/tex; mode=display">
 x_i^{(k+1)}=\frac{1}{a_{ii}}(b_i-\sum\limits^{i-1}_{j=1}a_{ij}x_j^{(k+1)}-\sum\limits^n_{j=i+1}a_{ij}x_j^{(k)})\;(i=1,2,\cdots,n)</script><p>矩阵分裂：可以将系数矩阵 A 分裂为 A=D-L-U 的形式，具体如下所示：</p>
 <script type="math/tex; mode=display">
-A=D-L-U\\
+A=D-L-U\\</script><script type="math/tex; mode=display">
 A=
 \begin{pmatrix}
 a_{1,1}&a_{1,2}&\cdots&a_{i,j}&\cdots&a_{1,n}\\
@@ -552,9 +552,8 @@ a_{i,1}&\cdots&a_{i,j-1}&a_{i,j}&\cdots&a_{i,n}
 \vdots&&\vdots&\ddots&\ddots&\vdots
 \\
 a_{n,1}&\cdots&a_{n,j-1}&\cdots&a_{n,n-1}&a_{n,n}
-\end{pmatrix}\\
-
-D=\mathrm{diag(a_{1,1},a_{2,2},\cdots,a_{n,n})}\\
+\end{pmatrix}\\</script><script type="math/tex; mode=display">
+D=\mathrm{diag(a_{1,1},a_{2,2},\cdots,a_{n,n})}\\</script><script type="math/tex; mode=display">
 L=
 \begin{pmatrix}
 0&&&&&0\\
@@ -563,7 +562,7 @@ L=
 -a_{j,1}&\cdots&-a_{j,j-1}&0\\
 \vdots&&\vdots&\ddots&\ddots\\
 -a_{n,1}&\cdots&-a_{n,j-1}&\cdots&-a_{n,n-1}&0
-\end{pmatrix}\\
+\end{pmatrix}\\</script><script type="math/tex; mode=display">
 U=
 \begin{pmatrix}
 0&-a_{1,2}&\cdots&-a_{1,j}&\cdots&-a_{1,n}\\
@@ -662,9 +661,9 @@ x_k=\varphi(x_{k-1})</script><p>收敛于方程的根 a，即 $f(a)\equiv0$，�
 <li><p>$\varphi(x)$ 存在 p 阶导数且连续</p>
 </li>
 <li><script type="math/tex; mode=display">
-  \varphi'(a)=\varphi''(a)=\cdots=\varphi^{(p-1)}(a)=0,\;\varphi^{(p)}(a)\neq0</script></li>
+  \varphi'(a)=\varphi''(a)=\cdots=\varphi^{(p-1)}(a)=0,\;\varphi^{(p)}(a)\neq0</script><p>  则迭代法 $x_{k+1}=\varphi(x_k)$ 是 p 阶收敛的</p>
+</li>
 </ol>
-<p>则迭代法 $x_{k+1}=\varphi(x_k)$ 是 p 阶收敛的</p>
 <h5 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h5><p>1</p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f688904f829cb9871d53a3c71545d651-20230526211515025-b6b147.png" alt="image-20230523205638425"></p>
 <p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/1f331968cc027c5891ddb112760f57ff-20230526211541428-d4c476.png" alt="image-20230523235233242"></p>
