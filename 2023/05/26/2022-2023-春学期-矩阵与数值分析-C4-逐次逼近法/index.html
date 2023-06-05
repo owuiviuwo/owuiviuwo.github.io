@@ -478,9 +478,9 @@
 			  var pdate = new Date(1685106649000);
 			  console.log("pdate="+pdate);
 			  console.log("1685106649000");
-			  //var update = new Date("1685947071247");
-			  var update = new Date(1685947071247);
-			  console.log("1685947071247");
+			  //var update = new Date("1685947331835");
+			  var update = new Date(1685947331835);
+			  console.log("1685947331835");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -698,11 +698,9 @@ x_{k+1}=x_k-\frac{f(x_k)}{f'(x_0)}</script><h5 id="例题-3"><a href="#例题-3"
 <h4 id="针对重根改进的-Newton-法："><a href="#针对重根改进的-Newton-法：" class="headerlink" title="针对重根改进的 Newton 法："></a>针对重根改进的 Newton 法：</h4><p>设 $a$ 是 $f(x)=0$ 的 $m$ 重根（满足 $f(a)=f’(a)=f’’(a)=\cdots=f^{(m-1)}(a)=0,\;f^{(m)}\neq0$ ），其中 $m\geq2$ 是整数，则有 $f(x)=(x-a)^mg(x)$，且 $g(a)\neq0$</p>
 <p>此时，直接使用 Newton 法是线性收敛而不是平方收敛的</p>
 <script type="math/tex; mode=display">
-\varphi(x)=x-\frac{f(x)}{f'(x)}=x-\frac{(x-a)^mg(x)}{m(x-a)^{(m-1)}g(x)+(x-a)^mg'(x)}
-\\
+\varphi(x)=x-\frac{f(x)}{f'(x)}=x-\frac{(x-a)^mg(x)}{m(x-a)^{(m-1)}g(x)+(x-a)^mg'(x)}</script><script type="math/tex; mode=display">
 \varphi'(x)=1-\frac{g(x)}{mg(x)+(x-a)g'(x)}-(x-a)
-[\frac{g(x)}{m\cdot g(x)+(x-a)g'(x)}]'
-\\
+[\frac{g(x)}{m\cdot g(x)+(x-a)g'(x)}]'</script><script type="math/tex; mode=display">
 \varphi'(a)=1-\frac{g(a)}{m\cdot g(a)+0}-0=1-\frac{1}{m}\neq0</script><p>为了提高收敛的阶，可取 $\varphi(x)=x-m\frac{f(x)}{f’(x)}$，从而 $\varphi(a)=1-\frac{m}{m}=0$，则新迭代法至少是平方收敛的</p>
 <h5 id="例题-4"><a href="#例题-4" class="headerlink" title="例题"></a>例题</h5><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/05/26/f856a9d7c9401bbb957313d4b33caa9b-20230526211710750-27759d.png" alt="image-20230524234008473"></p>
 <h4 id="多根区间上的逐次逼近法-应该不会考"><a href="#多根区间上的逐次逼近法-应该不会考" class="headerlink" title="*多根区间上的逐次逼近法(应该不会考)"></a>*多根区间上的逐次逼近法(应该不会考)</h4><p>这里主要使用二分法</p>
