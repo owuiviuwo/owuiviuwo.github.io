@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">owuiviuwo&#39;s blog!</title>
+  <title itemprop="name">2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法 | owuiviuwo&#39;s blog!</title>
   
     <link rel="shortcut icon" href="/images/hamster.png">
   
@@ -373,605 +373,453 @@
   </div>
 </header>
 
-      <div class="blank" style="padding-top: 0px;"></div>
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png);" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h1>
+      <p class="entry-census">
+        <span>
+          <a href="https://owuiviuwo.github.io/">
+            <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg">
+          </a>
+        </span>
+        <span>
+          <a href="https://owuiviuwo.github.io/">owuiviuwo</a>
+        </span>
+        <span class="bull">
+        ·</span>
+        2023-6-10<span class="bull">
+        ·</span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+    </header>
+  </div>
+
 <div id="content" class="site-content">
-  
-  
-  
-  
-  <!-- 格言与置顶通知 -->
-  
-  <div class="notice" style="margin-top:60px">
-    <i class="iconfont icon-notification">
-    </i>
-    <!--<div class="notice-content">After you :)</div>-->
-	<div class="notice-content">	
-	  <span id="hitokoto" style="margin-left:5px;"> :D 获取中...</span>
-      <p align="right" id="afrom"></p>
-      <script src="https://cdn.jsdelivr.net/npm/bluebird@3/js/browser/bluebird.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/whatwg-fetch@2.0.3/fetch.min.js"></script>
-      <script>
-        fetch('https://v1.hitokoto.cn/?c=a&c=b&c=c&c=d&c=e&c=f&c=g&c=h&c=i&c=j&c=k&c=l')
-          .then(function (res){
-            return res.json();
-          })
-          .then(function (data) {
-            var hitokoto = document.getElementById('hitokoto');
-            var afrom = document.getElementById('afrom');
-            hitokoto.innerText = data.hitokoto;
-			var datafrom = data.from == null ? '~' : data.from;
-			var datafromwho = data.from_who == null ? '~' : data.from_who;
-			if(datafrom!='~' || datafromwho!='~'){
-				afrom.innerText =  '——【 ' + datafrom + '  ' + datafromwho + ' 】';
-			}
-			else{
-				afrom.innerText =  '——【 ' + 'from unknown' + ' 】';
-			}
-            
-          })
-          .catch(function (err) {
-            console.error(err);
-          })
-      </script>
-	</div>	
-  </div>  
-  
-  
-  <!--说说-->  
-  <div class="artitalk_part" style="margin-top:30px;margin-bottom:-70px;">
-   <style>
-	#readButton,
-	.power{
-		display:none !important;
-	}
-    </style>
-	  <!--<script src="https://cdn.jsdelivr.net/gh/drew233/cdn/js/jquery-3.3.1.min.js"></script>-->
-	  <!-- 如果之前引用过就不需要重复引用了 -->
-	  <!-- 引用 artitalk -->
-	  <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-	  <i class="fa fa-snowflake-o" aria-hidden="true"></i>
-	  说说</h1>
-	  <script type="text/javascript" src="https://unpkg.com/artitalk"></script>
-	  <!-- 存放说说的容器 -->
-	  <div id="artitalk_main"></div>
-	  <script>
-		new Artitalk({
-		  appId: 'Bca3aRLRAJx2I6PNPDTapKBT-MdYXbMMI', // Your LeanCloud appId
-		  appKey: 'o1JOvsCvLL7SkH0kH1SeRXKK', // Your LeanCloud appKey
-		  color1: '#E6E6FA',
-		  color2: '#F0FFFF',
-		  color3: 'black',
-		  pageSize: 2
-		})
-	  </script>
-  </div>  
-  
-  
-  <!-- 置顶的文章以及全部的文章 -->
-  <div class="top-feature-row">
-  <h1 class="fes-title" style="font-family: 'Ubuntu', sans-serif;">
-  <i class="fa fa-anchor" aria-hidden="true">
-  </i>
-  <!-- START:DASH!! -->
-  置顶文章</h1>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-  <div class="top-feature-v2">
-    <div class="the-feature square from_left_and_right">
-      <a href="/theme-sakura/" target="_blank">
-        <div class="img">
-          <img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/startdash/sakura.md.png">
-        </div>
-        <div class="info">
-          <h3>Sakura</h3>
-          <p>本站 hexo 主题</p>
-        </div>
-      </a>
-    </div>
-  </div>
-  
-</div>
   <div id="primary" class="content-area">
     <main id="main" class="site-main" role="main">
-	<!--置顶的文章-->
-      <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;">
-      <i class="fa fa-envira" aria-hidden="true"></i>
-      Discovery</h1>
+
+       <div id="outDateInfo">
+	   <!-- 过时信息提示，来源于 https://cndrew.cn/2020/04/04/date/ -->
+	   <style>
+		   .tip.share {
+				border-left-color: rgb(238, 5, 5);
+				background: #fff;
+			}
+			.tip {
+				display:block;
+				background: #fff;
+				padding: 8px 20px;
+				position: relative;
+				margin: 0 0 20px;
+			 
+				font-family: Georgia, serif;
+				font-size: 16px;
+				line-height: 1.2;
+				color: #666;
+				text-align: justify;
+				border-left: 5px solid      #3CB371;
+			 
+				/*盒子阴影 - (选项)*/
+				-moz-box-shadow: 2px 2px 15px #ccc;
+				-webkit-box-shadow: 2px 2px 15px #ccc;
+				box-shadow: 2px 2px 15px #ccc;
+			}
+			.tip.share:before {
+				background: #ddd;
+				content: "🐷";
+			}
+			.tip:before {
+				background: #38a3fd;
+				border-radius: 50%;
+				color: #fff;
+				content: "i";
+				font-family: Dosis,"Source Sans Pro","Helvetica Neue",Arial,sans-serif;
+				font-size: 16px;
+				height: 21px;
+				line-height: 21px;
+				margin-left: -32px;
+				margin-top: 8px;
+				position: absolute;
+				text-align: center;
+				width: 21px;
+			}
+	   </style>
+	   	  <div id="point"></div>
+			 <script>
+			  function intervalTime(startTime,endTime){
+				  var date1 = new Date(startTime);
+				  var date2 = new Date(endTime);  
+				  var date3 = date2.getTime() - date1.getTime(); 
+				  var days = Math.floor(date3 / (24 * 3600 * 1000));
+				  return days;
+			  }
+			  function format(Date){
+				var Y = Date.getFullYear();
+				var M = Date.getMonth() + 1;
+				  M = M < 10 ? '0' + M : M;
+				var D = Date.getDate();
+				  D = D < 10 ? '0' + D : D;
+				var H = Date.getHours();
+				  H = H < 10 ? '0' + H : H;
+				var Mi = Date.getMinutes();
+				  Mi = Mi < 10 ? '0' + Mi : Mi;
+				var S = Date.getSeconds();
+				  S = S < 10 ? '0' + S : S;
+				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
+			  }
+			  // var pdate = new Date("1686383262000");
+			  var pdate = new Date(1686383262000);
+			  console.log("pdate="+pdate);
+			  console.log("1686383262000");
+			  //var update = new Date("1686383540898");
+			  var update = new Date(1686383540898);
+			  console.log("1686383540898");
+			  console.log("update="+update);
+			  var now = new Date();
+			  console.log("now="+now);
+			  now=format(now);
+			  pdate=format(pdate);
+			  update=format(update);
+			  var days=intervalTime(pdate,now),udays=intervalTime(update,now);
+			  var mid=parseInt(days,10);
+			  var mi=parseInt("30",10);
+			  if(mid > mi){
+				document.getElementById("point").innerHTML="<div class=\"tip share\">请注意，本文编写于"+days+"天前，最后修改于"+udays+"天前，其中某些信息可能已经过时。<img src=\"https://cdn.jsdelivr.net/gh/drew233/cdn/kawayi.webp\"><\img> </div>";
+			  }
+			</script>
+	   </div>
+
+	  
+	  <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <div class="toc"></div>
+        <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <h1 id="2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法"><a href="#2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法"></a>2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h1><h2 id="C7-常微分方程的数值解法"><a href="#C7-常微分方程的数值解法" class="headerlink" title="C7 常微分方程的数值解法"></a>C7 常微分方程的数值解法</h2><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>一阶常微分方程的初值问题</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+u'=f(t,u),\;a\leq t\leq b\\
+u(a)=u_0
+\end{array}
+\right.</script><p> 解的存在唯一性：若 $f(t,u)$ 满足 Lipschitz 条件，即存在常数 L，对任意 $t\in[a,b]$ 均有 $|f(t,u)-f(t,\bar{u})|\leq L|u-\bar{u}|$ 则问题的解存在且唯一。</p>
+<p>但初值问题大多数情况下无法求得解析解，因此求其数值解；使用离散化的方法，在一系列预先取定的离散点（节点）中求出未知函数的近似值作为初值问题的数值解。</p>
+<h3 id="7-1-基于数值积分的数值方法"><a href="#7-1-基于数值积分的数值方法" class="headerlink" title="7.1 基于数值积分的数值方法"></a>7.1 基于数值积分的数值方法</h3><h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><p>将节点取为 $t_n=a+nh\quad h=\frac{b-a}{N},\quad n=0,1,2,\cdots,N$，每个节点区间求积分</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+u(t_n+1)=u(t_n)+\int^{t_{n+1}}_{t_n}f(t,u(t))dt\\
+u(t_0)=u_0
+\end{array}
+\right.</script><p>如果 $y(t_n)$ 的近似值 $u_n$ 已经求出，则计算右端项的数值积分可求出 $u(t_{n+1})$ 的近似值 $u_{n+1}$</p>
+<h4 id="Euler-法"><a href="#Euler-法" class="headerlink" title="Euler 法"></a>Euler 法</h4><p>对有段积分项使用左矩形公式，则得</p>
+<script type="math/tex; mode=display">
+u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+hf(t_n,u(t_n))</script><p>令 </p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+hf(t_n,u_n)\qquad n=0,1,2,\cdots,N-1</script><p>上式称为 Euler 求解公式，又称矩形公式。</p>
+<p>该公式具有一阶精度，局部截断误差主项为 $1/2$</p>
+<h4 id="隐-Euler-法"><a href="#隐-Euler-法" class="headerlink" title="隐 Euler 法"></a>隐 Euler 法</h4><p>对右端积分项使用右矩形求积公式，则得</p>
+<script type="math/tex; mode=display">
+u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+hf(t_{n+1},u(t_{n+1}))</script><p>令</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+hf(t_{n+1},u_{n+1})\qquad n=0,1,2,\cdots,N-1</script><p>上式称为隐 Euler 公式，又称右矩形公式，或向后 Euler 公式</p>
+<p>隐式公式需要求解方程，或利用迭代法求解；可通过<strong>移项</strong>的方式将其<strong>显式化</strong></p>
+<p>该公式具有一阶精度，局部截断误差主项为 $-1/2$</p>
+<h4 id="梯形法"><a href="#梯形法" class="headerlink" title="梯形法"></a>梯形法</h4><p>对右端积分项使用梯形求积公式，则得</p>
+<script type="math/tex; mode=display">
+u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+\frac{h}{2}[f(t_{n},u(t_{n}))+f(t_{n+1},u(t_{n+1}))]</script><p>令</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+\frac{h}{2}[f(t_{n},u(t_{n}))+f(t_{n+1},u(t_{n+1}))]\qquad n=0,1,2,\cdots,N</script><p>上式称为梯形公式，简称梯形法，梯形公式可看作 Euler 公式与隐式 Euler 公式的算数平均</p>
+<p>该公式具有二阶精度，局部截断误差主项为 $-1/12$</p>
+<h4 id="改进的-Euler-法"><a href="#改进的-Euler-法" class="headerlink" title="改进的 Euler 法"></a>改进的 Euler 法</h4><p>为避免求解非线性代数方程，可以用 Euler 法将其显化，建立预测——校正系统：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+u(t_0)=u_0\\
+\bar{u}_{n+1}=u_n+hf(t_n,u_n)\\
+u_{n+1}=u_n+\frac{h}{2}(f(t_n,u_n)+f(t_{n+1},\bar{u}_{n+1}))
+\end{array}
+\right.</script><p>求解公式称为改进的 Euler 法，其中 称为预测值， 称为校正值</p>
+<p>其求解顺序为：</p>
+<script type="math/tex; mode=display">
+u_0\to \bar{u}_1\to u_1\to \bar{u}_2 \to u_2\to\cdots\to\bar{u}_N\to u_N</script><p>改进的 Euler 法还可写为：</p>
+<script type="math/tex; mode=display">
+u_{n+1}=u_n+\frac{h}{2}[f(t_n,u_n)+f(t_{n+1},u_n+hf(t_n,u_n)
+)]</script><p>该公式具有二阶精度</p>
+<h4 id="截断误差与精度"><a href="#截断误差与精度" class="headerlink" title="截断误差与精度"></a>截断误差与精度</h4><p>局部截断误差：假设 $u_i=u(t_i),\;i=0,1,2,\cdots,n-1$ 则称 $R_n(h)=u(t_n)-u_n$ 为求解公式第 n 步的局部截断误差</p>
+<p>整体截断误差：$E_n(h)=u(t_n)-u_n=\sum\limits^n_{t=1}R_t(h)$ 为求解公式在 $t_n$ 点上的整体截断误差</p>
+<p>求解公式具有 p 阶精度：</p>
+<ul>
+<li>求解公式的局部截断误差：$R_n(h)=O(h^{p+1})$</li>
+<li>求解公式的整体截断误差：$E_n(h)=O(h^p)$</li>
+</ul>
+<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/f6c98ab213fa2ce793e369975d52fb9c-20230610154957436-4c5a58.png" alt="image-20230606231654207"></p>
+<p>多步法例子</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/6f17fbdfcda7fa426aebac04386032d8-20230610155008012-05e4a9.png" alt="image-20230606235134339"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/4aa3d3e135c11db2e1bae05baa4c1232-20230610155017323-558b35.png" alt="image-20230607003641371"></p>
+<p>其他</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/5aa6fa54115913d6db152d32d33bd58b-20230610155033183-7352e4.png" alt="image-20230610154013741"></p>
+<script type="math/tex; mode=display">
+\frac{1}{2}\times(-50)h<1</script><h3 id="7-2-基于-Taylor-展式的数值方法"><a href="#7-2-基于-Taylor-展式的数值方法" class="headerlink" title="7.2 基于 Taylor 展式的数值方法"></a>7.2 基于 Taylor 展式的数值方法</h3><p>Runge-Kutta 法（不考</p>
+<h4 id="待定系数法"><a href="#待定系数法" class="headerlink" title="待定系数法"></a>待定系数法</h4><p>线性多步法（k 步线性法）的一般公式：</p>
+<script type="math/tex; mode=display">
+\sum\limits^k_{j=0}\alpha_ju_{n+1}=h\sum\limits^k_{j=0}\beta_jf_{n+j},\;\alpha_k\neq0</script><p>其中 $f_{n+j}=f(t_{n+j},u_{n+j})$, $\alpha_j,\beta_j$ 是常数，$\alpha_0$ 和 $\beta_0$ 不同时为 0</p>
+<p>定理（多步法性质定理）：多步法和下列三个性质等价：</p>
+<ul>
+<li><p>p阶精度：</p>
+<script type="math/tex; mode=display">
+   c_0=c_1=c_2\cdots=c_p=0</script></li>
+<li><p>*对每个次数 $\leq p$ 的多项式，$L[f_p(t);h]=0$</p>
+</li>
+<li><p>*对一切 $u(t)\in C^{p+1},L[u(t);h]=O(h^{p+1})$</p>
+</li>
+</ul>
+<p>局部截断误差主项：$c_{p+1}h^{p+1}u^{(p+1)}(t)$ 称为局部截断误差主项；其中，$c_{p+1}$ 称为局部截断误差主项系数，其整体截断误差 $E_n=O(h^p)$，故称为 p 阶 k 步法。</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+c_0=\alpha_0+\alpha_1+\cdots+\alpha_k=0\\
+c_1=\alpha_1+2\alpha_2+\cdots+k\alpha_k-(\beta_0+\beta_1+\cdots+\beta_k)=0\\
+\qquad\qquad\qquad\vdots\\
+c_p=\frac{1}{p!}(\alpha_1+2^p\alpha_2+\cdots+k^p\alpha_k)-\frac{1}{(p-1)!}(\beta_1+2\beta^{p-1}\beta_2+\cdots+k^{p-1}\beta_k)=0\\
+c_{p+1}\neq0
+\end{array}
+\right.</script><p>有 p+1 个方程，2k+1 个未知量，因此 $p\leq 2k$；线性 k 步法最高可达到 2k 阶精度（整体截断误差）</p>
+<p>观察可知，$c_i$ 中，$\beta$ 部分的系数均与 $c_{i-1}$ 中 $\alpha$部分的系数一致。</p>
+<h4 id="收敛性"><a href="#收敛性" class="headerlink" title="收敛性"></a>收敛性</h4><p>对于单步法，当方法的阶 $p\geq1$ 时，有整体误差</p>
+<script type="math/tex; mode=display">
+E_n=u(t_n)-u_n=O(h^p)</script><p>故有 $\lim\limits_{h\to0}E_n=0$，因此方法是收敛的</p>
+<p>对多步法，若方法是 k 步 p 阶法，</p>
+<script type="math/tex; mode=display">
+\sum\limits_{j=0}^k\alpha_ju_{n+j}=h\sum\limits^k_{j=0}\beta_jf_{n+j},\;\alpha_k\neq0</script><p>则多步法的第一特征多项式为：</p>
+<script type="math/tex; mode=display">
+\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j</script><p>第二特征多项式为：</p>
+<script type="math/tex; mode=display">
+\sigma(\lambda)=\sum\limits_{j=0}^k\beta_j\lambda^j</script><p>若多步法的第一特征多项式 $\rho(\lambda)$ 的所有根（复根）在单位圆或圈上（$|\lambda|\leq1$），且位于单位圆周上的根都是单根，则称多步法满足根条件。若线性多步法的阶 $p\geq1$，且满足根条件，则方法是收敛的。</p>
+<p>所以，收敛需要同时满足如下两个条件：</p>
+<ul>
+<li>依据第一特征多项式 $\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j=0$，解出 $\lambda$，判断是否有 $|\lambda|\leq1$</li>
+<li>判断该多步法的阶是否有：$p\geq1$</li>
+</ul>
+<h4 id="绝对稳定区间"><a href="#绝对稳定区间" class="headerlink" title="绝对稳定区间"></a>绝对稳定区间</h4><p>定义：一个数值方法用于求解模型问题 $u’=\mu u$，若在平面中的某一区域 D 中方法都是绝对稳定的，而在区域 D 外，方法是不稳定的，则称 D 是方法的绝对稳定区域，它与实轴的交称为绝对稳定区间</p>
+<p>特征方程：</p>
+<script type="math/tex; mode=display">
+\rho(\lambda)-\bar{h}\sigma(\lambda)=0</script><p>其中 </p>
+<script type="math/tex; mode=display">
+\rho(\lambda)=\sum\limits^k_{j=0}\alpha_j\lambda^j\qquad \sigma(\lambda)=\sum\limits^k_{j=0}\beta_j\lambda^j\qquad
+\bar{h}=\mu h</script><p>由于 $\mu&lt;0$，所以 $\bar{h}&lt;0$</p>
+<p>绝对稳定域：若特征方程 $\rho(\lambda)-\bar{h}\sigma(\lambda)=0$ 的根都在单位圆内（$|\lambda|&lt;1$），则线性多步法关于 $\bar{h}=\mu h$ 绝对稳定，其绝对稳定域是复平面 $\bar{h}$ 上的区域：</p>
+<script type="math/tex; mode=display">
+D=\{\bar{h}|\lambda_j(\bar{h})<1,\quad j=1,2,\cdots,k\}</script><p>绝对稳定域的使用判别法：实系数二次方程 $\lambda^2-b\lambda-c=0$ 的根在单位圆的充分必要条件为：</p>
+<script type="math/tex; mode=display">
+|b|<1-c<2</script><p>可通过上述方法得到：隐 Euler 法、梯形法 均无条件稳定</p>
+<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p>1</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/515e2ae90de965ece74f7b8b8eab11d4-20230610155048445-63f1ca.png" alt="image-20230610104633677"></p>
+<p>2</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/3bac1b7c87b15a2666f4580857712b1e-20230610155055954-fec7ed.png" alt="image-20230610104649386"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/74212a56ae5b8669588c49f7a40c4b9d-20230610155102357-3d9974.png" alt="image-20230610104700736"></p>
+<p>3</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/02b384e1505fe13b9ecd27584abbce45-20230610155110222-ea7c89.png" alt="image-20230610104724651"></p>
+<p>4</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/6863a2d149ba1ddc9307e59e54f5a8d7-20230610155119684-1eb22c.png" alt="image-20230610104735261"></p>
+<p>5</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/5033b4ee5135599026c0584a30af3f6a-20230610155125751-412055.png" alt="image-20230610143222061"></p>
+<p>6</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/cf39a7d9c981ef522ccf1ff69d008993-20230610155132020-0f5535.png" alt="image-20230610143232039"></p>
+<p>7 </p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/91b5de19da0d4fcd421ae613820e74af-20230610155142708-7656ee.png" alt="image-20230610144139312"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/0cf123352a652d1256bae0acf881db0f-20230610155149017-5d2a26.png" alt="image-20230610144148651"></p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/21f8438d829089960d62e23b7e25bad5-20230610155154439-140b9e.png" alt="image-20230610144156795"></p>
+<h3 id="本章做题的一般流程"><a href="#本章做题的一般流程" class="headerlink" title="*本章做题的一般流程"></a>*本章做题的一般流程</h3><blockquote>
+<p>此次考试中，本章内容较难且多，大部分难以理解，且作为最后一部分内容，从各方面来说对于首次接触的同学来说都是不太友好的。因此，老师贴心地对 Runge-Kutta 部分不做考核要求。</p>
+<p>此处总结部分大题中可能涉及到的套路，小题概念部分可参考课本或课程 PPT。</p>
+</blockquote>
+<p>首先，将整理所给条件，分别将 $u,f$ 移动到等号两边，成为下式的形式</p>
+<script type="math/tex; mode=display">
+\sum\limits_{j=0}^k\alpha_ju_{n+j}=h\sum\limits^k_{j=0}\beta_jf_{n+j}</script><ul>
+<li><p>求方法阶数、截断误差主项系数、主项</p>
+<p>   构造线性方程组，得到有 $c_0=c_1=\cdots=c_p=0$ ，而 $c_{p+1}\neq0$ 为局部截断误差主项的系数，具体如下：</p>
+<script type="math/tex; mode=display">
+   \left\{
+   \begin{array}{l}
+   c_0=\alpha_0+\alpha_1+\cdots+\alpha_k=0\\
+   c_1=\alpha_1+2\alpha_2+\cdots+k\alpha_k-(\beta_0+\beta_1+\cdots+\beta_k)=0\\
+   \qquad\qquad\qquad\vdots\\
+   c_p=\frac{1}{p!}(\alpha_1+2^p\alpha_2+\cdots+k^p\alpha_k)-\frac{1}{(p-1)!}(\beta_1+2\beta^{p-1}\beta_2+\cdots+k^{p-1}\beta_k)=0\\
+   c_{p+1}\neq0
+   \end{array}
+   \right.</script><p>   得到局部误差主项为 $c^{p+1}h^{p+1}u^{p+1}(t_n)$</p>
+<p>   此方法为 k 步 p 阶法</p>
+</li>
+<li><p>讨论收敛性</p>
+<p>   依据第一特征多项式 $\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j=0$，解出 $\lambda$，判断是否有 $|\lambda|\leq1$；并判断是否有阶数 $p\geq1$；若上述条件均满足，则收敛</p>
+</li>
+<li><p>求绝对稳定区间</p>
+<p>   构造特征方程</p>
+<script type="math/tex; mode=display">
+   \rho(\lambda)-\bar{h}\sigma(\lambda)=0</script><p>   并转换为实系数二次方程：</p>
+<script type="math/tex; mode=display">
+   \lambda^2-b\lambda-c=0</script><p>   求解不等式</p>
+<script type="math/tex; mode=display">
+   |b|<1-c<2</script><p>   得到 $\bar{h}$ 的范围即为绝对稳定区间，需要注意的是  $\bar{h}&lt;0$ 被认为是必须满足的已知条件</p>
+</li>
+</ul>
+<p>可结合上节例7或本节下述例题部分理解该过程</p>
+<h4 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h4><p>证明求解一阶常微分方程初值问题：$u’=f(t,u),u(0)=u_0$ 的差分格式 $u_{n+2}-u_{n+1}=\frac{h}{12}(5f_{n+2}+8f_{n+1}-f_n)$ <strong>收敛</strong>并求其<strong>局部截断误差主项</strong>，<strong>绝对稳定区间</strong></p>
+<p>解：</p>
+<p>依题意可得</p>
+<script type="math/tex; mode=display">
+\alpha_0=0\quad\alpha_1=-1\quad\alpha_2=1</script><script type="math/tex; mode=display">
+\beta_0=\frac{-1}{12}\quad\beta_1=\frac{8}{12}\quad\beta_2=\frac{5}{12}</script><p>从而可以构造线性方程组，得到</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{array}{l}
+c_0=1-1=0\\
+c_1=(-1+2\times1)-(\frac{-1}{12}+\frac{8}{12}+\frac{5}{12})=0\\
+c_2=\frac{1}{2}(-1+1*2^2)-(\frac{8}{12}+2\times\frac{5}{12})=0\\
+c_3=\frac{1}{6}(-1+1*2^3)-\frac{1}{2}(\frac{8}{12}+2^2\times\frac{5}{12})=0\\
+c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac{-1}{24}\neq0
+\end{array}
+\right.</script><p>因此，此方法为隐式二步三阶法，其局部截断误差主项为 $\frac{-1}{24}h^4u^{(4)}(t_n)$</p>
+<p>由差分格式可构造第一特征多项式</p>
+<script type="math/tex; mode=display">
+\rho(\lambda)=\lambda^2-\lambda</script><p>第二特征多项式</p>
+<script type="math/tex; mode=display">
+\sigma(\lambda)=\frac{5}{12}\lambda^2+\frac{8}{12}\lambda-\frac{1}{12}</script><p>令 $\rho(\lambda)=\lambda^2-\lambda=0$</p>
+<p>得 $\lambda_1=0,\;\lambda_2=1$，则其特征值满足根条件 $|\lambda|&lt;1$，且阶数 $p\geq1$，因此该方法收敛</p>
+<p>构造特征方程：</p>
+<script type="math/tex; mode=display">
+\rho(\lambda)-\bar{h}\sigma(\lambda)=
+(1-\frac{5}{12}\bar{h})\lambda^2-(1+\frac{8}{12}\bar{h})\lambda+\frac{1}{12}\bar{h}
+=0</script><p>将特征方程二次项系数化为 1，可得</p>
+<script type="math/tex; mode=display">
+\lambda^2-
+(\frac{12+8\bar{h}}{12-5\bar{h}})\lambda-
+\frac{(-\bar{h})}{12-5\bar{h}}=0</script><p>求解不等式 $|b|&lt;1-c&lt;2$，即</p>
+<script type="math/tex; mode=display">
+\left|
+(\frac{12+8\bar{h}}{12-5\bar{h}})
+\right|<
+1-\frac{(-\bar{h})}{12-5\bar{h}}=
+\frac{12-4\bar{h}}{12-5\bar{h}}<2</script><p>注意到已知 $\bar{h}&lt;0$</p>
+<p>而 $1-\frac{(-\bar{h})}{12-5\bar{h}}=<br>\frac{12-4\bar{h}}{12-5\bar{h}}&lt;2$ 自然成立，</p>
+<p>再求解 $<br>\left|<br>(\frac{12+8\bar{h}}{12-5\bar{h}})<br>\right|&lt;\frac{12-4\bar{h}}{12-5\bar{h}}$ </p>
+<p>得到 $-12+4\bar{h}&lt;12+8\bar{h}&lt;12-4\bar{h}$， </p>
+<p>而 $12+8\bar{h}&lt;12-4\bar{h}$ 自然成立，</p>
+<p>即有 $-3+\bar{h}&lt;3+2\bar{h}$，</p>
+<p>可得其绝对稳定区间为 $-6&lt;\bar{h}&lt;0$</p>
+<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
+        </div>
+        <!-- .entry-content -->
+        <div class="single-reward">
+          <div class="reward-open">赏
+            <div class="reward-main">
+              <ul class="reward-row">
+                <!--<li class="alipay-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@mainnull"></li>-->
+                <li class="wechat-code"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/custom/donate/WechanSQ2.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+        
+          
+            <div class="post-nepre full next">
+          
+            <a href="/2023/06/05/2022-2023-春学期-矩阵与数值分析-C6-插值函数的应用/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                2022-2023 春学期 矩阵与数值分析 C6 插值函数的应用</h3>
+                <hr>
+              </div>
+            </a>
+          </div>
+        
+      </section>
       
-  <!-- 首页默认取最最新文章集 -->
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
 
-  <div class="post-thumb">
-    <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-6-10 15:06</div>
-      <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法/" class="post-title">
-        <h3>2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第六章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
+
+
+
+
+    <div id="tcomment"></div>
+	<style>
+	.el-textarea__inner{
+		height: 130px;
+	}
+	</style>
+    <script src="https://cdn.staticfile.org/twikoo/1.6.8/twikoo.all.min.js"></script>
+    <script>
+    window.onload = function () {
+      var loadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
+      document.getElementById("page_loading_time").innerHTML = "It took me " + loadTime + "ms to meet you this time";
+      console.log('Page load time is ' + loadTime);
+      // var valine = new Valine();
+      // valine.init({
+      //   el: '#vcomments',
+      //   avatar: 'monsterid',
+      //   appId: "",
+      //   appKey: "",
+      //   path: window.location.pathname,
+      //   serverURL: "",
+      //   placeholder: "你是我一生只会遇见一次的惊喜"
+      // })
+        twikoo.init({
+          envId: 'https://vercel-for-blog.vercel.app/', // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+          el: '#tcomment', // 容器元素
+          // region: 'ap-guangzhou', // 环境地域，默认为 ap-shanghai，腾讯云环境填 ap-shanghai 或 ap-guangzhou；Vercel 环境不填
+          // path: location.pathname, // 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数
+          // lang: 'zh-CN', // 用于手动设定评论区语言，支持的语言列表 https://github.com/imaegoo/twikoo/blob/main/src/client/utils/i18n/index.js
+        })
+    }
+    </script>
+
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+          <a href="https://owuiviuwo.github.io/" class="profile gravatar"><img src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/avatar.jpg" itemprop="image" alt="owuiviuwo" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://owuiviuwo.github.io/" itemprop="url" rel="author">owuiviuwo</a>
+            </h3>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/06/05/2022-2023-春学期-矩阵与数值分析-C6-插值函数的应用/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-6-5 14:06</div>
-      <a href="/2023/06/05/2022-2023-春学期-矩阵与数值分析-C6-插值函数的应用/" class="post-title">
-        <h3>2022-2023 春学期 矩阵与数值分析 C6 插值函数的应用</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第六章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/06/05/2022-2023-春学期-矩阵与数值分析-C6-插值函数的应用/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/06/02/2022-2023-春学期-矩阵与数值分析-C5-插值与逼近/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-6-2 10:06</div>
-      <a href="/2023/06/02/2022-2023-春学期-矩阵与数值分析-C5-插值与逼近/" class="post-title">
-        <h3>2022-2023 春学期 矩阵与数值分析 C5 插值与逼近</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第五章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/06/02/2022-2023-春学期-矩阵与数值分析-C5-插值与逼近/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/05/26/2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-5-26 21:05</div>
-      <a href="/2023/05/26/2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法/" class="post-title">
-        <h3>2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第四章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/05/26/2022-2023-春学期-矩阵与数值分析-C4-逐次逼近法/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/05/23/2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-5-23 00:05</div>
-      <a href="/2023/05/23/2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础/" class="post-title">
-        <h3>2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第三章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/05/23/2022-2023-春学期-矩阵与数值分析-C3-矩阵分析基础/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/05/17/2022-2023-春学期-矩阵与数值分析-C2-矩阵的变换和计算/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-5-17 17:05</div>
-      <a href="/2023/05/17/2022-2023-春学期-矩阵与数值分析-C2-矩阵的变换和计算/" class="post-title">
-        <h3>2022-2023 春学期 矩阵与数值分析 C2 矩阵的变换和计算</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第二章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/05/17/2022-2023-春学期-矩阵与数值分析-C2-矩阵的变换和计算/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/03/10/2022-2023-春学期-矩阵与数值分析-C1-绪论/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-3-10 13:03</div>
-      <a href="/2023/03/10/2022-2023-春学期-矩阵与数值分析-C1-绪论/" class="post-title">
-        <h3>2022-2023 春学期 矩阵与数值分析 C1 绪论</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/矩阵与数值分析/">矩阵与数值分析<em>·</em></a>
-          
-            <a href="/tags/数学/">数学<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>矩阵与数值分析第一章内容</p>
-        <div class="post-bottom">
-          <a href="/2023/03/10/2022-2023-春学期-矩阵与数值分析-C1-绪论/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/03/02/2022秋学期-高级操作系统期末整理-精简版/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/26/151d61752a11157cec91f00c2a37e943-20230226104700259-a12130.jpeg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-3-2 21:03</div>
-      <a href="/2023/03/02/2022秋学期-高级操作系统期末整理-精简版/" class="post-title">
-        <h3>2022秋学期 高级操作系统期末整理-精简版</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/高级操作系统/">高级操作系统<em>·</em></a>
-          
-            <a href="/tags/分布式/">分布式<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>2022秋学期高级操作系统期末重点问题内容整理-精简版</p>
-        <div class="post-bottom">
-          <a href="/2023/03/02/2022秋学期-高级操作系统期末整理-精简版/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb post-list-thumb-left"  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/02/25/2022秋学期-高级操作系统期末整理/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/26/151d61752a11157cec91f00c2a37e943-20230226104700259-a12130.jpeg">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-2-25 16:02</div>
-      <a href="/2023/02/25/2022秋学期-高级操作系统期末整理/" class="post-title">
-        <h3>2022秋学期-高级操作系统期末整理</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/高级操作系统/">高级操作系统<em>·</em></a>
-          
-            <a href="/tags/分布式/">分布式<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>2022秋学期高级操作系统期末重点问题内容整理</p>
-        <div class="post-bottom">
-          <a href="/2023/02/25/2022秋学期-高级操作系统期末整理/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-    
-<article  class="post post-list-thumb" itemscope="" itemtype="https://schema.org/BlogPosting">
-
-  <div class="post-thumb">
-    <a href="/2023/02/12/2022秋学期-高级操作系统课件后习题/">
-      <img class="lazyload" onerror="imgError(this,3)" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/02/12/5e86e3c7e4f7209136b404eaea15d703-20230212190057-a2ed31.png">
-    </a>
-  </div>
-  <div class="post-content-wrap">
-    <div class="post-content">
-      <div class="post-date">
-        <i class="iconfont icon-time">
-        </i>2023-2-12 17:02</div>
-      <a href="/2023/02/12/2022秋学期-高级操作系统课件后习题/" class="post-title">
-        <h3>2022秋学期 高级操作系统课件后习题</h3>
-      </a>
-      <div class="post-meta">
-        <span><i class="fa fa-tags"></i>
-        
-            <a href="/tags/课程/">课程<em>·</em></a>
-          
-            <a href="/tags/高级操作系统/">高级操作系统<em>·</em></a>
-          
-            <a href="/tags/分布式/">分布式<em>·</em></a>
-          
-        </span>
-        <span>
-          <i class="iconfont icon-file"></i>
-          
-            <a href="/categories/课程/">课程</a>
-          
-        </span>
-      </div>
-      <div class="float-content">
-        <p>2022秋学期高级操作系统课件后的习题整理与解答</p>
-        <div class="post-bottom">
-          <a href="/2023/02/12/2022秋学期-高级操作系统课件后习题/" class="button-normal">
-            <i class="iconfont icon-caidan"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</article>
-  
-
-
-    </main>
-    <!-- 首页默认取最最新文章集 -->
-    <!-- 
-      <nav class="navigator">
-        
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="iconfont icon-right"></i></a>
-      </nav>
-     -->
-  </div>
-  
-    <div id="pagination"><a href="/page/2/" class="">Previous</a></div>
-  
+        <hr>
+        <p><i class="iconfont icon-write"></i>Learn and Live</p>
+      </section>
+    </main><!-- #main -->
+  </div><!-- #primary -->
 </div>
+
+
 
     </div>    
     <div class="ins-search">
