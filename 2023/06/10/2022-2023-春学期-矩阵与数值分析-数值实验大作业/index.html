@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法 | owuiviuwo&#39;s blog!</title>
+  <title itemprop="name">2022-2023 春学期 矩阵与数值分析 数值实验大作业 | owuiviuwo&#39;s blog!</title>
   
     <link rel="shortcut icon" href="/images/hamster.png">
   
@@ -383,7 +383,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h1>
+      2022-2023 春学期 矩阵与数值分析 数值实验大作业</h1>
       <p class="entry-census">
         <span>
           <a href="https://owuiviuwo.github.io/">
@@ -474,13 +474,13 @@
 				  S = S < 10 ? '0' + S : S;
 				  return Y + '-' + M + '-' + D + ' ' + H + ':' + Mi + ':' + S;
 			  }
-			  // var pdate = new Date("1686383262000");
-			  var pdate = new Date(1686383262000);
+			  // var pdate = new Date("1686402476000");
+			  var pdate = new Date(1686402476000);
 			  console.log("pdate="+pdate);
-			  console.log("1686383262000");
-			  //var update = new Date("1686384134131");
-			  var update = new Date(1686384134131);
-			  console.log("1686384134131");
+			  console.log("1686402476000");
+			  //var update = new Date("1686402823759");
+			  var update = new Date(1686402823759);
+			  console.log("1686402823759");
 			  console.log("update="+update);
 			  var now = new Date();
 			  console.log("now="+now);
@@ -502,221 +502,876 @@
         <!--<div class="toc-entry-content"><!-- 套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法"><a href="#2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法"></a>2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h1><h2 id="C7-常微分方程的数值解法"><a href="#C7-常微分方程的数值解法" class="headerlink" title="C7 常微分方程的数值解法"></a>C7 常微分方程的数值解法</h2><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><p>一阶常微分方程的初值问题</p>
-<script type="math/tex; mode=display">
-\left\{
-\begin{array}{l}
-u'=f(t,u),\;a\leq t\leq b\\
-u(a)=u_0
-\end{array}
-\right.</script><p> 解的存在唯一性：若 $f(t,u)$ 满足 Lipschitz 条件，即存在常数 L，对任意 $t\in[a,b]$ 均有 $|f(t,u)-f(t,\bar{u})|\leq L|u-\bar{u}|$ 则问题的解存在且唯一。</p>
-<p>但初值问题大多数情况下无法求得解析解，因此求其数值解；使用离散化的方法，在一系列预先取定的离散点（节点）中求出未知函数的近似值作为初值问题的数值解。</p>
-<h3 id="7-1-基于数值积分的数值方法"><a href="#7-1-基于数值积分的数值方法" class="headerlink" title="7.1 基于数值积分的数值方法"></a>7.1 基于数值积分的数值方法</h3><h4 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h4><p>将节点取为 $t_n=a+nh\quad h=\frac{b-a}{N},\quad n=0,1,2,\cdots,N$，每个节点区间求积分</p>
-<script type="math/tex; mode=display">
-\left\{
-\begin{array}{l}
-u(t_n+1)=u(t_n)+\int^{t_{n+1}}_{t_n}f(t,u(t))dt\\
-u(t_0)=u_0
-\end{array}
-\right.</script><p>如果 $y(t_n)$ 的近似值 $u_n$ 已经求出，则计算右端项的数值积分可求出 $u(t_{n+1})$ 的近似值 $u_{n+1}$</p>
-<h4 id="Euler-法"><a href="#Euler-法" class="headerlink" title="Euler 法"></a>Euler 法</h4><p>对有段积分项使用左矩形公式，则得</p>
-<script type="math/tex; mode=display">
-u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+hf(t_n,u(t_n))</script><p>令 </p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+hf(t_n,u_n)\qquad n=0,1,2,\cdots,N-1</script><p>上式称为 Euler 求解公式，又称矩形公式。</p>
-<p>该公式具有一阶精度，局部截断误差主项为 $1/2$</p>
-<h4 id="隐-Euler-法"><a href="#隐-Euler-法" class="headerlink" title="隐 Euler 法"></a>隐 Euler 法</h4><p>对右端积分项使用右矩形求积公式，则得</p>
-<script type="math/tex; mode=display">
-u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+hf(t_{n+1},u(t_{n+1}))</script><p>令</p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+hf(t_{n+1},u_{n+1})\qquad n=0,1,2,\cdots,N-1</script><p>上式称为隐 Euler 公式，又称右矩形公式，或向后 Euler 公式</p>
-<p>隐式公式需要求解方程，或利用迭代法求解；可通过<strong>移项</strong>的方式将其<strong>显式化</strong></p>
-<p>该公式具有一阶精度，局部截断误差主项为 $-1/2$</p>
-<h4 id="梯形法"><a href="#梯形法" class="headerlink" title="梯形法"></a>梯形法</h4><p>对右端积分项使用梯形求积公式，则得</p>
-<script type="math/tex; mode=display">
-u(t_{n+1})=u(t_n)+\int_{t_n}^{t_{n+1}}f(t,u(t))dt\approx u(t_n)+\frac{h}{2}[f(t_{n},u(t_{n}))+f(t_{n+1},u(t_{n+1}))]</script><p>令</p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+\frac{h}{2}[f(t_{n},u(t_{n}))+f(t_{n+1},u(t_{n+1}))]\qquad n=0,1,2,\cdots,N</script><p>上式称为梯形公式，简称梯形法，梯形公式可看作 Euler 公式与隐式 Euler 公式的算数平均</p>
-<p>该公式具有二阶精度，局部截断误差主项为 $-1/12$</p>
-<h4 id="改进的-Euler-法"><a href="#改进的-Euler-法" class="headerlink" title="改进的 Euler 法"></a>改进的 Euler 法</h4><p>为避免求解非线性代数方程，可以用 Euler 法将其显化，建立预测——校正系统：</p>
-<script type="math/tex; mode=display">
-\left\{
-\begin{array}{l}
-u(t_0)=u_0\\
-\bar{u}_{n+1}=u_n+hf(t_n,u_n)\\
-u_{n+1}=u_n+\frac{h}{2}(f(t_n,u_n)+f(t_{n+1},\bar{u}_{n+1}))
-\end{array}
-\right.</script><p>求解公式称为改进的 Euler 法，其中 称为预测值， 称为校正值</p>
-<p>其求解顺序为：</p>
-<script type="math/tex; mode=display">
-u_0\to \bar{u}_1\to u_1\to \bar{u}_2 \to u_2\to\cdots\to\bar{u}_N\to u_N</script><p>改进的 Euler 法还可写为：</p>
-<script type="math/tex; mode=display">
-u_{n+1}=u_n+\frac{h}{2}[f(t_n,u_n)+f(t_{n+1},u_n+hf(t_n,u_n)
-)]</script><p>该公式具有二阶精度</p>
-<h4 id="截断误差与精度"><a href="#截断误差与精度" class="headerlink" title="截断误差与精度"></a>截断误差与精度</h4><p>局部截断误差：假设 $u_i=u(t_i),\;i=0,1,2,\cdots,n-1$ 则称 $R_n(h)=u(t_n)-u_n$ 为求解公式第 n 步的局部截断误差</p>
-<p>整体截断误差：$E_n(h)=u(t_n)-u_n=\sum\limits^n_{t=1}R_t(h)$ 为求解公式在 $t_n$ 点上的整体截断误差</p>
-<p>求解公式具有 p 阶精度：</p>
-<ul>
-<li>求解公式的局部截断误差：$R_n(h)=O(h^{p+1})$</li>
-<li>求解公式的整体截断误差：$E_n(h)=O(h^p)$</li>
-</ul>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/f6c98ab213fa2ce793e369975d52fb9c-20230610154957436-4c5a58.png" alt="image-20230606231654207"></p>
-<p>多步法例子</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/6f17fbdfcda7fa426aebac04386032d8-20230610155008012-05e4a9.png" alt="image-20230606235134339"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/4aa3d3e135c11db2e1bae05baa4c1232-20230610155017323-558b35.png" alt="image-20230607003641371"></p>
-<p>其他</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/5aa6fa54115913d6db152d32d33bd58b-20230610155033183-7352e4.png" alt="image-20230610154013741"></p>
-<script type="math/tex; mode=display">
-\frac{1}{2}\times(-50)h<1</script><h3 id="7-2-基于-Taylor-展式的数值方法"><a href="#7-2-基于-Taylor-展式的数值方法" class="headerlink" title="7.2 基于 Taylor 展式的数值方法"></a>7.2 基于 Taylor 展式的数值方法</h3><p>Runge-Kutta 法（不考</p>
-<h4 id="待定系数法"><a href="#待定系数法" class="headerlink" title="待定系数法"></a>待定系数法</h4><p>线性多步法（k 步线性法）的一般公式：</p>
-<script type="math/tex; mode=display">
-\sum\limits^k_{j=0}\alpha_ju_{n+1}=h\sum\limits^k_{j=0}\beta_jf_{n+j},\;\alpha_k\neq0</script><p>其中 $f_{n+j}=f(t_{n+j},u_{n+j})$, $\alpha_j,\beta_j$ 是常数，$\alpha_0$ 和 $\beta_0$ 不同时为 0</p>
-<p>定理（多步法性质定理）：多步法和下列三个性质等价：</p>
-<ul>
-<li><p>p阶精度：</p>
-<script type="math/tex; mode=display">
-   c_0=c_1=c_2\cdots=c_p=0</script></li>
-<li><p>*对每个次数 $\leq p$ 的多项式，$L[f_p(t);h]=0$</p>
-</li>
-<li><p>*对一切 $u(t)\in C^{p+1},L[u(t);h]=O(h^{p+1})$</p>
-</li>
-</ul>
-<p>局部截断误差主项：$c_{p+1}h^{p+1}u^{(p+1)}(t)$ 称为局部截断误差主项；其中，$c_{p+1}$ 称为局部截断误差主项系数，其整体截断误差 $E_n=O(h^p)$，故称为 p 阶 k 步法。</p>
-<script type="math/tex; mode=display">
-\left\{
-\begin{array}{l}
-c_0=\alpha_0+\alpha_1+\cdots+\alpha_k=0\\
-c_1=\alpha_1+2\alpha_2+\cdots+k\alpha_k-(\beta_0+\beta_1+\cdots+\beta_k)=0\\
-\qquad\qquad\qquad\vdots\\
-c_p=\frac{1}{p!}(\alpha_1+2^p\alpha_2+\cdots+k^p\alpha_k)-\frac{1}{(p-1)!}(\beta_1+2\beta^{p-1}\beta_2+\cdots+k^{p-1}\beta_k)=0\\
-c_{p+1}\neq0
-\end{array}
-\right.</script><p>有 p+1 个方程，2k+1 个未知量，因此 $p\leq 2k$；线性 k 步法最高可达到 2k 阶精度（整体截断误差）</p>
-<p>观察可知，$c_i$ 中，$\beta$ 部分的系数均与 $c_{i-1}$ 中 $\alpha$部分的系数一致。</p>
-<h4 id="收敛性"><a href="#收敛性" class="headerlink" title="收敛性"></a>收敛性</h4><p>对于单步法，当方法的阶 $p\geq1$ 时，有整体误差</p>
-<script type="math/tex; mode=display">
-E_n=u(t_n)-u_n=O(h^p)</script><p>故有 $\lim\limits_{h\to0}E_n=0$，因此方法是收敛的</p>
-<p>对多步法，若方法是 k 步 p 阶法，</p>
-<script type="math/tex; mode=display">
-\sum\limits_{j=0}^k\alpha_ju_{n+j}=h\sum\limits^k_{j=0}\beta_jf_{n+j},\;\alpha_k\neq0</script><p>则多步法的第一特征多项式为：</p>
-<script type="math/tex; mode=display">
-\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j</script><p>第二特征多项式为：</p>
-<script type="math/tex; mode=display">
-\sigma(\lambda)=\sum\limits_{j=0}^k\beta_j\lambda^j</script><p>若多步法的第一特征多项式 $\rho(\lambda)$ 的所有根（复根）在单位圆或圈上（$|\lambda|\leq1$），且位于单位圆周上的根都是单根，则称多步法满足根条件。若线性多步法的阶 $p\geq1$，且满足根条件，则方法是收敛的。</p>
-<p>所以，收敛需要同时满足如下两个条件：</p>
-<ul>
-<li>依据第一特征多项式 $\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j=0$，解出 $\lambda$，判断是否有 $|\lambda|\leq1$</li>
-<li>判断该多步法的阶是否有：$p\geq1$</li>
-</ul>
-<h4 id="绝对稳定区间"><a href="#绝对稳定区间" class="headerlink" title="绝对稳定区间"></a>绝对稳定区间</h4><p>定义：一个数值方法用于求解模型问题 $u’=\mu u$，若在平面中的某一区域 D 中方法都是绝对稳定的，而在区域 D 外，方法是不稳定的，则称 D 是方法的绝对稳定区域，它与实轴的交称为绝对稳定区间</p>
-<p>特征方程：</p>
-<script type="math/tex; mode=display">
-\rho(\lambda)-\bar{h}\sigma(\lambda)=0</script><p>其中 </p>
-<script type="math/tex; mode=display">
-\rho(\lambda)=\sum\limits^k_{j=0}\alpha_j\lambda^j\qquad \sigma(\lambda)=\sum\limits^k_{j=0}\beta_j\lambda^j\qquad
-\bar{h}=\mu h</script><p>由于 $\mu&lt;0$，所以 $\bar{h}&lt;0$</p>
-<p>绝对稳定域：若特征方程 $\rho(\lambda)-\bar{h}\sigma(\lambda)=0$ 的根都在单位圆内（$|\lambda|&lt;1$），则线性多步法关于 $\bar{h}=\mu h$ 绝对稳定，其绝对稳定域是复平面 $\bar{h}$ 上的区域：</p>
-<script type="math/tex; mode=display">
-D=\{\bar{h}|\lambda_j(\bar{h})<1,\quad j=1,2,\cdots,k\}</script><p>绝对稳定域的使用判别法：实系数二次方程 $\lambda^2-b\lambda-c=0$ 的根在单位圆的充分必要条件为：</p>
-<script type="math/tex; mode=display">
-|b|<1-c<2</script><p>可通过上述方法得到：隐 Euler 法、梯形法 均无条件稳定</p>
-<h5 id="例题-1"><a href="#例题-1" class="headerlink" title="例题"></a>例题</h5><p>1</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/515e2ae90de965ece74f7b8b8eab11d4-20230610155048445-63f1ca.png" alt="image-20230610104633677"></p>
+          <h1 id="2022-2023-春学期-矩阵与数值分析-数值实验大作业"><a href="#2022-2023-春学期-矩阵与数值分析-数值实验大作业" class="headerlink" title="2022-2023 春学期 矩阵与数值分析 数值实验大作业"></a>2022-2023 春学期 矩阵与数值分析 数值实验大作业</h1><h2 id="数值实验大作业题目"><a href="#数值实验大作业题目" class="headerlink" title="数值实验大作业题目"></a>数值实验大作业题目</h2><p>《计算机科学计算》第二版 张宏伟等 编著 高等教育出版社</p>
+<p>第162页 第四章课后习题第12（1）题、第16题</p>
+<p>第216页 第六章课后习题第12题</p>
+<p>《数值分析方法与应用》，张宏伟、孟兆良编著；大连理工大学出版社</p>
+<p>第214页：</p>
+<p>一、基础知识部分</p>
+<p>1、5</p>
+<p>二、线性方程组求解</p>
+<p>2、6</p>
+<p>三、非线性方程组求解</p>
+<p>1、4</p>
+<p>四、插值与逼近</p>
+<p>1、5、7</p>
+<p>五、数值积分</p>
 <p>2</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/3bac1b7c87b15a2666f4580857712b1e-20230610155055954-fec7ed.png" alt="image-20230610104649386"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/74212a56ae5b8669588c49f7a40c4b9d-20230610155102357-3d9974.png" alt="image-20230610104700736"></p>
-<p>3</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/02b384e1505fe13b9ecd27584abbce45-20230610155110222-ea7c89.png" alt="image-20230610104724651"></p>
-<p>4</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/6863a2d149ba1ddc9307e59e54f5a8d7-20230610155119684-1eb22c.png" alt="image-20230610104735261"></p>
-<p>5</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/5033b4ee5135599026c0584a30af3f6a-20230610155125751-412055.png" alt="image-20230610143222061"></p>
-<p>6</p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/cf39a7d9c981ef522ccf1ff69d008993-20230610155132020-0f5535.png" alt="image-20230610143232039"></p>
-<p>7 </p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/91b5de19da0d4fcd421ae613820e74af-20230610155142708-7656ee.png" alt="image-20230610144139312"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/0cf123352a652d1256bae0acf881db0f-20230610155149017-5d2a26.png" alt="image-20230610144148651"></p>
-<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/21f8438d829089960d62e23b7e25bad5-20230610155154439-140b9e.png" alt="image-20230610144156795"></p>
-<h3 id="本章做题的一般流程"><a href="#本章做题的一般流程" class="headerlink" title="*本章做题的一般流程"></a>*本章做题的一般流程</h3><blockquote>
-<p>此次考试中，本章内容较难且多，大部分难以理解，且作为最后一部分内容，从各方面来说对于首次接触的同学来说都是不太友好的。因此，老师贴心地对 Runge-Kutta 部分不做考核要求。</p>
-<p>此处总结部分大题中可能涉及到的套路，小题概念部分可参考课本或课程 PPT。</p>
-</blockquote>
-<p>首先，将整理所给条件，分别将 $u,f$ 移动到等号两边，成为下式的形式</p>
+<p>六、微分方程数值解法</p>
+<p>1</p>
+<h2 id="实验程序环境"><a href="#实验程序环境" class="headerlink" title="实验程序环境"></a>实验程序环境</h2><pre><code class="lang-python"># colab
+# python 3.10
+import math
+from math import exp
+from math import pow
+from math import sqrt
+from math import sin
+from math import cos
+from math import pi
+import matplotlib.pyplot as plt
+import numpy as np
+import sympy
+</code></pre>
+<h2 id="1-1-第四章课后题-12-1"><a href="#1-1-第四章课后题-12-1" class="headerlink" title="1.1 第四章课后题 12(1)"></a>1.1 第四章课后题 12(1)</h2><h3 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h3><p>用 Newton 法求下列方程的根，要求 $|x_k-x_{k-1}|&lt;10^{-5}$</p>
+<p>(2) $x=e^{-x}$，取 $x_0=0.6$</p>
+<p>程序</p>
+<pre><code class="lang-python">def f(x):
+  return exp(-x)-x
+def df(x):
+  return -exp(-x)-1
+def Newton(f,df):
+  x0 = 0.6
+  x1 = 0
+  t = abs(x1 - x0)
+  while t &gt;= 1e-5:
+    x1 = x0-f(x0)/df(x0)
+    t = abs(x1-x0)
+    print(*[x1,x0,t])
+    x0 = x1
+
+  return x0
+Newton(f,df)
+</code></pre>
+<p>输出</p>
+<pre><code>0.5669499100387272 0.6 0.03305008996127279
+0.5671432836426546 0.5669499100387272 0.00019337360392746028
+0.5671432904097838 0.5671432836426546 6.767129190343724e-09
+0.5671432904097838
+</code></pre><h2 id="1-2-第四章课后题-16"><a href="#1-2-第四章课后题-16" class="headerlink" title="1.2  第四章课后题 16"></a>1.2  第四章课后题 16</h2><h3 id="题目：-1"><a href="#题目：-1" class="headerlink" title="题目："></a>题目：</h3><p>Heonardo 于 1225 年研究了方程</p>
 <script type="math/tex; mode=display">
-\sum\limits_{j=0}^k\alpha_ju_{n+j}=h\sum\limits^k_{j=0}\beta_jf_{n+j}</script><ul>
-<li><p>求方法阶数、截断误差主项系数、主项</p>
-<p>   构造线性方程组，得到有 $c_0=c_1=\cdots=c_p=0$ ，而 $c_{p+1}\neq0$ 为局部截断误差主项的系数，具体如下：</p>
+f(x)=x^3+2x^2+10x-20=0</script><p>并得出一个根 $\alpha=1.36880817$，但当时无人知道他用了什么方法，这个结果在当时是个非常著名的结果，请你构造一种简单迭代来验证此结果.</p>
+<p>程序</p>
+<pre><code class="lang-python">def f(x):
+  return pow(x,3)+2*pow(x,2)+10*x-20
+def df(x):
+  return 3*pow(x,2)+4*x+10
+def Newton(f,df):
+  x0 = 1
+  x1 = 0
+  t = abs(x1 - x0)
+  while t &gt;= 1e-10:
+    x1 = x0-f(x0)/df(x0)
+    t = abs(x1-x0)
+    print(*[x1,x0,t])
+    x0 = x1
+
+  return x0
+Newton(f,df)
+</code></pre>
+<p>输出</p>
+<pre><code>1.4117647058823528 1 0.4117647058823528
+1.3693364705882352 1.4117647058823528 0.042428235294117655
+1.3688081886175318 1.3693364705882352 0.0005282819707033148
+1.3688081078213745 1.3688081886175318 8.0796157320151e-08
+1.3688081078213727 1.3688081078213745 1.7763568394002505e-15
+1.3688081078213727
+</code></pre><h2 id="1-3-第六章课后题-12"><a href="#1-3-第六章课后题-12" class="headerlink" title="1.3 第六章课后题 12"></a>1.3 第六章课后题 12</h2><h3 id="题目：-2"><a href="#题目：-2" class="headerlink" title="题目："></a>题目：</h3><p>（数值实验题）人造卫星的轨道可视为平面上的椭圆，地心位于椭圆的一个焦点处。已知一颗人造卫星近地点距地球表面 439km，远地点距地球表面 2384km，地球半径为 6371km，求该卫星的轨道长度</p>
+<p>程序</p>
+<pre><code class="lang-python">er = 6371
+lr = 2384
+sr = 439
+
+a = (2*er+lr+sr)/2.
+c = a - sr - er/2.
+b = sqrt(pow(a,2)-pow(c,2))
+e = c/a
+
+# xmpy = sympy.Symbol(&#39;x&#39;)
+# print(&quot;true value\t{:s}&quot;.format(str(sympy.integrate(4*a*sympy.sqrt((1-sympy.Pow(e,2)*sympy.Pow(xmpy,2))/(1-sympy.Pow(xmpy,2))),(xmpy,0,1.)))))
+# (sympy.integrate(4*a*sympy.sqrt((1-sympy.Pow(e,2)*sympy.Pow(xmpy,2))/
+#  (1-sympy.Pow(xmpy,2))),(xmpy,0,1.)))
+
+def f(x):
+  return 4.*a*sqrt((1-pow(e,2)*pow(x,2))/(1-pow(x,2)))
+def GaussChebyshev(f):
+  return pi/2.*(f(-sqrt(2)/2.)+f(sqrt(2)/2.))
+GaussChebyshev(f)
+</code></pre>
+<p>输出</p>
+<pre><code>128057.20405940955
+</code></pre><h2 id="2-1-基础知识部分-1"><a href="#2-1-基础知识部分-1" class="headerlink" title="2.1 基础知识部分 1"></a>2.1 基础知识部分 1</h2><h3 id="题目：-3"><a href="#题目：-3" class="headerlink" title="题目："></a>题目：</h3><p>设 $S_N=\sum\limits^N_{j=2}\frac{1}{j^2-1}$，其精确值为 $\frac{1}{2}(\frac{3}{2}-\frac{1}{N}-\frac{1}{N+1})$.</p>
+<p>（1）编制按从大到小的顺序 $S_N=\frac{1}{2^2-1}+\frac{1}{3^2-1}+\cdots+\frac{1}{N^2-1}$，计算 $S_N$ 的通用程序.</p>
+<p>（2）编制按从小到大的顺序 $S_N=\frac{1}{N^2-1}+\frac{1}{(N-1)^2-1}+\cdots+\frac{1}{2^2-1}$，计算 $S_N$ 的通用程序.</p>
+<p>（3）按两种顺序分别计算，并指出有效位数（编制程序时用单精度）.</p>
+<p>（4）通过本上机题，你明白了什么.</p>
+<p>程序</p>
+<pre><code class="lang-python">def sn1(N):
+  ans=0
+  for i in range(2,N+1):
+    ans += 1./(pow(i,2)-1)
+  return ans
+sn1(2)
+</code></pre>
+<p>输出</p>
+<pre><code>0.3333333333333333
+</code></pre><p>程序</p>
+<pre><code class="lang-python">def sn2(N):
+  ans=0
+  for i in range(N,2-1,-1):
+    ans += 1./(pow(i,2)-1)
+  return ans
+sn1(2)
+</code></pre>
+<p>输出</p>
+<pre><code>0.3333333333333333
+</code></pre><p>程序</p>
+<pre><code class="lang-python">print(&quot;从小到大计算 SN，N 从 10 到 10^6 的结果分别为：&quot;)
+for i in range(1,7):
+  print(&quot;N=10^&quot;+str(i)+&quot;, SN=&quot;+str(sn1(int(pow(10.,i)))))
+</code></pre>
+<p>输出</p>
+<pre><code>从小到大计算 SN，N 从 10 到 10^6 的结果分别为：
+N=10^1, SN=0.6545454545454544
+N=10^2, SN=0.7400495049504949
+N=10^3, SN=0.7490004995005
+N=10^4, SN=0.7499000049995057
+N=10^5, SN=0.7499900000500057
+N=10^6, SN=0.7499990000005217
+</code></pre><p>程序</p>
+<pre><code class="lang-python">print(&quot;从大到小计算 SN，N 从 10 到 10^6 的结果分别为：&quot;)
+for i in range(1,7):
+  print(&quot;N=10^&quot;+str(i)+&quot;, SN=&quot;+str(sn2(int(pow(10.,i)))))
+</code></pre>
+<p>输出</p>
+<pre><code>从大到小计算 SN，N 从 10 到 10^6 的结果分别为：
+N=10^1, SN=0.6545454545454545
+N=10^2, SN=0.7400495049504949
+N=10^3, SN=0.7490004995004995
+N=10^4, SN=0.7499000049995
+N=10^5, SN=0.7499900000499995
+N=10^6, SN=0.7499990000004999
+</code></pre><p>程序</p>
+<pre><code class="lang-python">def sn(N):
+  return 1./2.*(3./2.-1./N-1./(N+1))
+print(&quot;计算 SN 精确值，N 从 10 到 10^6 的结果分别为：&quot;)
+for i in range(1,7):
+  print(&quot;N=10^&quot;+str(i)+&quot;, SN=&quot;+str(sn(int(pow(10.,i)))))
+</code></pre>
+<p>输出</p>
+<pre><code>计算 SN 精确值，N 从 10 到 10^6 的结果分别为：
+N=10^1, SN=0.6545454545454545
+N=10^2, SN=0.740049504950495
+N=10^3, SN=0.7490004995004995
+N=10^4, SN=0.7499000049995
+N=10^5, SN=0.7499900000499995
+N=10^6, SN=0.7499990000005
+</code></pre><h2 id="2-2-基础知识部分-5"><a href="#2-2-基础知识部分-5" class="headerlink" title="2.2 基础知识部分 5"></a>2.2 基础知识部分 5</h2><h3 id="题目：-4"><a href="#题目：-4" class="headerlink" title="题目："></a>题目：</h3><p>首先编制一个利用秦九韶算法计算一个多项式在给定点的函数值的通用程序，程序包括输入多项式的系数以及给定点，输出函数值，利用编制的程序计算</p>
+<p>程序</p>
+<pre><code class="lang-python">def qinjiushao(factors, xs):
+  # factors 为系数列表，从高次王低次排列
+  # xs 为给定点列表
+  ans = np.array([])
+  for x in xs:
+    t = factors[0]
+    for f in factors[1:]:
+      t = t * x + f
+    # ans.append(t)
+    ans=np.append(ans,[t])
+  return ans
+xs = np.arange(1.95,2.05,0.001)
+factors = np.array([1,-18,144,-672,2016,-4032,5376,-4608,2304,-512])
+y = qinjiushao(factors,xs)
+plt.plot(xs, y, label=&quot;p(x)&quot;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;y&quot;)
+plt.xlim(1.95, 2.05)
+plt.legend()
+plt.show()
+print(y)
+</code></pre>
+<p>输出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/a2b2daae1e058911341589fb0f1fece9-20230610211208954-0f7a90.png" alt="png"></p>
+<pre><code>[-9.66338121e-13  2.95585778e-12  2.04636308e-12 -1.25055521e-12
+1.70530257e-12 -1.98951966e-12  6.02540240e-12 -4.60431693e-12
+-2.50111043e-12  6.59383659e-12 -3.97903932e-13  6.82121026e-12
+-2.27373675e-12 -9.09494702e-13 -1.42108547e-12  5.45696821e-12
+-8.01492206e-12  5.34328137e-12 -2.61479727e-12 -3.18323146e-12
+-1.76214598e-12  1.13686838e-12  2.27373675e-13 -9.66338121e-13
+-2.89901436e-12  1.13686838e-12 -3.01270120e-12 -5.22959454e-12
+-2.84217094e-12  1.13686838e-12 -6.13908924e-12 -7.95807864e-13
+-6.25277607e-13 -2.27373675e-12  3.86535248e-12 -5.28643795e-12
+2.72848411e-12  4.77484718e-12 -2.04636308e-12 -3.41060513e-12
+-2.55795385e-12  1.70530257e-12  3.75166564e-12  1.81898940e-12
+4.54747351e-13  1.36424205e-12  3.52429197e-12  4.09272616e-12
+4.77484718e-12 -7.27595761e-12 -9.66338121e-13  3.86535248e-12
+7.95807864e-13  5.00222086e-12  7.04858394e-12  2.04636308e-12
+-3.41060513e-13 -1.22781785e-11  6.13908924e-12  2.95585778e-12
+3.75166564e-12  4.66116035e-12 -1.76214598e-12  3.86535248e-12
+8.75388650e-12  1.13686838e-12 -8.52651283e-13 -4.20641300e-12
+4.77484718e-12 -1.13686838e-13  1.25055521e-12  1.05728759e-11
+4.88853402e-12  5.00222086e-12  9.32232069e-12 -2.67164069e-12
+-1.25055521e-12  5.79802872e-12 -1.10276233e-11 -3.46744855e-12
+-5.11590770e-13 -3.97903932e-13  2.38742359e-12 -1.36424205e-12
+-6.93489710e-12  6.02540240e-12  2.04636308e-12 -6.13908924e-12
+-8.29913915e-12  7.38964445e-12  5.00222086e-12 -3.12638804e-12
+-1.59161573e-12  1.93267624e-12  3.29691829e-12 -7.95807864e-13
+-5.85487214e-12 -3.92219590e-12  1.13686838e-13  1.70530257e-12]
+</code></pre><h2 id="2-3-线性方程组求解-2"><a href="#2-3-线性方程组求解-2" class="headerlink" title="2.3 线性方程组求解 2"></a>2.3 线性方程组求解 2</h2><h3 id="题目：-5"><a href="#题目：-5" class="headerlink" title="题目："></a>题目：</h3><p>编制程序求解矩阵 A 的 Choleskey 分解，并用程序求解方程组 Ax=b，其中</p>
 <script type="math/tex; mode=display">
-   \left\{
-   \begin{array}{l}
-   c_0=\alpha_0+\alpha_1+\cdots+\alpha_k=0\\
-   c_1=\alpha_1+2\alpha_2+\cdots+k\alpha_k-(\beta_0+\beta_1+\cdots+\beta_k)=0\\
-   \qquad\qquad\qquad\vdots\\
-   c_p=\frac{1}{p!}(\alpha_1+2^p\alpha_2+\cdots+k^p\alpha_k)-\frac{1}{(p-1)!}(\beta_1+2\beta^{p-1}\beta_2+\cdots+k^{p-1}\beta_k)=0\\
-   c_{p+1}\neq0
-   \end{array}
-   \right.</script><p>   得到局部误差主项为 $c^{p+1}h^{p+1}u^{p+1}(t_n)$</p>
-<p>   此方法为 k 步 p 阶法</p>
-</li>
-<li><p>讨论收敛性</p>
-<p>   依据第一特征多项式 $\rho(\lambda)=\sum\limits_{j=0}^k\alpha_j\lambda^j=0$，解出 $\lambda$，判断是否有 $|\lambda|\leq1$；并判断是否有阶数 $p\geq1$；若上述条件均满足，则收敛</p>
-</li>
-<li><p>求绝对稳定区间</p>
-<p>   构造特征方程</p>
+A=
+\begin{pmatrix}
+7&1&-5&1\\1&9&2&7\\-5&2&7&-1\\1&7&-1&9
+\end{pmatrix},\;
+b=(13,-9,6,0)^T</script><p>注：书上原矩阵为 $A=\begin{pmatrix}2&amp;1&amp;-5&amp;1\\1&amp;-5&amp;2&amp;7\\0&amp;2&amp;1&amp;-1\\1&amp;7&amp;-1&amp;-4\end{pmatrix}$，不符合课程中有关对称正定矩阵的 Choleskey 分解的要求，因此依据某版本勘误，修改为本题中矩阵。</p>
+<p>程序</p>
+<pre><code class="lang-python">A = np.array([[7,1,-5,1],[1,9,2,7],[-5,2,7,-1],[1,7,-1,9]])
+b = np.array([[13,-9,6,0]]).T
+def Choleskey(A):
+  ans = np.zeros(A.shape)
+  for j in range(A.shape[0]):
+    for i in range(j, A.shape[0]):
+      t = 0
+      for k in range(0,j):
+        t += pow(ans[j][k],2)
+      ans[j][j] = sqrt(A[j][j]-t)
+      t = 0
+      for k in range(0,j):
+        t += ans[i][k]*ans[j][k]      
+      ans[i][j] = (A[i][j]-t)/ans[j][j]
+  return ans
+
+# L = Choleskey(A_)
+L = Choleskey(A)
+print(&quot;L=&quot;)
+print(L)
+
+def Lyb(L,b):
+  y = np.zeros(b.shape)
+  for i in range(b.shape[0]):
+    t=0
+    for k in range(i):
+      t += L[i][k] * y[k][0]
+    y[i][0] = (b[i][0]-t)/L[i][i]
+  return y
+y = Lyb(L,b)
+print(&#39;y=&#39;)
+print(y)
+
+def LTxy(L,y):
+  x = np.zeros(y.shape)
+  for i in range(L.shape[0]-1,0-1,-1):
+    t = 0
+    for k in range(i,L.shape[0]):
+      t += L[k][i] * x[k][0]
+    x[i][0] = (y[i][0]-t)/L[i][i]
+  return x
+x = LTxy(L,y)
+print(&#39;x=&#39;)
+print(x)
+</code></pre>
+<p>输出</p>
+<pre><code>L=
+[[ 2.64575131  0.          0.          0.        ]
+[ 0.37796447  2.97609524  0.          0.        ]
+[-1.88982237  0.91202919  1.61145096  0.        ]
+[ 0.37796447  2.30407373 -1.4813338   1.16363107]]
+y=
+[[ 4.91353815]
+[-3.64811674]
+[11.55040004]
+[20.33151718]]
+x=
+[[ 19.07798165]
+[-21.87155963]
+[ 23.2293578 ]
+[ 17.47247706]]
+</code></pre><h2 id="2-4-线性方程组求解-6"><a href="#2-4-线性方程组求解-6" class="headerlink" title="2.4 线性方程组求解 6"></a>2.4 线性方程组求解 6</h2><h3 id="题目：-6"><a href="#题目：-6" class="headerlink" title="题目："></a>题目：</h3><p>令 $H$ 表示 $n\times n$ 的 Hilbert 矩阵，其中 $(i,j)$ 元素是 $1/(i+j-1)$，b 是元素全为 1 的向量，用 Gauss 消去法求解 Hx=b，其中取</p>
+<p>(1) n=2;</p>
+<p>(2) n=5;</p>
+<p>(3) n=10;</p>
+<p>程序</p>
+<pre><code class="lang-python">def Hilbert(n):
+  ans = np.zeros((n,n))
+  for i in range(n):
+    for j in range(n):
+      ans[i][j] = 1./(i+1+j+1-1)
+  return ans
+
+def Gauss(A,b):
+  ans = np.zeros(b.shape)
+  n = A.shape[0]
+  Ab = np.hstack((A,b))
+
+  for j in range(0,n-1):
+    for i in range(j+1,n):
+      Ab[i] = Ab[i] - Ab[j] * Ab[i][j]/Ab[j][j]
+  # print(Ab)
+  for i in range(n-1,-1,-1):
+    t = 0
+    for j in range(i+1,n):
+      t += ans[j][0] * Ab[i][j]
+
+    ans[i][0] =  (Ab[i][n] - t)/Ab[i][i]
+    # print((i,b[i][0]))
+  return ans
+
+for i in [2,5,10]:
+  x = Gauss(Hilbert(i), np.ones((i,1)))
+  print(&quot;Hx=b, H=Hilbert({:d}),b 是元素全为 1 的向量&quot;.format(i))
+  print(x)
+</code></pre>
+<p>输出</p>
+<pre><code>Hx=b, H=Hilbert(2),b 是元素全为 1 的向量
+[[-2.]
+[ 6.]]
+Hx=b, H=Hilbert(5),b 是元素全为 1 的向量
+[[    5.]
+[ -120.]
+[  630.]
+[-1120.]
+[  630.]]
+Hx=b, H=Hilbert(10),b 是元素全为 1 的向量
+[[-9.99726592e+00]
+[ 9.89763037e+02]
+[-2.37549411e+04]
+[ 2.40193928e+05]
+[-1.26103993e+06]
+[ 3.78317436e+06]
+[-6.72572540e+06]
+[ 7.00031810e+06]
+[-3.93771469e+06]
+[ 9.23668814e+05]]
+</code></pre><h2 id="2-5-非线性方程组求解-1"><a href="#2-5-非线性方程组求解-1" class="headerlink" title="2.5 非线性方程组求解 1"></a>2.5 非线性方程组求解 1</h2><h3 id="题目：-7"><a href="#题目：-7" class="headerlink" title="题目："></a>题目：</h3><p>分别应用 Newton 迭代法和割线法计算</p>
+<p>（1）非线性方程 $2x^3+5x+1=0$ 在 $[1,2]$ 上的一个根</p>
+<p>（2）$e^x\sin x=0$ 在 $[-4,-3]$ 上的一个根</p>
+<p>程序</p>
+<pre><code class="lang-python">def f1(x):
+  return 2*pow(x,3)+5*x+1
+def df1(x):
+  return 6*x + 5
+def f2(x):
+  return exp(x)*sin(x)
+def df2(x):
+  return exp(x)*sin(x)+exp(x)*cos(x)
+def Newton(f,df,y,lb,rb):
+  x = (lb+rb)/2.
+  while abs(f(x)-y)&gt;1e-10:
+    x = x-f(x)/df(x)
+  return x
+def cutlines(f,y,lb,rb):
+  x0=np.random.uniform(lb,rb)
+  x1=np.random.uniform(x0,rb)
+  x = x1
+  while abs(f(x)-y)&gt;1e-10:
+    x = x1 - (x1-x0)*f(x1)/(f(x1)-f(x0))
+    x0 = x1
+    x1 = x
+  return x
+#(1)
+print(&#39;(1)&#39;)
+print(&#39;Newton 法： &#39;+str(Newton(f1,df1,0.,1.,2.)))
+print(&#39;割线法： &#39;+str(cutlines(f1,0.,1.,2.)))
+#(2)
+print(&#39;(2)&#39;)
+print(&#39;Newton 法： &#39;+str(Newton(f2,df2,0.,-4.,-3.)))
+print(&#39;割线法： &#39;+str(cutlines(f2,0.,-4.,-3.)))
+
+np.random.uniform(1,2)
+xt = np.arange(-1,2,0.001)
+yt = np.array([f1(i) for i in xt])
+def pltshow(X,Y):
+  fig = plt.figure(figsize=(8,6), dpi=72,facecolor=&quot;white&quot;)
+  axes = plt.subplot(111)
+  axes.plot(X,Y)#, color = &#39;blue&#39;, linewidth=2, linestyle=&quot;-&quot;)
+  axes.set_xlim(1.01*X.min(),1.01*X.max())
+  axes.set_ylim(1.01*Y.min(),1.01*Y.max())
+
+  axes.spines[&#39;right&#39;].set_color(&#39;none&#39;)
+  axes.spines[&#39;top&#39;].set_color(&#39;none&#39;)
+  axes.xaxis.set_ticks_position(&#39;bottom&#39;)
+  axes.spines[&#39;bottom&#39;].set_position((&#39;data&#39;,0))
+  axes.yaxis.set_ticks_position(&#39;left&#39;)
+  axes.spines[&#39;left&#39;].set_position((&#39;data&#39;,0))
+  plt.show()
+pltshow(xt,yt)
+</code></pre>
+<p>输出</p>
+<pre><code>(1)
+Newton 法： -0.1969444376699362
+割线法： -0.19694443765320088
+(2)
+Newton 法： -3.141592653579501
+割线法： -3.1415926535895866
+</code></pre><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/a4b0d007b3d173ef957d5e9937bacdb7-20230610211229195-d8222a.png" alt="png"></p>
+<h2 id="2-6-非线性方程组-4"><a href="#2-6-非线性方程组-4" class="headerlink" title="2.6 非线性方程组 4"></a>2.6 非线性方程组 4</h2><h3 id="题目：-8"><a href="#题目：-8" class="headerlink" title="题目："></a>题目：</h3><p> 用 Newton 迭代法求解方程 $x^3+x^2+x-3=0$ 的根，初值选择 $x_0=-0.7$，迭代 7 步并与真值 相比较，并列出数据表</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">$x_i$</th>
+<th style="text-align:center">$e_i=</th>
+<th style="text-align:center">x_i-x^*</th>
+<th>$</th>
+<th>$\frac{e_i}{e_2^{i-1}}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>程序</p>
+<pre><code class="lang-python">def Newton7(f,df,y,xtrue=1):
+  x = -0.7
+  c = 0
+  e = abs(x - xtrue)
+
+  print(*[c,x,e,e/pow(e,2)])
+  while abs(f(x)-y)&gt;1e-10 and c &lt; 11:
+
+    x = x-f(x)/df(x)
+    c += 1
+    e = abs(x-xtrue)
+    print(*[c,x,e,e/pow(e,2)])
+
+  return x
+def f(x):
+  return pow(x,3)+pow(x,2)+x-3
+def df(x):
+  return 3*pow(x,2)+2*x+1
+Newton7(f,df,0)
+</code></pre>
+<p>输出</p>
+<pre><code>0 -0.7 1.7 0.5882352941176471
+1 2.6205607476635517 1.6205607476635517 0.6170703575547865
+2 1.7084401902625614 0.7084401902625614 1.4115517636420105
+3 1.2063786980181086 0.2063786980181086 4.845461327177554
+4 1.024161664125103 0.02416166412510301 41.387877706694866
+5 1.0003814911210203 0.00038149112102026095 2621.2929866509007
+6 1.0000000969928142 9.699281422470563e-08 10310042.120061344
+7 1.0000000000000062 6.217248937900877e-15 160842843834660.56
+1.0000000000000062
+</code></pre><h2 id="2-7-插值与逼近-1"><a href="#2-7-插值与逼近-1" class="headerlink" title="2.7 插值与逼近 1"></a>2.7 插值与逼近 1</h2><h3 id="题目：-9"><a href="#题目：-9" class="headerlink" title="题目："></a>题目：</h3><p>已知函数 $f(x)=\frac{1}{1+x^2}$，在 $[-5,5]$ 上分别取 $2,1,\frac{1}{2}$ 为单位长度的等距节点作为插值节点，用 Lagrange 方法插值，并把原函数图与插值函数图比较，观察插值效果</p>
+<p>程序</p>
+<pre><code class="lang-python">def f(x):
+  return 1./(1+np.power(x,2))
+
+x = np.array(
+    [np.arange(-5,5.1,2.),
+    np.arange(-5,5.1,1.),
+    np.arange(-5,5.1,0.5)]
+)
+
+y = f(x)
+
+def LagrangeInterpolation(x,y):
+  def ans(x_):
+    res = 0
+    n = y.shape[0];
+    L = np.ones(n)
+    for i in range(n):
+      for j in range(n):
+        if j != i:
+          L[i] *= (x_ - x[j])
+          L[i] /= (x[i] - x[j])
+      L[i] *= y[i]
+    return L.sum()
+  return ans
+
+for i in range(3):
+  L = LagrangeInterpolation(x[i],y[i])
+labels=[
+    &#39;step=2&#39;,&#39;step=1&#39;,&#39;step=0.5&#39;
+]
+for i,j,k in zip(x,y,labels):
+  plt.plot(i,j,label=k)
+xtrue = np.arange(-5,5.0001,0.01)
+ytrue = f(xtrue)
+plt.plot(xtrue,ytrue,label=&#39;ytrue&#39;)
+plt.legend()
+plt.grid()
+plt.show()
+</code></pre>
+<p>输出</p>
+<pre><code>    &lt;ipython-input-18-04d7d62ca026&gt;:4: VisibleDeprecationWarning: Creating an ndarray from ragged nested sequences (which is a list-or-tuple of lists-or-tuples-or ndarrays with different lengths or shapes) is deprecated. If you meant to do this, you must specify &#39;dtype=object&#39; when creating the ndarray.
+      x = np.array(
+</code></pre><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/9a3a1a8fa5a2adae1c0bfd2dd7767c94-20230610211250239-e64006.png" alt="png"></p>
+<h2 id="2-8-插值与逼近-5"><a href="#2-8-插值与逼近-5" class="headerlink" title="2.8 插值与逼近 5"></a>2.8 插值与逼近 5</h2><h3 id="题目：-10"><a href="#题目：-10" class="headerlink" title="题目："></a>题目：</h3><p>考虑函数 $f(x)=\sin\pi x,x\in[0,1]$，用等距节点作$f(x)$的Newton插值，画出插值多项式以及$f(x)$的图像，观察收敛性</p>
+<p>程序</p>
+<pre><code class="lang-python">def f(x):
+  return np.sin(pi*x)
+def NewtonInterpolation(x,y,h):
+
+  res = 0.
+  n = x.shape[0]
+  # DD = np.zeros((n+1,n))
+  # DD[0] = x
+  # DD[1] = y
+  DD = np.zeros((n,n))
+  DD[0] = y
+  DD = DD.T
+  # print(DD)
+  # for i in range(2,n+1):
+  #   for j in range(i-1,n):
+  #     DD[j][i] = (DD[j][i-1]-DD[j-1][i-1])/((i-1)*h)
+  # print(DD)
+  for i in range(1,n):
+    for j in range(i,n):
+      DD[j][i] = (DD[j][i-1]-DD[j-1][i-1])/((i)*h)
+  # print(DD)
+  def ans(x_):
+    res=0
+    res += DD[0][0]
+    for i in range(1,n):
+      t = 1
+      for j in range(i):
+        t *= (x_-x[j])
+      res += DD[i][i] * t
+    return res
+  return ans
+h=0.001
+x = np.arange(0,1.01,h)
+y = f(x)
+plt.plot(x,y,label=&#39;fx&#39;)
+
+h=0.02
+x = np.arange(0,1.01,h)
+y = f(x)
+p = NewtonInterpolation(x,y,h)
+py = p(x)
+
+plt.plot(x,py,label=&#39;px&#39;)
+plt.legend()
+plt.grid()
+plt.show()
+</code></pre>
+<p>输出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/8eb3b707270b2749d4bf3a813cecd0cb-20230610211257923-c3d109.png" alt="png"></p>
+<h2 id="2-9-插值与逼近-7"><a href="#2-9-插值与逼近-7" class="headerlink" title="2.9 插值与逼近 7"></a>2.9 插值与逼近 7</h2><h3 id="题目：-11"><a href="#题目：-11" class="headerlink" title="题目："></a>题目：</h3><p>编程计算三次样条 S，满足 $S(0)=1,S(1)=3,S(2)=3,S(3)=4,S(4)=2$,其中边界条件$S’’(0)=S’’(4)=0$</p>
+<p>程序</p>
+<pre><code class="lang-python">def NaturalCubicSpline(x,y):
+  # p149-p150; algorithm 3.4; Numerical Analysis 9th Autor: Richard L.Burden and J.Douglas Faires
+  n = x.shape[0] - 1
+  h = np.zeros((n,))
+  abcd = np.zeros((n,n+1))
+  abcd = abcd.T
+  a,b,c,d = y,np.zeros((n+1,)),np.zeros((n+1,)),np.zeros((n+1,))
+  # step 1
+  for i in range(0,n):
+    h[i] = x[i+1]-x[i]
+  # step 2
+  alpha = np.zeros((n,))
+  for i in range(1,n):
+    alpha[i]=3./h[i]*(a[i+1]-a[i])-3./h[i-1]*(a[i]-a[i-1])
+  # step 3
+  L,u,z = np.zeros((n+1,)),np.zeros((n+1,)),np.zeros((n+1,))
+  L[0] = 1
+  u[0] = 0
+  z[0] = 0
+  # step 4
+  for i in range(1,n):
+    L[i]=2*(x[i+1]-x[i-1])-h[i-1]*u[i-1]
+    u[i]=h[i]/L[i]
+    z[i]=(alpha[i]-h[i-1]*z[i-1])/L[i]
+  # step 5
+  L[n]=1
+  z[n]=0
+  c[n]=0
+  # step 6
+  for j in range(n-1,-1,-1):
+    c[j]=z[j]-u[j]*c[j+1]
+    b[j]=(a[j+1]-a[j])/h[j]-h[j]*(c[j+1]+2*c[j])/3.
+    d[j]=(c[j+1]-c[j])/(3.*h[j])
+  # print(a)
+  # print(b)
+  # print(c)
+  # print(d)
+  abcd[0]=a[:-1]
+  abcd[1]=b[:-1]
+  abcd[2]=c[:-1]
+  abcd[3]=d[:-1]
+  abcd = abcd.T
+  print(abcd)
+  def spline(x_):
+    res = 0
+    t = x[0]
+    for i in range(n):
+      # print((x_,x[i],x[i+1]))
+      if x_ &gt;= x[i] and x_ &lt;= x[i+1]:
+        t = i
+        break
+    for i in range(n+1):
+      res += abcd[t][i] * pow(x_-x[t],i)
+    return res
+  return spline
+x = np.array([0.,1.,2.,3.,4.])
+y = np.array([1.,3.,3.,4.,2.])
+spl = NaturalCubicSpline(x,y)
+x_ = np.arange(0,4.01,0.01)
+y_ = [spl(i) for i in x_]
+plt.plot(x_,y_,label=&#39;spline&#39;)
+plt.grid()
+plt.legend()
+plt.show()
+</code></pre>
+<p>输出</p>
+<pre><code>[[ 1.          2.66071429  0.         -0.66071429  0.        ]
+[ 3.          0.67857143 -1.98214286  1.30357143  0.        ]
+[ 3.          0.625       1.92857143 -1.55357143  0.        ]
+[ 4.         -0.17857143 -2.73214286  0.91071429  0.        ]]
+</code></pre><p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/9726bd0146b1f8dcedb529a27b45da43-20230610211241365-8935aa.png" alt="png"></p>
+<h2 id="2-10-数值积分-2"><a href="#2-10-数值积分-2" class="headerlink" title="2.10 数值积分 2"></a>2.10 数值积分 2</h2><h3 id="题目：-12"><a href="#题目：-12" class="headerlink" title="题目："></a>题目：</h3><p>用两点，三点和五点的Gauss型积分公式分别计算定积分，并与真值作比较</p>
 <script type="math/tex; mode=display">
-   \rho(\lambda)-\bar{h}\sigma(\lambda)=0</script><p>   并转换为实系数二次方程：</p>
-<script type="math/tex; mode=display">
-   \lambda^2-b\lambda-c=0</script><p>   求解不等式</p>
-<script type="math/tex; mode=display">
-   |b|<1-c<2</script><p>   得到 $\bar{h}$ 的范围即为绝对稳定区间，需要注意的是  $\bar{h}&lt;0$ 被认为是必须满足的已知条件</p>
-</li>
-</ul>
-<p>可结合上节例7或本节下述例题部分理解该过程</p>
-<h4 id="例题-2"><a href="#例题-2" class="headerlink" title="例题"></a>例题</h4><p>证明求解一阶常微分方程初值问题：$u’=f(t,u),u(0)=u_0$ 的差分格式 $u_{n+2}-u_{n+1}=\frac{h}{12}(5f_{n+2}+8f_{n+1}-f_n)$ <strong>收敛</strong>并求其<strong>局部截断误差主项</strong>，<strong>绝对稳定区间</strong></p>
-<p>解：</p>
-<p>依题意可得</p>
-<script type="math/tex; mode=display">
-\alpha_0=0\quad\alpha_1=-1\quad\alpha_2=1</script><script type="math/tex; mode=display">
-\beta_0=\frac{-1}{12}\quad\beta_1=\frac{8}{12}\quad\beta_2=\frac{5}{12}</script><p>从而可以构造线性方程组，得到</p>
+S=\int^\frac{\pi}{2}_0x^2\cos x\mathrm{d}x</script><p>本题使用 Gauss-Legendre 公式，通过查表可知对应的系数以及 Gauss 点如下表所示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$n$</th>
+<th style="text-align:center">Roots $r_{n,i}$</th>
+<th style="text-align:center">Coefficients $c_{n,j}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">0.5773502692</td>
+<td style="text-align:center">1.0000000000</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.5773502692</td>
+<td style="text-align:center">1.0000000000</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">0.7745966692</td>
+<td style="text-align:center">0.5555555556</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0.0000000000</td>
+<td style="text-align:center">0.8888888889</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.7745966692</td>
+<td style="text-align:center">0.5555555556</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">0.8611363116</td>
+<td style="text-align:center">0.3478548451</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0.3399810436</td>
+<td style="text-align:center">0.6521451549</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.3399810436</td>
+<td style="text-align:center">0.6521451549</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.8611363116</td>
+<td style="text-align:center">0.3478548451</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0.9061798459</td>
+<td style="text-align:center">0.2369268850</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0.5384693101</td>
+<td style="text-align:center">0.4786286705</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">0.0000000000</td>
+<td style="text-align:center">0.5688888889</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.5384693101</td>
+<td style="text-align:center">0.4786286705</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center">−0.9061798459</td>
+<td style="text-align:center">0.2369268850</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>程序</p>
+<pre><code class="lang-python">xmpy = sympy.Symbol(&#39;x&#39;)
+print(&quot;true value\t{:s}&quot;.format(str(sympy.integrate(sympy.cos(xmpy)*xmpy*xmpy,(xmpy,0,pi/2.)))))
+
+def f(x):
+  return pow(x,2)*cos(x)
+def GaussLegendreIntergrate(f,x,coefficients):
+  res = 0
+  for i,j in zip(x,coefficients):
+    res += f(i)*j
+  return res
+# n=2
+x=[0.5773502692,-0.5773502692] 
+coefficients=[1.0000000000,1.0000000000]
+print(&quot;n=2,\t\t{:s}&quot;.format(str(GaussLegendreIntergrate(f,x,coefficients))))
+# n=3
+x=[0.7745966692,0.0000000000,-0.7745966692]
+coefficients=[0.5555555556,0.8888888889,0.5555555556]
+print(&quot;n=3,\t\t{:s}&quot;.format(str(GaussLegendreIntergrate(f,x,coefficients))))
+# n=5
+x=[0.9061798459, 0.5384693101, 0.0000000000, -0.5384693101, -0.9061798459]
+coefficients=[ 0.236926885, 0.4786286705, 0.5688888889, 0.4786286705, 0.2369268850]
+print(&quot;n=5,\t\t{:s}&quot;.format(str(GaussLegendreIntergrate(f,x,coefficients))))
+</code></pre>
+<p>输出</p>
+<pre><code>true value    0.467401100272340
+n=2,        0.5586078851462954
+n=3,        0.476468795309243
+n=5,        0.4782671832477956
+</code></pre><h2 id="2-11-微分方程数值解法-1"><a href="#2-11-微分方程数值解法-1" class="headerlink" title="2.11 微分方程数值解法 1"></a>2.11 微分方程数值解法 1</h2><h3 id="题目：-13"><a href="#题目：-13" class="headerlink" title="题目："></a>题目：</h3><p> 已知常微分方程</p>
 <script type="math/tex; mode=display">
 \left\{
 \begin{array}{l}
-c_0=1-1=0\\
-c_1=(-1+2\times1)-(\frac{-1}{12}+\frac{8}{12}+\frac{5}{12})=0\\
-c_2=\frac{1}{2}(-1+1*2^2)-(\frac{8}{12}+2\times\frac{5}{12})=0\\
-c_3=\frac{1}{6}(-1+1*2^3)-\frac{1}{2}(\frac{8}{12}+2^2\times\frac{5}{12})=0\\
-c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac{-1}{24}\neq0
+\frac{\mathrm{d}u}{\mathrm{d}x}=\frac{2}{x}u+x^2e^x\\                x\in[1,2],u(1)=0
 \end{array}
-\right.</script><p>因此，此方法为隐式二步三阶法，其局部截断误差主项为 $\frac{-1}{24}h^4u^{(4)}(t_n)$</p>
-<p>由差分格式可构造第一特征多项式</p>
-<script type="math/tex; mode=display">
-\rho(\lambda)=\lambda^2-\lambda</script><p>第二特征多项式</p>
-<script type="math/tex; mode=display">
-\sigma(\lambda)=\frac{5}{12}\lambda^2+\frac{8}{12}\lambda-\frac{1}{12}</script><p>令 $\rho(\lambda)=\lambda^2-\lambda=0$</p>
-<p>得 $\lambda_1=0,\;\lambda_2=1$，则其特征值满足根条件 $|\lambda|&lt;1$，且阶数 $p\geq1$，因此该方法收敛</p>
-<p>构造特征方程：</p>
-<script type="math/tex; mode=display">
-\rho(\lambda)-\bar{h}\sigma(\lambda)=
-(1-\frac{5}{12}\bar{h})\lambda^2-(1+\frac{8}{12}\bar{h})\lambda+\frac{1}{12}\bar{h}
-=0</script><p>将特征方程二次项系数化为 1，可得</p>
-<script type="math/tex; mode=display">
-\lambda^2-
-(\frac{12+8\bar{h}}{12-5\bar{h}})\lambda-
-\frac{(-\bar{h})}{12-5\bar{h}}=0</script><p>求解不等式 $|b|&lt;1-c&lt;2$，即</p>
-<script type="math/tex; mode=display">
-\left|
-(\frac{12+8\bar{h}}{12-5\bar{h}})
-\right|<
-1-\frac{(-\bar{h})}{12-5\bar{h}}=
-\frac{12-4\bar{h}}{12-5\bar{h}}<2</script><p>注意到已知 $\bar{h}&lt;0$</p>
-<p>而 $1-\frac{(-\bar{h})}{12-5\bar{h}}=<br>\frac{12-4\bar{h}}{12-5\bar{h}}&lt;2$ 自然成立，</p>
-<p>再求解 $<br>\left|<br>(\frac{12+8\bar{h}}{12-5\bar{h}})<br>\right|&lt;\frac{12-4\bar{h}}{12-5\bar{h}}$ </p>
-<p>得到 $-12+4\bar{h}&lt;12+8\bar{h}&lt;12-4\bar{h}$， </p>
-<p>而 $12+8\bar{h}&lt;12-4\bar{h}$ 自然成立，</p>
-<p>即有 $-3+\bar{h}&lt;3+2\bar{h}$，</p>
-<p>可得其绝对稳定区间为 $-6&lt;\bar{h}&lt;0$</p>
-<h1 id="END"><a href="#END" class="headerlink" title="END"></a>END</h1>
+\right.</script><p>分别用Euler法，改进的Euler法，Runge-Kutta法求解该方程，步长选为0.1，0.05，0.01，画图观察求解效果</p>
+<p>程序</p>
+<pre><code class="lang-python">hs=[0.1,0.05,0.01]
+def f(u,x):
+  return 2.*u/x+pow(x,2)*exp(x)
+def Euler(u,h,x,f):
+  return u+h*f(u,x)
+def EulerImprove(u,h,x,f,*args):
+  u_=u+h*f(u,x)
+  return u+h/2.*(f(u,x)+f(u,x+h))
+def RungeKutta(u,h,x,f):
+  # 4 阶
+  # p288-p289; algorithm 5.2; Numerical Analysis 9th Autor: Richard L.Burden and J.Douglas Faires
+  # 此处课件与上述参考书目不同，课件中 k2,k3,k4 的 u 的迭代过程多乘了一个 h
+  # 可与下一单元格中对应位置作对比
+  k1 = h*f(u,x)
+  k2 = h*f(u+h*k1/2.,x+h/2.)
+  k3 = h*f(u+h*k2/2.,x+h/2.)
+  k4 = h*f(u+h*k3,x+h)
+  return u + (k1+2*k2+2*k3+k4)/6.
+
+
+functions=[Euler,EulerImprove,RungeKutta]
+labels = [&#39;Euler&#39;,&#39;Euler-improve&#39;,&#39;Runge-kutta&#39;]
+fig = plt.figure(figsize=(12,3))
+fig.subplots_adjust(hspace=0.4, wspace=0.4)
+for h in hs:
+  # axes = plt.subplot()
+  # axes.set_xlim(0.99,2.01)
+  # axes
+  subplot = plt.subplot(1,3,hs.index(h)+1)
+  subplot.set_xlim(0.99,2.01)
+  subplot.set_ylim(-0.01,19.)
+  for fun,label in zip(functions,labels):
+    x = 1
+    u1 = 0
+    us = []
+    xs = []
+    while x &lt; 2:
+      us.append(u1)
+      xs.append(x)
+      u2 = fun(u1,h,x,f)
+      x += h
+      u1 = u2
+    # plt.subplot(1,3,hs.index(h)+1)
+    plt.plot(xs,us,label = label)
+
+  plt.title(&quot;h={:f}&quot;.format(h))
+  plt.xlabel(&quot;x&quot;)
+  plt.ylabel(&quot;u&quot;)
+  plt.legend()
+  plt.grid()
+plt.show()
+</code></pre>
+<p>输出</p>
+<p><img src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/06/10/e70fab8d4075c42e84c5e85419444a64-20230610211151570-336906.png" alt="png"></p>
+<p>程序</p>
+<pre><code class="lang-python">x=np.arange(0,2,0.2)
+x = 0.
+u1 = 0.5
+h = 0.2
+def RungeKutta(u,h,x,f):
+  # 4 阶
+  # p288-p289; algorithm 5.2; Numerical Analysis 9th Autor: Richard L.Burden and J.Douglas Faires
+  # 此处课件与上述参考书目不同，参考书目中 k2,k3,k4 的 u 的迭代过程少乘了一个 h
+  # 可与上一单元格中对应位置作对比
+  k1 = h*f(u,x)
+  k2 = h*f(u+k1/2.,x+h/2.)
+  k3 = h*f(u+k2/2.,x+h/2.)
+  k4 = h*f(u+k3,x+h)
+  print((k1,k2,k3,k4))
+  return u + (k1+2*k2+2*k3+k4)/6.
+def f(u,x):
+  return u-pow(x,2)+1
+while x &lt; 2:
+  print(u1)
+  u2 = RungeKutta(u1,h,x,f)
+  x += h
+  u1 = u2
+</code></pre>
+<p>输出</p>
+<pre><code>0.5
+(0.30000000000000004, 0.32800000000000007, 0.3308, 0.35816000000000003)
+0.8292933333333334
+(0.3578586666666667, 0.38364453333333337, 0.38622312000000003, 0.41110329066666673)
+1.2140762106666667
+(0.4108152421333333, 0.4338967663466667, 0.43620491876800005, 0.4580562258869334)
+1.6489220170416001
+(0.45778440340832005, 0.477562843749152, 0.4795406877832353, 0.49769254096496707)
+2.1272026849479437
+(0.49744053698958873, 0.5131845906885476, 0.5147589960584436, 0.5283923362012776)
+2.6408226927287517
+(0.5281645385457504, 0.5389809924003254, 0.5400626377857828, 0.548177066102907)
+3.1798941702322305
+(0.5479788340464461, 0.5527767174510906, 0.5532565057915552, 0.5546301352047571)
+3.7323400728549796
+(0.5544680145709959, 0.5519148160280957, 0.5516594961738054, 0.544799913805757)
+4.283409498318406
+(0.5446818996636813, 0.5331500896300494, 0.5319969086266862, 0.5150812813890185)
+4.815085694579435
+(0.5150171389158871, 0.4925188528074757, 0.4902690241966345, 0.46107094375521407)
+5.305363000692655
+(0.46107260013853113, 0.42517986015238435, 0.42159058615376976, 0.3773907173692852)
+</code></pre>
         </div>
         <!-- .entry-content -->
         <div class="single-reward">
@@ -747,7 +1402,7 @@ c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac
           
             <div class="post-nepre half previous">
           
-            <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-数值实验大作业/" rel="prev">
+            <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-考试的范围/" rel="prev">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
               </div>
@@ -755,7 +1410,7 @@ c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac
               Previous Post</span>
               <div class="info">
                 <h3>
-                2022-2023 春学期 矩阵与数值分析 数值实验大作业</h3>
+                2022-2023 春学期 矩阵与数值分析 考试的范围</h3>
                 <hr>
               </div>
             </a>
@@ -765,7 +1420,7 @@ c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac
           
             <div class="post-nepre half next">
           
-            <a href="/2023/06/05/2022-2023-春学期-矩阵与数值分析-C6-插值函数的应用/" rel="next">
+            <a href="/2023/06/10/2022-2023-春学期-矩阵与数值分析-C7-常微分方程的数值解法/" rel="next">
               <div class="background">
                 <img class="lazyload" src="https://cdn.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/img/loader/orange.progress-bar-stripe-loader.svg" data-src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="https://fastly.jsdelivr.net/gh/owuiviuwo/BlogCDN@main/blogPic/2023/03/10/6f1078d467166b315085abd04baa58bb-20230310134509511-d8f3a7.png">
               </div>
@@ -773,7 +1428,7 @@ c_4=\frac{1}{24}(-1+1*2^4)-\frac{1}{6}(\frac{8}{12}+2^3\times\frac{5}{12})=\frac
               Next Post</span>
               <div class="info">
                 <h3>
-                2022-2023 春学期 矩阵与数值分析 C6 插值函数的应用</h3>
+                2022-2023 春学期 矩阵与数值分析 C7 常微分方程的数值解法</h3>
                 <hr>
               </div>
             </a>
